@@ -3,25 +3,136 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-gray-100: #f4f4f4;
+  --color-gray-200: #e9e9e9;
+  --color-gray-300: #d3d3d3;
+  --color-gray-400: #bdbdbd;
+  --color-gray-500: #a7a7a7;
+  --color-gray-600: #909090;
+  --color-gray-700: #7a7a7a;
+  --color-gray-800: #646464;
+  --color-gray-900: #4e4e4e;
+
+  --color-main-100: #dce3fc;
+  --color-main-200: #b8c6f9;
+  --color-main-300: #95aaf6;
+  --color-main-400: #728ef3;
+  --color-main-500: #4e71f0;
+  --color-main-600: #2b55ed;
+
+  --color-black: #121212;
+  --color-white: #ffffff;
+  --color-error: #ce2020;
+  --color-success: #1eb916;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+input {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
 }
 
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+html {
+  font-family: 'Pretendard';
+}
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  background-color: #fff;
 }
