@@ -5,20 +5,22 @@ import { useForm } from 'react-hook-form';
 
 import Input from '@/shared/ui/Input';
 
+type FormType = {
+  email: string;
+  password: string;
+};
+
 export default function SignIn() {
-  type FormType = {
-    email: string;
-    password: string;
-  };
-  const onSubmit = (data: FormType) => {
-    // eslint-disable-next-line
-    console.log(data);
-  };
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormType>();
+
+  const onSubmit = (data: FormType) => {
+    // eslint-disable-next-line
+    console.log(data);
+  };
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
