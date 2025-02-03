@@ -3,7 +3,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-import Input from '@/shared/ui/Input';
+import { Button, Input } from '@/shared/ui';
 
 type FormType = {
   email: string;
@@ -44,7 +44,8 @@ export default function SignIn() {
           error={errors.password?.message}
         />
         <div>
-          <button type="submit">Submit</button>
+          <Button text="확인" />
+          <Button text="확인" disabled />
         </div>
       </form>
     </div>
