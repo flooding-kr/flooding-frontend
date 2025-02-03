@@ -13,11 +13,11 @@
   --color-gray-800: #646464;
   --color-gray-900: #4e4e4e;
 
-  --color-main-100: #dce3fc;
-  --color-main-200: #b8c6f9;
-  --color-main-300: #95aaf6;
-  --color-main-400: #728ef3;
-  --color-main-500: #4e71f0;
+  --color-main-100: #e4eafd;
+  --color-main-200: #c9d4fb;
+  --color-main-300: #afbff9;
+  --color-main-400: #94a9f7;
+  --color-main-500: #7994f5;
   --color-main-600: #5e7ef3;
 
   --color-black: #121212;
@@ -132,7 +132,8 @@ button {
 
 html {
   font-family: 'Pretendard';
+  background-color:;
 }
 body {
-  background-color: #fff;
+  background-color: #f4f4f4;
 }
