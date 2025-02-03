@@ -1,4 +1,5 @@
 import TanstackProvider from './_provider/TanstackProvider';
+import './globals.css';
 
 export default function RootLayout({
   children,
