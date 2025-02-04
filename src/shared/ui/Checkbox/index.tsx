@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 
 import { CheckBoxFalse, CheckBoxTrue } from '@/shared/assets/icons';
