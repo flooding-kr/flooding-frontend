@@ -1,43 +1,24 @@
 'use client';
 
-import { useState } from 'react';
-
 import { CheckBoxFalse, CheckBoxTrue } from '@/shared/assets/icons';
 
 interface Props {
   label: string;
   checked: boolean;
-  onChange: (value: boolean) => void;
+  onChange: (checked: boolean) => void;
 }
 
 function Checkbox({ label, checked, onChange }: Props) {
-  const [isChecked, setIsChecked] = useState(checked);
-
-  const handleChange = () => {
-    setIsChecked(!isChecked);
-    onChange(!isChecked);
-  };
+  const buttonId = `checkbox-button-${label}`;
 
   return (
-    <div className="w-full inline-flex items-center  justify-between">
-      <label htmlFor="checkbox" className="text-body3R text-gray-600 cursor-pointer">
+    <div className="flex items-center gap-2 justify-between">
+      <button id={buttonId} type="button" onClick={() => onChange(!checked)} aria-pressed={checked}>
+        {checked ? <CheckBoxTrue /> : <CheckBoxFalse />}
+      </button>
+      <label htmlFor={buttonId} className="text-body3R text-gray-600 cursor-pointer">
         {label}
       </label>
-      <input
-        id="checkbox"
-        type="checkbox"
-        checked={isChecked}
-        onChange={handleChange}
-        className="hidden cursor-pointer"
-      />
-      <button
-        type="button"
-        onClick={handleChange}
-        onKeyDown={handleChange}
-        aria-pressed={isChecked}
-      >
-        {isChecked ? <CheckBoxTrue /> : <CheckBoxFalse />}
-      </button>
     </div>
   );
 }

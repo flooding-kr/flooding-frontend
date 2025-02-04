@@ -1,19 +1,21 @@
 'use client';
 
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 
-import { Button, Input } from '@/shared/ui';
+import { Button, Checkbox, Input } from '@/shared/ui';
 
 type FormType = {
   email: string;
   password: string;
+  checkbox: boolean;
 };
 
 export default function SigninForm() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<FormType>();
 
@@ -44,9 +46,17 @@ export default function SigninForm() {
           placeholder="비밀번호를 입력해주세요"
           error={errors.password?.message}
         />
+        <Controller
+          name="checkbox"
+          control={control}
+          rules={{ required: '약관에 동의해야 합니다.' }}
+          render={({ field }) => (
+            <Checkbox checked={field.value} onChange={field.onChange} label="약관에 동의합니다" />
+          )}
+        />
       </div>
       <div className="mt-20">
-        <Button text="확인" />
+        <Button text="확인" type="submit" />
       </div>
     </form>
   );
