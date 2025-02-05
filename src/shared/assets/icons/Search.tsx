@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Search() {
+export default function Search() {
   return (
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -10,5 +10,3 @@ function Search() {
     </svg>
   );
 }
-
-export default Search;
