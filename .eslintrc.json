@@ -53,6 +53,10 @@
       {
         "endOfLine": "auto"
       }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": ["**/*.stories.*", "**/*.test.*"] }
     ]
   },
   "settings": {
