@@ -1,5 +1,6 @@
-import { Tag } from '@/shared/ui';
 import React from 'react';
+
+import { Tag } from '@/shared/ui';
 
 function HomeBase() {
   return (
