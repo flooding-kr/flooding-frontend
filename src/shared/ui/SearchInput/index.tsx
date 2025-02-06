@@ -2,7 +2,7 @@
 
 import React, { ChangeEvent, InputHTMLAttributes, useEffect, useState } from 'react';
 
-import Search from '@/shared/assets/icons/Search';
+import { Search } from '@/shared/assets/icons';
 import useDebounce from '@/shared/hooks/useDebounce';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
