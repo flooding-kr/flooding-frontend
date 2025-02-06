@@ -3,12 +3,15 @@
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
-import { Button, Checkbox, Input } from '@/shared/ui';
+import { Button, Checkbox, Dropdown, Input } from '@/shared/ui';
 
 type FormType = {
   email: string;
   password: string;
   checkbox: boolean;
+  dropbox1: string;
+  dropbox2: string;
+  dropbox3: string;
 };
 
 export default function SigninForm() {
@@ -54,6 +57,66 @@ export default function SigninForm() {
             <Checkbox checked={field.value} onChange={field.onChange} label="약관에 동의합니다" />
           )}
         />
+        <div className="flex gap-2">
+          <Controller
+            name="dropbox1"
+            control={control}
+            rules={{ required: '기수를 선택해주세요.' }}
+            render={({ field }) => (
+              <Dropdown
+                {...field}
+                text="기수 선택"
+                items={['7기', '8기', '9기']}
+                onChange={field.onChange}
+              />
+            )}
+          />
+          <Controller
+            name="dropbox2"
+            control={control}
+            rules={{ required: '번호를 선택해주세요.' }}
+            render={({ field }) => (
+              <Dropdown
+                {...field}
+                text="반 선택"
+                items={['1', '2', '3', '4']}
+                onChange={field.onChange}
+              />
+            )}
+          />
+          <Controller
+            name="dropbox3"
+            control={control}
+            rules={{ required: '반을 선택해주세요.' }}
+            render={({ field }) => (
+              <Dropdown
+                {...field}
+                text="번호 선택"
+                items={[
+                  '1',
+                  '2',
+                  '3',
+                  '4',
+                  '5',
+                  '6',
+                  '7',
+                  '8',
+                  '9',
+                  '10',
+                  '11',
+                  '12',
+                  '13',
+                  '14',
+                  '15',
+                  '16',
+                  '17',
+                  '18',
+                ]}
+                onChange={field.onChange}
+              />
+            )}
+          />
+        </div>
       </div>
       <div className="mt-20">
         <Button text="확인" type="submit" />
