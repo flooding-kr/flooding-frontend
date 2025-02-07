@@ -1,8 +1,8 @@
 'use client';
 
-// import useStore from '@/shared/stores/useStore';
 import { useState } from 'react';
 
+import { Tag } from '@/shared/ui';
 import SearchInput from '@/shared/ui/SearchInput';
 
 export default function HomeBase() {
@@ -20,6 +20,8 @@ export default function HomeBase() {
         value={s}
         debounceTime={300}
       />
+      <Tag text="4층" disabled />
+      <Tag text="4층" />
     </div>
   );
 }
