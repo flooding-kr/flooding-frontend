@@ -5,13 +5,12 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: ['develop']
   pull_request:
-    branches: [ "develop" ]
+    branches: ['develop']
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -20,31 +19,29 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build --if-present
 
-    - name: Send success message to Discord
-      if: success()
-      uses: enbraining/discord-webhook-action@v1.0.1
-      with:
-        webhook-url: ${{ secrets.WEBHOOK_SECRET }}
-        type: EMBED
-        title: "Successfully complete build"
-        color: 57F287
+      - name: Send success message to Discord
+        if: success()
+        uses: enbraining/discord-webhook-action@v1.0.1
+        with:
+          webhook-url: ${{ secrets.WEBHOOK_SECRET }}
+          type: EMBED
+          title: 'Successfully complete build'
+          color: 57F287
 
-    - name: Send failure message to Discord
-      if: failure()
-      uses: enbraining/discord-webhook-action@v1.0.1
-      with:
-        webhook-url: ${{ secrets.WEBHOOK_SECRET }}
-        type: EMBED
-        title: "Failed to complete build"
-        color: ED4245
-
-    
+      - name: Send failure message to Discord
+        if: failure()
+        uses: enbraining/discord-webhook-action@v1.0.1
+        with:
+          webhook-url: ${{ secrets.WEBHOOK_SECRET }}
+          type: EMBED
+          title: 'Failed to complete build'
+          color: ED4245
