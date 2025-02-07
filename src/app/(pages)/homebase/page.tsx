@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
-import SearchInput from '@/shared/ui/SearchInput';
 import { Tag } from '@/shared/ui';
+import SearchInput from '@/shared/ui/SearchInput';
 
 export default function HomeBase() {
   const [s, u] = useState('');
