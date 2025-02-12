@@ -1,5 +1,6 @@
-import { HomebaseIcon } from '@/shared/assets/icons';
 import React from 'react';
+
+import { HomebaseIcon } from '@/shared/assets/icons';
 
 export default function SectionTitle() {
   return (
