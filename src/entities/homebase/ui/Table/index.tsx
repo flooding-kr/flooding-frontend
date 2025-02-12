@@ -5,9 +5,8 @@ import { useStore } from '@/entities/homebase/store/useStore';
 import { tables2f, tables3f, tables4f } from '../../data/table';
 
 export default function Table() {
-  const [selectedTable, setSelectedTable] = useState<number | null>(null);
   const [tables, setTables] = useState(tables2f);
-  const { floor, classTime } = useStore();
+  const { floor, classTime, selectedTable, setSelectedTable } = useStore();
 
   useEffect(() => {
     setSelectedTable(null);

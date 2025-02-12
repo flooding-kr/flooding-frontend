@@ -4,6 +4,8 @@ interface Store {
   selectedStudents: { id: number; name: string }[];
   floor: string | null;
   classTime: string | null;
+  selectedTable: number | null;
+  setSelectedTable: (id: number | null) => void;
   setSelectedStudents: (students: { id: number; name: string }[]) => void;
   addStudent: (student: { id: number; name: string }) => void;
   removeStudent: (student: { id: number; name: string }) => void;
@@ -15,6 +17,8 @@ export const useStore = create<Store>(set => ({
   selectedStudents: [],
   floor: null,
   classTime: null,
+  selectedTable: null,
+  setSelectedTable: id => set({ selectedTable: id }),
   setSelectedStudents: students => set({ selectedStudents: students }),
   addStudent: student =>
     set(state => {
