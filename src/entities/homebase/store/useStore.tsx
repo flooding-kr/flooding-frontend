@@ -15,8 +15,8 @@ interface Store {
 
 export const useStore = create<Store>(set => ({
   selectedStudents: [],
-  floor: null,
-  classTime: null,
+  floor: '2층',
+  classTime: '8교시',
   selectedTable: null,
   setSelectedTable: id => set({ selectedTable: id }),
   setSelectedStudents: students => set({ selectedStudents: students }),
