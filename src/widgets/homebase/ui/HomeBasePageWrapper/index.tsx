@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { SectionTitle } from '@/entities/homebase';
+
 import HomeBaseSection from '../HomeBaseSection';
 
 export default function HomeBasePageWrapper() {
