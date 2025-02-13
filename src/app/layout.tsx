@@ -1,3 +1,5 @@
+import { pretendard } from '@/shared/style/font';
+
 import TanstackProvider from './_provider/TanstackProvider';
 import './globals.css';
 
@@ -8,7 +10,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="font-Pretendard">
+      <body className={pretendard.className}>
         <TanstackProvider>{children}</TanstackProvider>
       </body>
     </html>

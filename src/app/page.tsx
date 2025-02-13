@@ -1,18 +1,12 @@
 'use client';
 
-import useStore from '@/shared/stores/useStore';
+import ApplyBoard from '@/entities/home/ui/ApplyBoard';
 
 export default function Home() {
-  const { count, increment, decrement } = useStore();
   return (
-    <div>
-      {count}
-      <button type="button" onClick={increment}>
-        +
-      </button>
-      <button type="button" onClick={decrement}>
-        -
-      </button>
+    <div className="flex items-center justify-center">
+      <ApplyBoard count={50} maxCount={50} title="자습 신청" activationTime="20:00" />
+      <ApplyBoard count={3} maxCount={5} title="안마의자 신청" activationTime="20:20" />
     </div>
   );
 }
