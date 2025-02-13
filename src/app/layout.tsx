@@ -1,4 +1,5 @@
 import { Header } from '@/shared/ui';
+
 import TanstackProvider from './_provider/TanstackProvider';
 import './globals.css';
 
