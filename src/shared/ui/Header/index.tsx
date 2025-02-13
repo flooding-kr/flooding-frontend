@@ -1,3 +1,5 @@
+import Image from 'next/image';
+import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 
 import {
@@ -9,54 +11,72 @@ import {
   HeaderNotification,
   HeaderTotal,
 } from '@/shared/assets/icons';
-import { HeaderLogo } from '@/shared/assets/svg';
-import Image from 'next/image';
 import userProfileImage from '@/shared/assets/jpg/userProfileImage.jpg';
+import { HeaderLogo } from '@/shared/assets/svg';
 
 export default function Header() {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const headerActions = [
+    { icon: HeaderManager, label: '관리자', path: '/manager' },
+    { icon: HeaderNotification, label: '공지', path: '/notifications' },
+  ];
+
+  const menuItems = [
+    { icon: HeaderTotal, label: '전체', path: '/' },
+    { icon: HeaderDormitory, label: '기숙사', path: '/dormitory' },
+    { icon: HeaderHomebase, label: '홈베이스', path: '/homebase' },
+    { icon: HeaderClub, label: '동아리', path: '/club' },
+    { icon: HeaderAttendance, label: '출결', path: '/attendance' },
+  ];
+
   return (
     <div className="flex justify-center w-full bg-main-600">
       <div className="flex flex-col w-full max-w-[1360px] my-6 gap-9 text-body1B text-gray-300">
-        <div className="flex justify-between items-center  ">
+        <div className="flex justify-between items-center">
           <HeaderLogo />
           <div className="flex items-center gap-10">
             <div className="flex gap-6">
-              <div className="flex items-center gap-2">
-                <HeaderManager isSelected={false} />
-                <p>관리자</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <HeaderNotification isSelected={false} />
-                <p>공지</p>
-              </div>
+              {headerActions.map(({ icon: Icon, label, path }) => (
+                <button
+                  key={path}
+                  type="button"
+                  className="flex items-center gap-2"
+                  onClick={() => router.push(path)}
+                  aria-label={label}
+                >
+                  <Icon isSelected={pathname === path} />
+                  <p className={pathname === path ? 'text-white' : ''}>{label}</p>
+                </button>
+              ))}
             </div>
             <div className="flex items-center gap-5">
-              <Image alt="profile" src={userProfileImage} className="w-8 h-8 rounded-full flex" />
-              <p>김진원</p>
+              <Image alt="profile" src={userProfileImage} className="w-8 h-8 rounded-full" />
+              <button
+                type="button"
+                onClick={() => router.push('/profile')}
+                className={pathname === '/profile' ? 'text-white' : ''}
+                aria-label="프로필"
+              >
+                김진원
+              </button>
             </div>
           </div>
         </div>
-        <div className="flex gap-10 ">
-          <div className="flex items-center gap-3">
-            <HeaderTotal isSelected={false} />
-            <p>전체</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <HeaderDormitory isSelected={false} />
-            <p>기숙사</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <HeaderHomebase isSelected={false} />
-            <p>홈베이스</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <HeaderClub isSelected={false} />
-            <p>동아리</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <HeaderAttendance isSelected={false} />
-            <p>출결</p>
-          </div>
+        <div className="flex gap-10">
+          {menuItems.map(({ icon: Icon, label, path }) => (
+            <button
+              type="button"
+              key={path}
+              className="flex items-center gap-3"
+              onClick={() => router.push(path)}
+              aria-label={label}
+            >
+              <Icon isSelected={pathname === path} />
+              <p className={pathname === path ? 'text-white' : ''}>{label}</p>
+            </button>
+          ))}
         </div>
       </div>
     </div>
