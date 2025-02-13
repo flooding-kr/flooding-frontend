@@ -1,3 +1,7 @@
+'use client';
+
+import { usePathname } from 'next/navigation';
+
 import { Header } from '@/shared/ui';
 
 import TanstackProvider from './_provider/TanstackProvider';
@@ -8,11 +12,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+
   return (
     <html lang="ko">
       <body className="font-Pretendard">
         <TanstackProvider>
-          <Header />
+          {pathname === '/signin' || pathname === '/signup' ? null : <Header />}
           {children}
         </TanstackProvider>
       </body>
