@@ -2,10 +2,10 @@
 
 import { usePathname } from 'next/navigation';
 
+import { pretendard } from '@/shared/style/font';
 import { Header } from '@/shared/ui';
 
 import TanstackProvider from './_provider/TanstackProvider';
-import { pretendard } from '@/shared/style/font';
 import './globals.css';
 
 export default function RootLayout({
@@ -17,7 +17,7 @@ export default function RootLayout({
 
   return (
     <html lang="ko">
-      <body className="font-Pretendard">
+      <body className={pretendard.className}>
         <TanstackProvider>
           {pathname === '/signin' || pathname === '/signup' ? null : <Header />}
           {children}
