@@ -8,3 +8,8 @@ export { default as ArrowRight } from './ArrowRight';
 export { default as ArrowUp } from './ArrowUp';
 export { default as Search } from './Search';
 export { default as Filter } from './Filter';
+export { default as HomebaseIcon } from './HomebaseIcon';
+export { default as AddButton } from './AddButton';
+export { default as CloseButton } from './CloseButton';
+export { default as InfoCircle } from './InfoCircle';
+export { default as InfoCircleBig } from './InfoCircleBig';

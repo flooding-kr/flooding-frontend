@@ -9,12 +9,13 @@ interface Props {
 }
 
 function Tag({ text, onClick, disabled }: Props) {
-  let buttonClass = 'py-2 px-4 rounded-lg text-body2R mobile:text-body3R';
+  let buttonClass =
+    'py-2 px-5 rounded-lg text-body2R mobile:text-body3R border border-solid border-main-600 ';
 
   if (disabled) {
     buttonClass += ' bg-main-600 bg-gray-400 text-white';
   } else {
-    buttonClass += ' border border-solid border-main-600 text-main-600';
+    buttonClass += ' text-main-600';
   }
 
   return (
