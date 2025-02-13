@@ -13,3 +13,4 @@ export { default as AddButton } from './AddButton';
 export { default as CloseButton } from './CloseButton';
 export { default as InfoCircle } from './InfoCircle';
 export { default as InfoCircleBig } from './InfoCircleBig';
+export { default as Error } from './Error';
