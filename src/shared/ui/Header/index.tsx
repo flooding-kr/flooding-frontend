@@ -35,6 +35,7 @@ export default function Header() {
 
   return (
     <div className="flex justify-center w-full bg-main-600">
+      {/* Pc */}
       <div className="flex flex-col w-full max-w-[1360px] my-6 gap-9 text-body1B text-gray-300 mobile:hidden">
         <div className="flex justify-between items-center ">
           <HeaderLogo />
@@ -81,6 +82,7 @@ export default function Header() {
           ))}
         </div>
       </div>
+      {/* 모바일 */}
       <div className="hidden mobile:block w-full ">
         <div className="flex w-full px-4 mt-[61px] mb-[22px] gap-9 text-body1B text-gray-300 justify-between items-center ">
           <HeaderLogo />
