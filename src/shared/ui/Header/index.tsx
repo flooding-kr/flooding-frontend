@@ -35,8 +35,8 @@ export default function Header() {
 
   return (
     <div className="flex justify-center w-full bg-main-600">
-      <div className="flex flex-col w-full max-w-[1360px] my-6 gap-9 text-body1B text-gray-300">
-        <div className="flex justify-between items-center">
+      <div className="flex flex-col w-full max-w-[1360px] my-6 gap-9 text-body1B text-gray-300 mobile:hidden">
+        <div className="flex justify-between items-center ">
           <HeaderLogo />
           <div className="flex items-center gap-10">
             <div className="flex gap-6">
@@ -79,6 +79,23 @@ export default function Header() {
               <p className={pathname === path ? 'text-white' : ''}>{label}</p>
             </button>
           ))}
+        </div>
+      </div>
+      <div className="hidden mobile:block w-full ">
+        <div className="flex w-full px-4 mt-[61px] mb-[22px] gap-9 text-body1B text-gray-300 justify-between items-center ">
+          <HeaderLogo />
+          <div className="flex gap-3">
+            <button type="button" onClick={() => router.push('/notifications')} aria-label="공지">
+              <HeaderNotification isSelected={pathname === '/notifications'} mobile />
+            </button>
+            <button type="button" onClick={() => router.push('/profile')} aria-label="프로필">
+              <Image
+                alt="profile"
+                src={userProfileImage}
+                className="w-[38px] h-[38px] rounded-full"
+              />
+            </button>
+          </div>
         </div>
       </div>
     </div>
