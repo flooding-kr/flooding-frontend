@@ -22,3 +22,4 @@ export { default as HeaderTotal } from './HeaderTotal';
 export { default as HeaderNotification } from './HeaderNotification';
 export { default as FooterHome } from './FooterHome';
 export { default as Error } from './Error';
+export { default as Like } from './Like';

@@ -39,7 +39,7 @@ export default function ApplyBoard({ title, count, maxCount, activationTime }: P
   useEffect(() => {
     const time = setInterval(tick, 1000);
     return () => clearInterval(time);
-  }, [count, maxCount]);
+  }, []);
 
   return (
     <section className="bg-white rounded-lg px-12 py-8 w-full max-w-[668px] max-h-[305px]">
