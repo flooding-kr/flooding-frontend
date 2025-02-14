@@ -1,11 +1,21 @@
 import React from 'react';
 
-export default function HeaderHomebase({ isSelected }: { isSelected: boolean }) {
+interface Props {
+  isSelected: boolean;
+  mobile?: boolean;
+}
+export default function HeaderHomebase({ isSelected, mobile = false }: Props) {
+  let fillColor = '#D3D3D3';
+
+  if (isSelected) {
+    fillColor = mobile ? '#5E7EF3' : 'white';
+  }
+
   return (
     <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M21 21.1C20.8667 21.1 20.7417 21.075 20.625 21.025C20.5083 20.975 20.4 20.9 20.3 20.8L18 18.5H8C7.45 18.5 6.97933 18.3043 6.588 17.913C6.19667 17.5217 6.00067 17.0507 6 16.5V15.5H17C17.55 15.5 18.021 15.3043 18.413 14.913C18.805 14.5217 19.0007 14.0507 19 13.5V6.5H20C20.55 6.5 21.021 6.696 21.413 7.088C21.805 7.48 22.0007 7.95067 22 8.5V20.075C22 20.375 21.9 20.621 21.7 20.813C21.5 21.005 21.2667 21.1007 21 21.1ZM4 12.675L5.175 11.5H15V4.5H4V12.675ZM3 16.1C2.73333 16.1 2.5 16.0043 2.3 15.813C2.1 15.6217 2 15.3757 2 15.075V4.5C2 3.95 2.196 3.47933 2.588 3.088C2.98 2.69667 3.45067 2.50067 4 2.5H15C15.55 2.5 16.021 2.696 16.413 3.088C16.805 3.48 17.0007 3.95067 17 4.5V11.5C17 12.05 16.8043 12.521 16.413 12.913C16.0217 13.305 15.5507 13.5007 15 13.5H6L3.7 15.8C3.6 15.9 3.49167 15.975 3.375 16.025C3.25833 16.075 3.13333 16.1 3 16.1Z"
-        fill={isSelected ? 'white' : '#D3D3D3'}
+        fill={fillColor}
       />
     </svg>
   );

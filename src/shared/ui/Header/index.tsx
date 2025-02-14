@@ -84,7 +84,7 @@ export default function Header() {
       </div>
       {/* 모바일 */}
       <div className="hidden mobile:block w-full ">
-        <div className="flex w-full px-4 mt-[61px] mb-[22px] gap-9 justify-between ">
+        <div className="flex w-full px-4 pt-[61px] pb-[22px] gap-9 justify-between fixed top-0 bg-main-600">
           <HeaderLogo />
           <div className="flex gap-3">
             <button type="button" onClick={() => router.push('/notifications')} aria-label="공지">
