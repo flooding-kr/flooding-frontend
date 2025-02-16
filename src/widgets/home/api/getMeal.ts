@@ -26,7 +26,7 @@ export const getMeal = ({ currentDate, MMEAL_SC_CODE }: Props) => {
     };
 
     fetchMeal();
-  }, []);
+  }, [currentDate, MMEAL_SC_CODE]);
 
   return { meal, loading };
 };
