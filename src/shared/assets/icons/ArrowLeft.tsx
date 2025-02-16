@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface Props {
-  color: string;
+  color?: string;
 }
 
 export default function ArrowLeft({ color = '#A7A7A7' }: Props) {
