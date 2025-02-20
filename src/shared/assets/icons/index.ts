@@ -23,3 +23,5 @@ export { default as HeaderNotification } from './HeaderNotification';
 export { default as FooterHome } from './FooterHome';
 export { default as Error } from './Error';
 export { default as Like } from './Like';
+export { default as DormitoryIcon } from './DormitoryIcon';
+export { default as BigArrowRight } from './BigArrowRight';
