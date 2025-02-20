@@ -1,13 +1,11 @@
 'use client';
 
-import MealBoard from '@/widgets/home/ui/MealBoard';
-import ScheduleBoard from '@/widgets/home/ui/ScheduleBoard';
+import Home from '@/views/home/ui';
 
-export default function Home() {
+export default function page() {
   return (
-    <div className="flex items-center justify-center">
-      <MealBoard />
-      <ScheduleBoard />
+    <div>
+      <Home />
     </div>
   );
 }
