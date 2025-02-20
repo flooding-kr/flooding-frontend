@@ -35,7 +35,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
     const inputId = `input-${Math.random().toString(36).substr(2, 9)}`;
 
     return (
-      <div>
+      <div className="w-full">
         <div className="relative w-full rounded-md border-[3px] p-[16px] bg-white">
           <div className="w-full">
             <label htmlFor={inputId} className="flex duration-200">
