@@ -11,7 +11,7 @@ export default function SigninPrompt() {
           아직 프러딩을 로그인 안 하셨나요?
         </p>
         <VerticalLine />
-        <Link href="/signUp" className="text-caption1B text-gray-500 mobile:text-caption2B">
+        <Link href="/signup" className="text-caption1B text-gray-500 mobile:text-caption2B">
           회원가입
         </Link>
       </div>
