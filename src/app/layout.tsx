@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={pretendard.className}>
         <TanstackProvider>
           {!isAuthPage && <Header />}
-          <div className="mobile:pt-[137px] mobile:pb-[63px]">{children}</div>
+          <div className={!isAuthPage ? 'mobile:pt-[137px] mobile:pb-[63px]' : ''}>{children}</div>
           {!isAuthPage && <MoblieFooter />}
         </TanstackProvider>
       </body>
