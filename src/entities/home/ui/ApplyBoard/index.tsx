@@ -42,14 +42,14 @@ export default function ApplyBoard({ title, count, maxCount, activationTime }: P
   }, []);
 
   return (
-    <section className="flex-1 bg-white rounded-lg px-12 py-8 w-full max-w-[668px] max-h-[305px] ">
-      <div className="flex flex-col gap-9">
+    <section className="flex-1 bg-white rounded-lg px-12 py-8 w-full max-w-[668px] max-h-[305px] mobile:px-5 mobile:py-4">
+      <div className="flex flex-col gap-9 mobile:gap-5">
         <div className="flex justify-between">
-          <p className="text-body1B text-center text-gray-600">{title}</p>
-          <Error />
+          <p className="text-body1B text-center text-gray-600 text-body3B">{title}</p>
+          <Error color="#909090" />
         </div>
         <div className="flex flex-col items-center gap-6">
-          <p className="text-title1M text-center text-black">
+          <p className="text-title1M text-center text-black mobile:text-body1B">
             {count}/{maxCount}
           </p>
           <div className="flex justify-start w-full h-full relative">
