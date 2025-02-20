@@ -53,14 +53,14 @@ export default function Dropdown({ onChange, items, text }: Props) {
         <div
           className={`absolute right-0 bg-white border border-gray-300 rounded-md shadow-lg z-10 w-full ${items.length > 4 ? 'max-h-40 overflow-y-auto ' : ''}`}
         >
-          <ul className="text-gray-900 text-body2R">
+          <ul className="text-gray-500 text-body2R">
             {items.map(item => (
               <li key={item}>
                 <button
                   type="button"
                   role="menuitem"
                   onClick={() => handleItemClick(item)}
-                  className="w-full text-left p-4 hover:bg-gray-100 cursor-pointer"
+                  className={`w-full text-left p-4 hover:bg-gray-100 cursor-pointer ${selectedItem === item ? 'text-black text-body2B' : ''}`}
                 >
                   {item}
                 </button>
