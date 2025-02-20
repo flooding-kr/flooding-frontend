@@ -11,7 +11,7 @@ interface Props {
 
 export default function ProfileContainer({ src, stuName, stuNum }: Props) {
   return (
-    <section className="flex flex-col justify-between px-12 py-9 rounded-lg bg-white">
+    <section className="flex flex-col justify-between px-12 py-9 rounded-lg bg-white mobile:hidden">
       <Image
         alt="프로필 사진"
         src={src || userProfileImage}
