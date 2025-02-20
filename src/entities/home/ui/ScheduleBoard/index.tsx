@@ -26,12 +26,12 @@ export default function ScheduleBoard() {
   };
 
   return (
-    <section className="bg-white rounded-lg px-7 py-6 max-w-[484px] h-[420px] w-full flex flex-col">
+    <section className="bg-white rounded-lg px-7 py-6 max-w-[484px] h-[420px] w-full flex flex-col mobile:max-h-[286px] mobile:p-3">
       <div className="flex flex-col gap-6 flex-1">
-        <div className="flex flex-col gap-6 flex-1">
+        <div className="flex flex-col gap-6 flex-1 mobile:gap-3">
           <header className="flex justify-between">
-            <p className="text-body1B text-black">시간표</p>
-            <div className="flex items-center gap-4">
+            <p className="text-body1B text-black mobile:text-body3B">시간표</p>
+            <div className="flex items-center gap-4 mobile:gap-3">
               <button
                 type="button"
                 className="flex justify-center items-center"
@@ -39,7 +39,7 @@ export default function ScheduleBoard() {
               >
                 <ArrowLeft color="#121212" />
               </button>
-              <div className="text-body2R text-black">
+              <div className="text-body2R text-black mobile:text-caption1R">
                 {date.year}.{String(date.month).padStart(2, '0')}.
                 {String(date.day).padStart(2, '0')} ({weekArr[date.weekday]})
               </div>
@@ -52,13 +52,16 @@ export default function ScheduleBoard() {
               </button>
             </div>
           </header>
-          <div className="flex flex-1 rounded-lg p-5 bg-gray-100">
+          <div className="flex flex-1 rounded-lg p-5 bg-gray-100 mobile:px-3 mobile:py-2">
             {schedule ? (
-              <div className="flex flex-col flex-1 gap-4 ">
+              <div className="flex flex-col flex-1 gap-4 mobile:gap-3">
                 {schedule.map(item => (
-                  <div key={item.PERIO} className="flex items-center text-body3R gap-4">
-                    <span className="text-gray-500">{item.PERIO}교시</span> <VerticalLine />{' '}
-                    {item.ITRT_CNTNT}
+                  <div
+                    key={item.PERIO}
+                    className="flex items-center text-body3R gap-4 mobile:gap-3 mobile:text-caption1R"
+                  >
+                    <span className="text-gray-500 text-caption2M">{item.PERIO}교시</span>{' '}
+                    <VerticalLine /> {item.ITRT_CNTNT}
                   </div>
                 ))}
               </div>
