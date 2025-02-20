@@ -10,7 +10,7 @@ export default function MealBoard() {
   const [dailyMeal, setDailyMeal] = useState(0);
   const [date, setDate] = useState({ year, month, day, weekday });
 
-  const currentDate = `${date.year}-${String(date.month).padStart(2, '0')}-${String(date.day).padStart(2, '0')}`;
+  const currentDate = `${date.year}${String(date.month).padStart(2, '0')}${String(date.day).padStart(2, '0')}`;
   const { meal } = getMeal({ currentDate, MMEAL_SC_CODE: dailyMeal + 1 });
 
   const dailyMealArr = ['조식', '중식', '석식'];
@@ -32,13 +32,13 @@ export default function MealBoard() {
   };
 
   return (
-    <section className="bg-white rounded-lg px-8 py-6 max-w-[548px] h-[418px] w-full flex flex-col">
-      <div className="flex flex-col gap-6 flex-1">
-        <div className="flex flex-col gap-[30px] flex-1 border-b-[1px] border-gray-200 border-solid">
-          <div className="flex flex-col gap-6">
+    <section className="bg-white rounded-lg px-8 py-6 max-w-[548px] h-[418px] w-full flex flex-col mobile:min-h-[243px] mobile:max-h-[260px] mobile:h-fit mobile:p-3">
+      <div className="flex flex-col gap-6 flex-1 mobile:gap-4">
+        <div className="flex flex-col gap-6 flex-1 border-b-[1px] border-gray-200 border-solid mobile:gap-4 mobile:border-0">
+          <div className="flex flex-col gap-6 mobile:gap-[13px]">
             <header className="flex justify-between">
-              <p className="text-body1B text-black">급식</p>
-              <div className="flex items-center gap-4">
+              <p className="text-body1B text-black mobile:text-body3B">급식</p>
+              <div className="flex items-center gap-4 mobile:gap-3">
                 <button
                   type="button"
                   className="flex justify-center items-center"
@@ -46,7 +46,7 @@ export default function MealBoard() {
                 >
                   <ArrowLeft color="#121212" />
                 </button>
-                <div className="text-body2R text-black">
+                <div className="text-body2R text-black mobile:text-caption1R">
                   {date.year}.{String(date.month).padStart(2, '0')}.
                   {String(date.day).padStart(2, '0')} ({weekArr[date.weekday]})
                 </div>
@@ -64,22 +64,22 @@ export default function MealBoard() {
                 <button
                   key={item}
                   type="button"
-                  className={`relative z-10 px-12 py-4 rounded-lg transition-colors duration-300 ease-in-out ${
+                  className={`relative z-10 px-12 mobile:px-[31px] py-4 mobile:py-3 rounded-lg transition-colors duration-300 ease-in-out ${
                     dailyMeal === idx ? 'bg-main-600' : ''
                   }`}
                   disabled={dailyMeal === idx}
                   onClick={() => handleMealChange(idx)}
                 >
-                  <p className="text-body2B text-white">{item}</p>
+                  <p className="text-body2B text-white mobile:text-caption1B">{item}</p>
                 </button>
               ))}
             </div>
           </div>
-          <div className="flex-1 flex justify-center items-center">
+          <div className="flex-1 flex justify-center">
             {meal ? (
-              <div className="flex flex-wrap gap-3 h-full">
+              <div className="flex flex-wrap gap-3 h-full justify-start">
                 {meal.DDISH_NM.split('<br/>').map(dish => (
-                  <p key={dish} className="w-[148px] text-body3R text-black">
+                  <p key={dish} className="w-[40%] text-body3R text-black mobile:text-caption1R">
                     {dish.split(' ')[0]}
                   </p>
                 ))}
@@ -94,7 +94,7 @@ export default function MealBoard() {
             )}
           </div>
         </div>
-        <footer className="flex justify-end">
+        <footer className="flex justify-end mobile:hidden">
           <p className="text-body2R text-main-400">{meal?.CAL_INFO ?? '0 Kcal'}</p>
         </footer>
       </div>
