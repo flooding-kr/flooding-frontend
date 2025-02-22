@@ -1,6 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
+import { ToastContainer } from 'react-toastify';
 
 import { pretendard } from '@/shared/style/font';
 import { Header, MoblieFooter } from '@/shared/ui';
@@ -20,6 +21,7 @@ export default function RootLayout({
     <html lang="ko">
       <body className={pretendard.className}>
         <TanstackProvider>
+          <ToastContainer position="top-right" autoClose={2000} />
           {!isAuthPage && <Header />}
           <div className={!isAuthPage ? 'mobile:pt-[137px] mobile:pb-[63px]' : ''}>{children}</div>
           {!isAuthPage && <MoblieFooter />}
