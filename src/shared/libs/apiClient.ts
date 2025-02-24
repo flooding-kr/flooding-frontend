@@ -27,11 +27,12 @@ apiClient.interceptors.response.use(
           return await Promise.reject(new Error('No refresh token found'));
         }
 
-        const tokenResponse = await axios.patch<TokenResponse>('/api/auth/tokenReissue', null, {
-          headers: { Authorization: `Bearer ${refreshToken}` },
+        const tokenResponse = await axios.patch<TokenResponse>('/api/auth/re-issue', null, {
+          headers: { 'Refresh-Token': `Bearer ${refreshToken}` },
         });
 
         if (tokenResponse.data && tokenResponse.data.newAuthorization) {
+          console.log(tokenResponse);
           localStorage.setItem('accessToken', tokenResponse.data.newAuthorization);
           originalRequest.headers = originalRequest.headers || {};
           originalRequest.headers.Authorization = `Bearer ${tokenResponse.data.newAuthorization}`;

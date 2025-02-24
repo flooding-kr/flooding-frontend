@@ -18,7 +18,7 @@ export async function getRefresh(err: AxiosError): Promise<AxiosResponse | Promi
         return await Promise.reject(new Error('No refresh token found'));
       }
 
-      const tokenResponse = await axios.patch<TokenResponse>('/api/auth/tokenReissue', null, {
+      const tokenResponse = await axios.patch<TokenResponse>('/api/auth/re-issue', null, {
         headers: { Authorization: `Bearer ${refreshToken}` },
       });
 
