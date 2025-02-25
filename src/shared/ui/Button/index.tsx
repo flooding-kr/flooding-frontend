@@ -10,15 +10,18 @@ interface Props {
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
   closed?: boolean;
+  toggle?: boolean;
 }
 
-function Button({ text, onClick, disabled, type = 'button', closed }: Props) {
+function Button({ text, onClick, disabled, type = 'button', closed, toggle }: Props) {
   let buttonClass = 'w-full p-4 rounded-lg text-white text-body2B mobile:text-body3R';
 
   if (closed) {
     buttonClass += ' bg-main-400';
   } else if (disabled) {
     buttonClass += ' bg-gray-400';
+  } else if (toggle) {
+    buttonClass += ' bg-white !text-gray-500';
   } else {
     buttonClass += ' bg-main-600';
   }
