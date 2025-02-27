@@ -1,18 +1,25 @@
 import React from 'react';
-import { Controller } from 'react-hook-form';
+import { Controller, Control, RegisterOptions, FieldValues, Path } from 'react-hook-form';
 
 import Dropdown from '@/shared/ui/Dropdown';
 
-type DropdownFieldProps = {
-  name: string;
-  control: any;
-  rules: any;
+type DropdownFieldProps<T extends FieldValues> = {
+  name: Path<T>;
+  control: Control<T>;
+  rules?: RegisterOptions<T>;
   label: string;
   items: number[];
   unit: string;
 };
 
-function DropdownField({ name, control, rules, label, items, unit }: DropdownFieldProps) {
+function DropdownField<T extends FieldValues>({
+  name,
+  control,
+  rules,
+  label,
+  items,
+  unit,
+}: DropdownFieldProps<T>) {
   return (
     <Controller
       name={name}
