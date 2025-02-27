@@ -9,7 +9,7 @@ import {
   HeaderHomebase,
 } from '@/shared/assets/icons';
 
-export default function MoblieFooter() {
+export default function MobileFooter() {
   const router = useRouter();
   const pathname = usePathname();
 
