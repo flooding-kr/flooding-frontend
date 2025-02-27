@@ -32,7 +32,6 @@ apiClient.interceptors.response.use(
         });
 
         if (tokenResponse.data && tokenResponse.data.newAuthorization) {
-          console.log(tokenResponse);
           localStorage.setItem('accessToken', tokenResponse.data.newAuthorization);
           originalRequest.headers = originalRequest.headers || {};
           originalRequest.headers.Authorization = `Bearer ${tokenResponse.data.newAuthorization}`;
