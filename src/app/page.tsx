@@ -1,6 +1,6 @@
 'use client';
 
-import Home from '@/views/home/ui';
+import { Home } from '@/views/home';
 
 export default function page() {
   return (
