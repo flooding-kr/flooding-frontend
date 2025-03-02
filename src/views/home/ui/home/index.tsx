@@ -1,4 +1,3 @@
-import { SectionTitle } from '@/entities/homebase';
 import { DormitoryPanel, OverviewPanel } from '@/widgets/home';
 import { HomeBasePageWrapper } from '@/widgets/homebase';
 

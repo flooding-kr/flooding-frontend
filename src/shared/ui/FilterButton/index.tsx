@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 import { Filter } from '@/shared/assets/icons';

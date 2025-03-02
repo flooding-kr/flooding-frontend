@@ -22,7 +22,7 @@ export default function Header() {
 
   const headerActions = [
     { icon: HeaderManager, label: '관리자', path: '/manager' },
-    { icon: HeaderNotification, label: '공지', path: '/notifications' },
+    { icon: HeaderNotification, label: '공지', path: '/notification' },
   ];
 
   const menuItems = [
