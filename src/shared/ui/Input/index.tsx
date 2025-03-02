@@ -16,10 +16,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
       setIsPasswordVisible(prev => !prev);
     };
 
-    let inputType = type;
-    if (type === 'password') {
-      inputType = isPasswordVisible ? 'text' : 'password';
-    }
+    const inputType = type === 'password' && isPasswordVisible ? 'text' : type;
 
     const inputStyle = {
       WebkitBoxShadow: '0 0 0 30px white inset !important',
@@ -32,21 +29,18 @@ const Input = forwardRef<HTMLInputElement, Props>(
       }
     };
 
-    const inputId = `input-${Math.random().toString(36).substr(2, 9)}`;
-
     return (
       <div className="w-full">
         <div className="relative w-full rounded-md border-[3px] p-[16px] bg-white">
           <div className="w-full">
-            <label htmlFor={inputId} className="flex duration-200">
+            <label htmlFor={props.id} className="flex duration-200">
               <input
                 {...props}
-                id={inputId}
                 ref={ref}
                 type={inputType}
-                className="w-full text-gray-500 text-body2R "
+                className="w-full text-gray-500 text-body2R"
                 style={inputStyle}
-                placeholder={`${placeholder}`}
+                placeholder={placeholder}
                 onChange={handleChange}
                 value={value}
               />
