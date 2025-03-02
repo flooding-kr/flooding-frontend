@@ -5,8 +5,8 @@ import userProfileImage from '@/shared/assets/jpg/userProfileImage.jpg';
 
 interface Props {
   src: string;
-  stuName: string;
-  stuNum: string;
+  stuName: string | undefined;
+  stuNum: number | undefined;
 }
 
 export default function ProfileContainer({ src, stuName, stuNum }: Props) {
