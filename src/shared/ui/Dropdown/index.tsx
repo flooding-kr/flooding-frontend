@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 
 import { ArrowDown, ArrowUp } from '@/shared/assets/icons';
 
@@ -11,7 +11,7 @@ interface Props {
   unit: string;
 }
 
-export default function Dropdown({ onChange, items, text, unit }: Props) {
+const Dropdown = forwardRef<HTMLDivElement, Props>(({ onChange, items, text, unit }, ref) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<number | string>(text);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -74,4 +74,8 @@ export default function Dropdown({ onChange, items, text, unit }: Props) {
       )}
     </div>
   );
-}
+});
+
+Dropdown.displayName = 'Dropdown';
+
+export default Dropdown;
