@@ -31,6 +31,18 @@ export async function POST(request: Request) {
       expires: refreshTokenExpires,
       sameSite: 'strict',
     });
+    const userResponse = await apiClient.get('/user', {
+      headers: { Authorization: `Bearer ${response.data.access_token}` },
+    });
+
+    const encodedUser = Buffer.from(JSON.stringify(userResponse.data)).toString('base64');
+
+    res.cookies.set('user', encodedUser, {
+      httpOnly: false,
+      secure: true,
+      expires: accessTokenExpires,
+      sameSite: 'strict',
+    });
 
     return res;
   } catch (error) {
