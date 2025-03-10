@@ -15,10 +15,12 @@ import {
 } from '@/shared/assets/icons';
 import userProfileImage from '@/shared/assets/jpg/userProfileImage.jpg';
 import { HeaderLogo } from '@/shared/assets/svg';
+import useUser from '@/shared/hooks/useUser';
 
 export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
+  const userData = useUser();
 
   const headerActions = [
     { icon: HeaderManager, label: '관리자', path: '/manager' },
@@ -62,7 +64,7 @@ export default function Header() {
                 className={pathname === '/profile' ? 'text-white' : ''}
                 aria-label="프로필"
               >
-                김진원
+                {userData?.name}
               </button>
             </div>
           </div>
