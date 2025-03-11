@@ -14,8 +14,8 @@ interface Props {
 }
 
 function Button({ text, onClick, disabled, type = 'button', closed, toggle }: Props) {
-  let buttonClass = 'w-full p-4 rounded-lg text-white text-body2B mobile:text-body3R';
-
+  let buttonClass =
+    'w-full p-4 rounded-lg text-white text-body2B mobile:text-body3B mobile:px-2 mobile:py-3';
   if (closed) {
     buttonClass += ' bg-main-400';
   } else if (disabled) {
