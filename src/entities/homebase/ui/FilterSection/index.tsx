@@ -6,24 +6,32 @@ import { VerticalLineBig } from '@/shared/assets/svg';
 import { FilterContainer } from '@/shared/ui';
 
 export default function FilterSection() {
-  const { setFloor, setClassTime } = useStore();
+  const { setFloor, setClassTime, setSelectedTable } = useStore();
 
   return (
-    <div className="flex justify-between w-full gap-10">
-      <div className="flex gap-6 items-center w-full max-w-[800px] justify-between">
+    <div className="flex justify-between w-full gap-10 ">
+      <div className="flex gap-6 items-center w-full max-w-[800px] justify-between homebaseResponsive:w-max mobile:flex-col mobile:gap-3 mobile:place-items-start">
         <FilterContainer
           title="층수"
           options={['2층', '3층', '4층']}
-          onChange={value => setFloor(value)}
+          onChange={value => {
+            setFloor(value);
+            setSelectedTable(null);
+          }}
         />
-        <VerticalLineBig />
+        <div className="homebaseResponsive:hidden">
+          <VerticalLineBig />
+        </div>
         <FilterContainer
           title="교시"
           options={['8교시', '9교시', '10교시', '11교시']}
-          onChange={value => setClassTime(value)}
+          onChange={value => {
+            setClassTime(value);
+            setSelectedTable(null);
+          }}
         />
       </div>
-      <div className="w-full max-w-[439px] flex justify-end items-center gap-2">
+      <div className="w-full max-w-[439px] flex justify-end items-center gap-2 homebaseResponsive:hidden">
         <InfoCircle />
         <p className="text-body3R text-gray-500">층, 교시 1개만 선택 가능</p>
       </div>

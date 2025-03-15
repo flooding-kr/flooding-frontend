@@ -11,9 +11,18 @@ interface Props {
   type?: 'button' | 'submit' | 'reset';
   closed?: boolean;
   toggle?: boolean;
+  homebasemobile?: boolean;
 }
 
-function Button({ text, onClick, disabled, type = 'button', closed, toggle }: Props) {
+function Button({
+  text,
+  onClick,
+  disabled,
+  type = 'button',
+  closed,
+  toggle,
+  homebasemobile,
+}: Props) {
   let buttonClass =
     'w-full p-4 rounded-lg text-white text-body2B mobile:text-body3B mobile:px-2 mobile:py-3';
   if (closed) {
@@ -22,6 +31,8 @@ function Button({ text, onClick, disabled, type = 'button', closed, toggle }: Pr
     buttonClass += ' bg-gray-400';
   } else if (toggle) {
     buttonClass += ' bg-white !text-gray-500';
+  } else if (homebasemobile) {
+    buttonClass += ' bg-main-100 !text-main-600';
   } else {
     buttonClass += ' bg-main-600';
   }
