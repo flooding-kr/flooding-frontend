@@ -38,7 +38,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
                 {...props}
                 ref={ref}
                 type={inputType}
-                className="w-full text-gray-500 text-body2R"
+                className="w-full text-black placeholder-gray-500 text-body2R"
                 style={inputStyle}
                 placeholder={placeholder}
                 onChange={handleChange}
