@@ -64,7 +64,7 @@ export default function MealBoard() {
   }, [hour]);
 
   return (
-    <section className="bg-white rounded-lg px-8 py-6 max-w-[548px] h-[418px] w-full flex flex-col mobile:max-w-[484px] mobile:min-h-[243px] mobile:max-h-[260px] mobile:h-fit mobile:p-3 tablet:max-w-full">
+    <section className="bg-white rounded-lg px-8 py-6 max-w-[548px] h-[418px] w-full flex flex-col mobile:max-w-[484px] mobile:min-h-[243px] mobile:h-fit mobile:p-3 tablet:max-w-full">
       <div className="flex flex-col gap-6 flex-1 mobile:gap-4">
         <div className="flex flex-col gap-6 flex-1 border-b-[1px] border-gray-200 border-solid mobile:gap-4 mobile:border-0">
           <div className="flex flex-col gap-6 mobile:gap-[13px]">
@@ -97,12 +97,16 @@ export default function MealBoard() {
                   key={item}
                   type="button"
                   className={`px-12 py-4 mobile:flex mobile:justify-center mobile:items-center tablet:px-[27px] mobile:py-3 mobile:max-w-[28%] rounded-lg transition-colors duration-300 ease-in-out ${
-                    dailyMeal === idx ? 'bg-main-600' : ''
+                    dailyMeal === idx && 'bg-main-600'
                   }`}
                   disabled={dailyMeal === idx}
                   onClick={() => handleMealChange(idx)}
                 >
-                  <p className="text-body2B text-white mobile:text-caption1B">{item}</p>
+                  <p
+                    className={`text-body2B mobile:text-caption1B ${dailyMeal === idx ? 'text-white' : 'text-gray-700'}`}
+                  >
+                    {item}
+                  </p>
                 </button>
               ))}
             </div>

@@ -26,7 +26,7 @@ export default function ScheduleBoard() {
   };
 
   return (
-    <section className="bg-white rounded-lg px-7 py-6 max-w-[484px] h-[420px] w-full flex flex-col mobile:max-h-[286px] mobile:p-3">
+    <section className="bg-white rounded-lg px-7 py-6 max-w-[484px] h-[420px] w-full flex flex-col mobile:max-h-[286px] mobile:p-3 tablet:max-w-full">
       <div className="flex flex-col gap-6 flex-1">
         <div className="flex flex-col gap-6 flex-1 mobile:gap-3">
           <header className="flex justify-between">
@@ -36,6 +36,7 @@ export default function ScheduleBoard() {
                 type="button"
                 className="flex justify-center items-center"
                 onClick={() => handleDateChange(-1)}
+                aria-label="before button"
               >
                 <ArrowLeft color="#121212" />
               </button>
@@ -46,7 +47,8 @@ export default function ScheduleBoard() {
               <button
                 type="button"
                 className="flex justify-center items-center"
-                onClick={() => handleDateChange(+1)}
+                onClick={() => handleDateChange(1)}
+                aria-label="next button"
               >
                 <ArrowRight color="#121212" />
               </button>
