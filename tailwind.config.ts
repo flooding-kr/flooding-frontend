@@ -63,6 +63,7 @@ const config: Config = {
     },
     screens: {
       mobile: { max: '640px' },
+      tablet: { max: '1360px' },
     },
   },
   plugins: [],
