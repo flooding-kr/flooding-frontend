@@ -54,16 +54,29 @@ export default function ScheduleBoard() {
               </button>
             </div>
           </header>
-          <div className="flex flex-1 rounded-lg p-5 bg-gray-100 mobile:px-3 mobile:py-2">
+          <div className="w-full flex flex-1 rounded-lg p-5 bg-gray-100 mobile:px-3 mobile:py-2">
             {schedule ? (
-              <div className="flex flex-col flex-1 gap-4 mobile:gap-3">
+              <div className="w-full flex flex-col flex-1 gap-4 mobile:gap-3">
                 {schedule.map(item => (
                   <div
                     key={item.PERIO}
-                    className="flex items-center text-body3R gap-4 mobile:gap-3 mobile:text-caption1R"
+                    className="w-full h-[26px] flex items-center text-body3R gap-4 mobile:h-5 mobile:gap-3 mobile:text-caption1R"
                   >
-                    <span className="text-gray-500 text-caption2M">{item.PERIO}교시</span>{' '}
-                    <VerticalLine /> {item.ITRT_CNTNT}
+                    <span className="text-gray-500 text-body3R w-10 tablet:w-8 tablet:text-caption2M">
+                      {item.PERIO}교시
+                    </span>
+                    <VerticalLine />
+                    <span
+                      className="flex-1"
+                      style={{
+                        display: '-webkit-box',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                      }}
+                    >
+                      {item.ITRT_CNTNT}
+                    </span>
                   </div>
                 ))}
               </div>
