@@ -1,29 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { ArrowLeft, ArrowRight, Error } from '@/shared/assets/icons';
 import { VerticalLine } from '@/shared/assets/svg';
 
-import { getDate } from '../../api/getDate';
-import { getSchedule } from '../../api/getSchedule';
+import { useDateState } from '../../model/useDateState';
+import { useSchedule } from '../../model/useSchedule';
 
 export default function ScheduleBoard() {
-  const { year, month, day, weekday } = getDate();
-  const [date, setDate] = useState({ year, month, day, weekday });
-  const currentDate = `${date.year}${String(date.month).padStart(2, '0')}${String(date.day).padStart(2, '0')}`;
-  const { schedule } = getSchedule({ currentDate, grade: 2, lesson: 3 });
-
+  const { date, handleDateChange } = useDateState();
+  const { schedule, fetchSchedule } = useSchedule();
   const weekArr = ['일', '월', '화', '수', '목', '금', '토'];
 
-  const handleDateChange = (days: number) => {
-    const newDate = new Date(date.year, date.month - 1, date.day + days);
+  const currentDate = `${date.year}-${String(date.month).padStart(2, '0')}-${String(date.day).padStart(2, '0')}`;
 
-    setDate({
-      year: newDate.getFullYear(),
-      month: newDate.getMonth() + 1,
-      day: newDate.getDate(),
-      weekday: newDate.getDay(),
-    });
-  };
+  useEffect(() => {
+    fetchSchedule(currentDate);
+  }, [currentDate, fetchSchedule]);
 
   return (
     <section className="bg-white rounded-lg px-7 py-6 max-w-[484px] h-[420px] w-full flex flex-col mobile:max-h-[286px] mobile:p-3 tablet:max-w-full">
@@ -54,29 +46,16 @@ export default function ScheduleBoard() {
               </button>
             </div>
           </header>
-          <div className="w-full flex flex-1 rounded-lg p-5 bg-gray-100 mobile:px-3 mobile:py-2">
+          <div className="flex flex-1 rounded-lg p-5 bg-gray-100 mobile:px-3 mobile:py-2">
             {schedule ? (
-              <div className="w-full flex flex-col flex-1 gap-4 mobile:gap-3">
-                {schedule.map(item => (
+              <div className="flex flex-col flex-1 gap-4 mobile:gap-3">
+                {schedule.map((item, idx) => (
                   <div
-                    key={item.PERIO}
-                    className="w-full h-[26px] flex items-center text-body3R gap-4 mobile:h-5 mobile:gap-3 mobile:text-caption1R"
+                    key={`${currentDate}-${item}-${weekArr[idx]}`}
+                    className="flex items-center text-body3R gap-4 mobile:gap-3 mobile:text-caption1R"
                   >
-                    <span className="text-gray-500 text-body3R w-10 tablet:w-8 tablet:text-caption2M">
-                      {item.PERIO}교시
-                    </span>
-                    <VerticalLine />
-                    <span
-                      className="flex-1"
-                      style={{
-                        display: '-webkit-box',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                      }}
-                    >
-                      {item.ITRT_CNTNT}
-                    </span>
+                    <span className="text-gray-500 text-caption2M">{idx + 1}교시</span>{' '}
+                    <VerticalLine /> {item}
                   </div>
                 ))}
               </div>
