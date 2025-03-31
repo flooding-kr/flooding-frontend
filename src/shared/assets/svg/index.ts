@@ -4,3 +4,4 @@ export { default as VerticalLineBig } from './VerticalLineBig';
 export { default as HeaderLogo } from './HeaderLogo';
 export { default as SignupLogo } from './SignupLogo';
 export { default as CertificationLogo } from './CertificationLogo';
+export { default as Xbutton } from './Xbutton';
