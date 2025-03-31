@@ -6,14 +6,15 @@ import Tag from '../Tag';
 
 interface Props {
   title: string;
-  options: string[];
-  onChange: (selected: string) => void;
+  options: number[];
+  unit: string;
+  onChange: (selected: number) => void;
 }
 
-export default function FilterContainer({ title, options, onChange }: Props) {
+export default function FilterContainer({ title, options, unit, onChange }: Props) {
   const [selected, setSelected] = useState(options[0]);
 
-  const handleSelect = (option: string) => {
+  const handleSelect = (option: number) => {
     setSelected(option);
     onChange(option);
   };
@@ -25,7 +26,7 @@ export default function FilterContainer({ title, options, onChange }: Props) {
         {options.map(option => (
           <Tag
             key={option}
-            text={option}
+            text={`${option}${unit}`}
             disabled={selected === option}
             onClick={() => handleSelect(option)}
           />

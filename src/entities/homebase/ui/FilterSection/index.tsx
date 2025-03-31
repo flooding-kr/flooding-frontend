@@ -6,14 +6,15 @@ import { VerticalLineBig } from '@/shared/assets/svg';
 import { FilterContainer } from '@/shared/ui';
 
 export default function FilterSection() {
-  const { setFloor, setClassTime, setSelectedTable } = useStore();
+  const { setFloor, setPeriod, setSelectedTable } = useStore();
 
   return (
     <div className="flex justify-between w-full gap-10 ">
       <div className="flex gap-6 items-center w-full max-w-[800px] justify-between homebaseResponsive:w-max mobile:flex-col mobile:gap-3 mobile:place-items-start">
         <FilterContainer
           title="층수"
-          options={['2층', '3층', '4층']}
+          options={[2, 3, 4]}
+          unit="층"
           onChange={value => {
             setFloor(value);
             setSelectedTable(null);
@@ -24,9 +25,10 @@ export default function FilterSection() {
         </div>
         <FilterContainer
           title="교시"
-          options={['8교시', '9교시', '10교시', '11교시']}
+          options={[8, 9, 10, 11]}
+          unit="교시"
           onChange={value => {
-            setClassTime(value);
+            setPeriod(value);
             setSelectedTable(null);
           }}
         />
