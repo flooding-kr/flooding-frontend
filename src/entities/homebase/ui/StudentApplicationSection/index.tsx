@@ -3,15 +3,35 @@ import React from 'react';
 import { useStore } from '@/entities/homebase/store/useStore';
 import { Button } from '@/shared/ui';
 
+import { postHomebaseData } from '../../api/postHomebasedata';
+
 export default function StudentApplicationSection() {
-  const { selectedStudents, floor, classTime, selectedTable } = useStore();
+  const { selectedStudents, floor, period, selectedTable, setSelectedTable } = useStore();
 
-  const isButtonDisabled =
-    !selectedStudents.length || !floor || !classTime || selectedTable === null;
+  const isButtonDisabled = !selectedStudents.length || !floor || !period || selectedTable === null;
 
-  const handleApplyClick = () => {
-    // eslint-disable-next-line no-console
-    console.log(`${floor} ${classTime} 테이블 ${selectedTable} `, selectedStudents);
+  const handleApplyClick = async () => {
+    if (selectedTable === null || floor === null || period === null || selectedStudents == null) {
+      console.error('올바르지 않은 값이 포함되어 있습니다.');
+      return;
+    }
+    const participantIds = selectedStudents
+      .filter(student => student.id !== 'user')
+      .map(student => student.id);
+
+    try {
+      const response = await postHomebaseData({
+        table_number: selectedTable,
+        floor,
+        participants: participantIds,
+        period,
+      });
+
+      console.log('신청 성공:', response);
+      setSelectedTable(null);
+    } catch (error) {
+      console.error('신청 실패:', error);
+    }
   };
 
   return (

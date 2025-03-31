@@ -1,63 +1,119 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 
 import { useStore } from '@/entities/homebase/store/useStore';
 import { AddButton, CloseButton, InfoCircleBig } from '@/shared/assets/icons';
+import useUser from '@/shared/hooks/useUser';
 import { SearchInput } from '@/shared/ui';
 
+import { getUserSearch } from '../../api/getUserSearch';
 import StudentApplicationSection from '../StudentApplicationSection';
 
-const students = [
-  { id: 3308, name: '민우석' },
-  { id: 3413, name: '이현준' },
-  { id: 3301, name: '김동학' },
-  { id: 3417, name: '한재형' },
-  { id: 3405, name: '김진원' },
-  { id: 3112, name: '이성민' },
-];
+interface Student {
+  id: string;
+  name: string;
+  email: string;
+  gender: string;
+  student_info: {
+    is_graduate: boolean;
+    grade: number;
+    classroom: number;
+    number: number;
+    year: number;
+  };
+}
 
 export default function StudentSearchSection() {
   const [search, setSearch] = useState('');
-  const { selectedStudents, addStudent, removeStudent } = useStore();
+  const [filteredStudent, setFilteredStudent] = useState<Student | null>(null);
+  const { selectedStudents, addStudent, removeStudent, selectedTableCapacity } = useStore();
+  const user = useUser();
+  console.log(selectedTableCapacity);
+  useEffect(() => {
+    if (user) {
+      addStudent({
+        id: 'user',
+        name: user.name,
+        email: '',
+        gender: '',
+        student_info: {
+          is_graduate: false,
+          grade: Number(user.student_info.grade),
+          classroom: Number(user.student_info.classroom),
+          number: Number(user.student_info.number),
+          year: Number(user.student_info.year),
+        },
+      });
+    }
+  }, [user, addStudent]);
 
-  const filteredStudents = students.filter(
-    student =>
-      (student.name.includes(search) || student.id.toString().includes(search)) &&
-      !selectedStudents.some(selectedStudent => selectedStudent.id === student.id)
+  const fetchStudents = useCallback(
+    async (query: string) => {
+      if (!query.trim()) {
+        setFilteredStudent(null);
+        return;
+      }
+
+      try {
+        const response = await getUserSearch({ name: query });
+        let students = response.data;
+        students = students.filter(
+          (student: Student) =>
+            user?.name !== student.name &&
+            String(user?.stuNum) !==
+              `${student.student_info.grade}${student.student_info.classroom}${student.student_info.number.toString().padStart(2, '0')}`
+        );
+
+        const notSelectedStudents = students.filter(
+          (student: Student) => !selectedStudents.some(selected => selected.id === student.id)
+        );
+
+        setFilteredStudent(notSelectedStudents[0] || null);
+      } catch (error) {
+        console.error('학생 검색 실패:', error);
+      }
+    },
+    [selectedStudents]
   );
-
-  const handleAddStudent = (student: (typeof students)[0]) => {
-    setSearch('');
-    addStudent(student);
+  const handleAddStudent = (
+    event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>
+  ) => {
+    event.stopPropagation();
+    if (filteredStudent) {
+      addStudent(filteredStudent);
+      setFilteredStudent(null);
+    }
   };
 
-  const handleDeleteStudent = (student: (typeof students)[0]) => {
+  const handleDeleteStudent = (
+    event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>,
+    student: Student
+  ) => {
+    event.stopPropagation();
     removeStudent(student);
   };
 
   return (
-    <div className="flex flex-col w-full max-w-[439px] h-full place-content-between">
+    <div className="flex flex-col w-full max-w-[439px] h-full place-content-between mobile:max-w-none">
       <SearchInput
         placeholder="검색할 학생"
+        onDebounce={fetchStudents}
         onChange={e => setSearch(e.target.value)}
-        onDebounce={value => {
-          // eslint-disable-next-line no-console
-          console.log(`검색:${value}`);
-        }}
         value={search}
         debounceTime={300}
+        onClick={() => setSearch('')}
       />
-      {(search && filteredStudents.length) || selectedStudents.length > 0 ? (
+      {filteredStudent || selectedStudents.length > 0 ? (
         <div className="h-full mt-6 flex flex-wrap gap-8 align-start place-content-start">
-          {search && filteredStudents.length > 0 && (
+          {filteredStudent && (
             <div className="w-[calc(50%-16px)] h-9 flex justify-between items-center py-2">
-              <span>{`${filteredStudents[0].id} ${filteredStudents[0].name}`}</span>
+              <span>{`          ${filteredStudent.student_info.grade}${filteredStudent.student_info.classroom}${filteredStudent.student_info.number.toString().padStart(2, '0')}
+ ${filteredStudent.name}`}</span>
               <div
-                key={filteredStudents[0].id}
                 role="button"
-                onClick={() => handleAddStudent(filteredStudents[0])}
+                onClick={e => handleAddStudent(e)}
                 onKeyDown={e => {
                   if (e.key === 'Enter' || e.key === ' ') {
-                    handleAddStudent(filteredStudents[0]);
+                    handleAddStudent(e);
                   }
                 }}
                 tabIndex={0}
@@ -76,21 +132,23 @@ export default function StudentSearchSection() {
                   key={student.id}
                   className="w-[calc(50%-16px)] h-9 flex justify-between items-center py-2"
                 >
-                  <span>{`${student.id} ${student.name}`}</span>
-                  <div
-                    key={student.id}
-                    role="button"
-                    onClick={() => handleDeleteStudent(student)}
-                    onKeyDown={e => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        handleAddStudent(filteredStudents[0]);
-                      }
-                    }}
-                    tabIndex={0}
-                    className="cursor-pointer"
-                  >
-                    <CloseButton />
-                  </div>
+                  <span>{`          ${student.student_info.grade}${student.student_info.classroom}${student.student_info.number.toString().padStart(2, '0')}
+ ${student.name}`}</span>
+                  {student.id !== 'user' && (
+                    <div
+                      role="button"
+                      onClick={e => handleDeleteStudent(e, student)}
+                      onKeyDown={e => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          handleDeleteStudent(e, student);
+                        }
+                      }}
+                      tabIndex={0}
+                      className="cursor-pointer"
+                    >
+                      <CloseButton />
+                    </div>
+                  )}
                 </div>
               ))}
         </div>

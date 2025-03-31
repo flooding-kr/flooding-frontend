@@ -11,7 +11,7 @@ interface Props {
   unit: string;
 }
 
-const Dropdown = forwardRef<HTMLDivElement, Props>(({ onChange, items, text, unit }, ref) => {
+const Dropdown = forwardRef<HTMLDivElement, Props>(({ onChange, items, text, unit }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<number | string>(text);
   const dropdownRef = useRef<HTMLDivElement>(null);
