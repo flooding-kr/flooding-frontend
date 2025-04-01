@@ -20,17 +20,18 @@ export async function POST(request: Request) {
 
     res.cookies.set('accessToken', response.data.access_token, {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === 'production',
       expires: accessTokenExpires,
       sameSite: 'strict',
     });
 
     res.cookies.set('refreshToken', response.data.refresh_token, {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === 'production',
       expires: refreshTokenExpires,
       sameSite: 'strict',
     });
+
     const userResponse = await apiClient.get('/user', {
       headers: { Authorization: `Bearer ${response.data.access_token}` },
     });
@@ -39,7 +40,7 @@ export async function POST(request: Request) {
 
     res.cookies.set('user', encodedUser, {
       httpOnly: false,
-      secure: true,
+      secure: process.env.NODE_ENV === 'production',
       expires: accessTokenExpires,
       sameSite: 'strict',
     });

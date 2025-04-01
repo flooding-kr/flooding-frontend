@@ -35,11 +35,11 @@ export default function useUser() {
         );
         setUser({ ...parsedUser, stuNum });
       } catch (error) {
-        // router.push('/signin');
+        router.push('/signin');
         toast.error('유저 정보가 존재하지 않습니다');
       }
     } else {
-      // router.push('/signin');
+      router.push('/signin');
       toast.error('유저 정보가 존재하지 않습니다');
     }
   }, [setUser, user, router]);

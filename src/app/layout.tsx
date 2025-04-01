@@ -22,6 +22,7 @@ export default function RootLayout({
       <body className={pretendard.className}>
         <TanstackProvider>
           <ToastContainer position="top-right" autoClose={2000} />
+          <div id="portal" />
           {!isAuthPage && <Header />}
           <main className={isAuthPage ? '' : 'mobile:pt-[98px] mobile:pb-[63px]'}>{children}</main>
           {!isAuthPage && <MobileFooter />}

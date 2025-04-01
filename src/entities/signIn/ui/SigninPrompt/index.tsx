@@ -16,7 +16,10 @@ export default function SigninPrompt() {
         </Link>
       </div>
       <div>
-        <Link href="/" className="text-caption1B text-main-400 mobile:text-caption2B">
+        <Link
+          href="/signin/findpassword"
+          className="text-caption1B text-main-400 mobile:text-caption2B"
+        >
           비밀번호 찾기
         </Link>
       </div>

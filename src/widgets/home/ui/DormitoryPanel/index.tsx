@@ -29,8 +29,8 @@ function DormitoryPanel() {
         </Link>
       </header>
       <div className="flex flex-1 gap-6 mobile:flex-col mobile:gap-4">
-        <ApplyBoard title="자습 신청" count={0} maxCount={50} activationTime="08:00" />
-        <ApplyBoard title="안마의자 신청" count={0} maxCount={5} activationTime="08:20" />
+        <ApplyBoard title="자습 신청" count={0} maxCount={50} activationTime="20:00" />
+        <ApplyBoard title="안마의자 신청" count={0} maxCount={5} activationTime="20:20" />
       </div>
     </div>
   );
