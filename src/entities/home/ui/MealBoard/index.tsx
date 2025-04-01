@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, Error } from '@/shared/assets/icons';
 import { Meal } from '@/shared/types/meal';
 
 import { getMeal } from '../../api';
-import { getDate } from '../../api/getDate';
+import { getDate } from '../../model/getDate';
 
 export default function MealBoard() {
   const { year, month, day, weekday, hour } = getDate();
