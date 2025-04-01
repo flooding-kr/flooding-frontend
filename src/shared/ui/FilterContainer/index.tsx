@@ -22,7 +22,7 @@ export default function FilterContainer({ title, options, unit, onChange }: Prop
   return (
     <div className="flex items-center">
       <p className="mr-2 text-body2R text-main-600">{title}</p>
-      <div className="flex gap-4 homebaseResponsive:gap-2">
+      <div className="flex gap-4 tablet:gap-2">
         {options.map(option => (
           <Tag
             key={option}

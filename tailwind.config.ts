@@ -63,7 +63,6 @@ const config: Config = {
     },
     screens: {
       mobile: { max: '640px' },
-      homebaseResponsive: { max: '1360px' },
       tablet: { max: '1360px' },
     },
   },

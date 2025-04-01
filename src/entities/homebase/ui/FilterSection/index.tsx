@@ -10,7 +10,7 @@ export default function FilterSection() {
 
   return (
     <div className="flex justify-between w-full gap-10 ">
-      <div className="flex gap-6 items-center w-full max-w-[800px] justify-between homebaseResponsive:w-max mobile:flex-col mobile:gap-3 mobile:place-items-start">
+      <div className="flex gap-6 items-center w-full max-w-[800px] justify-between tablet:w-max mobile:flex-col mobile:gap-3 mobile:place-items-start">
         <FilterContainer
           title="층수"
           options={[2, 3, 4]}
@@ -20,7 +20,7 @@ export default function FilterSection() {
             setSelectedTable(null);
           }}
         />
-        <div className="homebaseResponsive:hidden">
+        <div className="tablet:hidden">
           <VerticalLineBig />
         </div>
         <FilterContainer
@@ -33,7 +33,7 @@ export default function FilterSection() {
           }}
         />
       </div>
-      <div className="w-full max-w-[439px] flex justify-end items-center gap-2 homebaseResponsive:hidden">
+      <div className="w-full max-w-[439px] flex justify-end items-center gap-2 tablet:hidden">
         <InfoCircle />
         <p className="text-body3R text-gray-500">층, 교시 1개만 선택 가능</p>
       </div>
