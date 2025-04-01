@@ -8,7 +8,7 @@ import { postHomebaseData } from '../../api/postHomebasedata';
 export default function StudentApplicationSection() {
   const { selectedStudents, floor, period, selectedTable, setSelectedTable } = useStore();
 
-  const isButtonDisabled = !selectedStudents.length || !floor || !period || selectedTable === null;
+  const isButtonDisabled = !selectedStudents.length || !floor || !period || !selectedTable;
 
   const handleApplyClick = async () => {
     if (selectedTable === null || floor === null || period === null || selectedStudents == null) {
