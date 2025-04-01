@@ -48,14 +48,26 @@ export default function ScheduleBoard() {
           </header>
           <div className="flex flex-1 rounded-lg p-5 bg-gray-100 mobile:px-3 mobile:py-2">
             {schedule ? (
-              <div className="flex flex-col flex-1 gap-4 mobile:gap-3">
+              <div className="w-full flex flex-col flex-1 gap-4 mobile:gap-3">
                 {schedule.map((item, idx) => (
                   <div
                     key={`${currentDate}-${item}-${weekArr[idx]}`}
-                    className="flex items-center text-body3R gap-4 mobile:gap-3 mobile:text-caption1R"
+                    className="w-full flex items-center text-body3R gap-4 mobile:gap-3 mobile:text-caption1R"
                   >
                     <span className="text-gray-500 text-caption2M">{idx + 1}교시</span>{' '}
-                    <VerticalLine /> {item}
+                    <VerticalLine />{' '}
+                    <span
+                      className="w-full flex-1"
+                      style={{
+                        display: 'block',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap',
+                        wordBreak: 'break-word',
+                      }}
+                    >
+                      {item}
+                    </span>
                   </div>
                 ))}
               </div>
