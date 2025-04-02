@@ -24,7 +24,7 @@ export default function Header() {
 
   const headerActions = [
     { icon: HeaderManager, label: '관리자', path: '/manager' },
-    { icon: HeaderNotification, label: '공지', path: '/notification' },
+    { icon: HeaderNotification, label: '공지', path: '/notifications' },
   ];
 
   const menuItems = [
@@ -86,7 +86,7 @@ export default function Header() {
       </div>
       {/* 모바일 */}
       <div className="hidden mobile:block w-full ">
-        <div className="flex w-full px-4 pt-[61px] pb-[22px] gap-9 justify-between fixed top-0 bg-main-600">
+        <div className="flex w-full px-4 py-[22px] gap-9 justify-between fixed top-0 bg-main-600">
           <HeaderLogo />
           <div className="flex gap-3">
             <button type="button" onClick={() => router.push('/notifications')} aria-label="공지">

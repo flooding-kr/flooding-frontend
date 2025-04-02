@@ -10,7 +10,7 @@ interface Props {
 
 function Tag({ text, onClick, disabled }: Props) {
   let buttonClass =
-    'py-2 px-5 rounded-lg text-body2R mobile:text-body3R border border-solid border-main-600 ';
+    'py-2 px-5 rounded-lg text-body2R mobile:text-body3R border border-solid border-main-600 tablet:py-1 tablet:px-4 mobile:text-caption2M mobile:!px-3';
 
   if (disabled) {
     buttonClass += ' bg-main-600 bg-gray-400 text-white';
