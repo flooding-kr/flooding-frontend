@@ -23,7 +23,7 @@ export default function MobileFooter() {
 
   return (
     <div className="hidden mobile:block w-full ">
-      <div className="flex flex-col w-full max-w-[1360px] gap-9 text-caption2B text-gray-300  fixed bottom-0 bg-white">
+      <div className="flex flex-col w-full max-w-[1360px] gap-9 text-caption2B text-gray-300 z-50 fixed bottom-0 bg-white">
         <div className="flex justify-around px-4 py-2">
           {menuItems.map(({ icon: Icon, label, path }) => (
             <button
