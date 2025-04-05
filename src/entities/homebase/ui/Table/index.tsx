@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 
 import { useStore } from '@/entities/homebase/store/useStore';
