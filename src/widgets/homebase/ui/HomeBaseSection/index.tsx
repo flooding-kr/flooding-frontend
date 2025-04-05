@@ -19,7 +19,7 @@ export default function HomeBaseSection() {
   }, [selectedTable]);
 
   return (
-    <div className="flex flex-col gap-10 w-full h-full max-h-[602px] bg-white px-10 py-5 mobile:gap-6">
+    <div className="flex flex-col gap-10 w-full h-full max-h-[602px] bg-white px-10 py-5 mobile:gap-6 mobile:px-5">
       <FilterSection />
       <div className="flex justify-between gap-10 w-full h-[100vh] max-h-[480px] mobile:justify-center mobile:flex-col">
         {/* PC */}
