@@ -1,0 +1,68 @@
+import { ClubListType } from '../types/clubListType';
+
+export const mock: ClubListType[] = [
+  {
+    id: '1',
+    name: 'AI Developers',
+    thumbnailImageUrl: 'https://example.com/image1.jpg',
+    isLeader: true,
+    status: 'PENDING',
+    type: 'AUTONOMOUS',
+  },
+  {
+    id: '2',
+    name: 'Software Engineers',
+    thumbnailImageUrl: 'https://example.com/image2.jpg',
+    isLeader: true,
+    status: 'RECRUITING',
+    type: 'MAJOR',
+  },
+  {
+    id: '3',
+    name: 'Cyber Security Club',
+    thumbnailImageUrl: 'https://example.com/image3.jpg',
+    isLeader: true,
+    status: 'PENDING',
+    type: 'CAREER',
+  },
+  {
+    id: '4',
+    name: 'Robotics Team',
+    thumbnailImageUrl: 'https://example.com/image4.jpg',
+    isLeader: true,
+    status: 'RECRUITING',
+    type: 'AUTONOMOUS',
+  },
+  {
+    id: '5',
+    name: 'Data Science Hub',
+    thumbnailImageUrl: 'https://example.com/image5.jpg',
+    isLeader: true,
+    status: 'PENDING',
+    type: 'MAJOR',
+  },
+  {
+    id: '6',
+    name: 'Blockchain Innovators',
+    thumbnailImageUrl: 'https://example.com/image6.jpg',
+    isLeader: true,
+    status: 'RECRUITING',
+    type: 'CAREER',
+  },
+  {
+    id: '7',
+    name: 'Cloud Computing Club',
+    thumbnailImageUrl: 'https://example.com/image7.jpg',
+    isLeader: true,
+    status: 'PENDING',
+    type: 'AUTONOMOUS',
+  },
+  {
+    id: '8',
+    name: 'UI/UX Designers',
+    thumbnailImageUrl: 'https://example.com/image8.jpg',
+    isLeader: true,
+    status: 'RECRUITING',
+    type: 'MAJOR',
+  },
+];
