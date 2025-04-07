@@ -1,4 +1,5 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 
 import { useStore } from '@/entities/homebase/store/useStore';
 import { Button } from '@/shared/ui';
@@ -27,10 +28,10 @@ export default function StudentApplicationSection() {
         period,
       });
 
-      console.log('신청 성공:', response);
+      toast.success('신청이 완료 되었습니다.');
       setSelectedTable(null);
-    } catch (error) {
-      console.error('신청 실패:', error);
+    } catch (error: any) {
+      toast.error(error.response?.data?.error?.reason || '신청 중 오류가 발생했습니다.');
     }
   };
 
