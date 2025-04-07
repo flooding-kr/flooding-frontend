@@ -55,7 +55,7 @@ export default function ApplyBoard({ title, count, maxCount, activationTime }: P
           <div className="flex justify-start w-full h-full relative">
             <div className="w-full bg-main-100 h-3 rounded-lg z-10" />
             <div
-              className="h-3 rounded-lg z-50 absolute"
+              className="h-3 rounded-lg"
               style={{
                 width: `calc(${(count / maxCount) * 100}%)`,
                 background: count !== maxCount ? `#AFBFF9` : `#1EB916`,
