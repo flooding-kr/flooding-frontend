@@ -5,7 +5,7 @@ interface Props {
   height: number;
 }
 
-export default function HeaderNotification({ width, height }: Props) {
+export default function ImageIcon({ width, height }: Props) {
   return (
     <svg
       width={width}
