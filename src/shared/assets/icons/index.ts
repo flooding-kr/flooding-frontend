@@ -24,6 +24,8 @@ export { default as FooterHome } from './FooterHome';
 export { default as Error } from './Error';
 export { default as Like } from './Like';
 export { default as DormitoryIcon } from './DormitoryIcon';
+export { default as BigArrowLeft } from './BigArrowLeft';
 export { default as BigArrowRight } from './BigArrowRight';
 export { default as X } from './X';
 export { default as Trash } from './Trash';
+export { default as ImageIcon } from './ImageIcon';
