@@ -35,6 +35,7 @@ jobs:
           webhook-url: ${{ secrets.WEBHOOK_SECRET }}
           type: EMBED
           title: 'Successfully complete build'
+          content: "<@${{ secrets.DISCORD_ID1 }}> <@${{ secrets.DISCORD_ID2 }}>\n 코드 리뷰 요청이 들어왔습니다."
           color: 57F287
 
       - name: Send failure message to Discord
