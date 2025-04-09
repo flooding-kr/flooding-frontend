@@ -4,16 +4,19 @@ import { forwardRef, useEffect, useRef, useState } from 'react';
 
 import { ArrowDown, ArrowUp } from '@/shared/assets/icons';
 
-interface Props {
-  onChange: (value: number) => void;
-  items: number[];
+interface Props<T extends string | number> {
+  onChange: (value: T) => void;
+  items: T[];
   text: string;
-  unit: string;
+  unit?: string;
 }
 
-const Dropdown = forwardRef<HTMLDivElement, Props>(({ onChange, items, text, unit }) => {
+function Dropdown<T extends string | number>(
+  { onChange, items, text, unit }: Props<T>,
+  ref: React.Ref<HTMLDivElement>
+) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<number | string>(text);
+  const [selectedItem, setSelectedItem] = useState<T | string>(text);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = (e: React.MouseEvent) => {
@@ -27,7 +30,7 @@ const Dropdown = forwardRef<HTMLDivElement, Props>(({ onChange, items, text, uni
     }
   };
 
-  const handleItemClick = (item: number) => {
+  const handleItemClick = (item: T) => {
     setSelectedItem(item);
     setIsOpen(false);
     onChange(item);
@@ -40,6 +43,8 @@ const Dropdown = forwardRef<HTMLDivElement, Props>(({ onChange, items, text, uni
     };
   }, []);
 
+  const showUnit = typeof selectedItem === 'number' && unit;
+
   return (
     <div ref={dropdownRef} className="relative inline-block text-left w-full">
       <button
@@ -48,12 +53,14 @@ const Dropdown = forwardRef<HTMLDivElement, Props>(({ onChange, items, text, uni
         className="flex justify-between bg-white text-body2R rounded-md w-full p-4"
       >
         {selectedItem}
-        {typeof selectedItem === 'number' && ` ${unit}`}
+        {showUnit && ` ${unit}`}
         {isOpen ? <ArrowUp /> : <ArrowDown />}
       </button>
       {isOpen && (
         <div
-          className={`absolute right-0 bg-white border border-gray-300 rounded-md shadow-lg z-10 w-full ${items.length > 4 ? 'max-h-40 overflow-y-auto ' : ''}`}
+          className={`absolute right-0 bg-white border border-gray-300 rounded-md shadow-lg z-10 w-full ${
+            items.length > 4 ? 'max-h-40 overflow-y-auto' : ''
+          }`}
         >
           <ul className="text-gray-500 text-body2R">
             {items.map(item => (
@@ -62,10 +69,12 @@ const Dropdown = forwardRef<HTMLDivElement, Props>(({ onChange, items, text, uni
                   type="button"
                   role="menuitem"
                   onClick={() => handleItemClick(item)}
-                  className={`w-full text-left p-4 hover:bg-gray-100 cursor-pointer ${selectedItem === item ? 'text-black text-body2B' : ''}`}
+                  className={`w-full text-left p-4 hover:bg-gray-100 cursor-pointer ${
+                    selectedItem === item ? 'text-black text-body2B' : ''
+                  }`}
                 >
                   {item}
-                  {unit}
+                  {typeof item === 'number' && unit}
                 </button>
               </li>
             ))}
@@ -74,8 +83,8 @@ const Dropdown = forwardRef<HTMLDivElement, Props>(({ onChange, items, text, uni
       )}
     </div>
   );
-});
+}
 
-Dropdown.displayName = 'Dropdown';
-
-export default Dropdown;
+export default forwardRef(Dropdown) as <T extends string | number>(
+  props: Props<T> & { ref?: React.Ref<HTMLDivElement> }
+) => JSX.Element;
