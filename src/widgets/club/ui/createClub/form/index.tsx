@@ -12,11 +12,13 @@ function CreateClubForm() {
   const [a, setA] = useState(1);
   const [b, setB] = useState(1);
   const [c, setC] = useState('금봉관');
+  const [type, setType] = useState('전공동아리');
 
   useEffect(() => {
     console.log(a);
     console.log(b);
     console.log(c);
+    console.log(type);
   }, [c]);
 
   return (
@@ -31,11 +33,23 @@ function CreateClubForm() {
           <CreateClubPreviewImageList profileImage={profileImage} />
         )}
       </section>
-      <section className="flex flex-col gap-4">
-        <p className="text-body2B text-black">
-          동아리 이름<span className="text-main-600">*</span>
-        </p>
-        <Input placeholder="동아리 이름을 입력해주세요" maxLength={20} />
+      <section className="flex flex-col-reverse justify-between gap-4">
+        <section className="w-full flex flex-col gap-4">
+          <p className="text-body2B text-black">
+            동아리 이름<span className="text-main-600">*</span>
+          </p>
+          <Input placeholder="동아리 이름을 입력해주세요" maxLength={20} />
+        </section>
+        <section className="w-full flex flex-col gap-4">
+          <p className="text-body2B text-black">
+            동아리 유형<span className="text-main-600">*</span>
+          </p>
+          <Dropdown
+            items={['전공동아리', '자율동아리', '취업동아리']}
+            text="유형"
+            onChange={e => setType(e)}
+          />
+        </section>
       </section>
       <section className="flex flex-col gap-4">
         <p className="text-body2B text-black">동아리 소개글</p>
