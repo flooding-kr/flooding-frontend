@@ -128,7 +128,7 @@ export default function Table() {
                     <span className="text-blue-500 ml-1">({table.capacity}명)</span>
                   ))}
               </div>
-              <div className="flex flex-wrap justify-center gap-1 text-body3R text-gray-500 max-w-44">
+              <div className="flex flex-wrap justify-center gap-1 text-body3R text-gray-500 max-w-44 mt-1">
                 {data
                   ?.find((d: { table_number: string | number }) => d.table_number === table.id)
                   ?.participants?.map((participant: { school_number: any; name: any }) => (

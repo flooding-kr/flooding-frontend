@@ -111,7 +111,7 @@ export default function HomeBaseSlider() {
         </button>
 
         <div
-          className="w-full overflow-hidden px-3 touch-pan-x relative h-[240px]"
+          className="w-full overflow-hidden px-3 touch-pan-x relative min-h-[240px]"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           ref={containerRef}
@@ -124,19 +124,19 @@ export default function HomeBaseSlider() {
             {cardData.map(card => (
               <div
                 key={card.homebase_group_id}
-                className="flex-shrink-0 w-[calc(50%-12px)] flex flex-col gap-4 bg-white rounded-lg py-5 px-6 shadow-md"
+                className="flex-shrink-0 w-[calc(50%-12px)] flex flex-col gap-4 bg-white rounded-lg py-5 px-6 shadow-md justify-between"
               >
                 <div className="flex justify-between items-center">
-                  <p className="text-body1B">홈베이스</p>
+                  <p className="text-body1R">홈베이스</p>
                   <div className="flex gap-2">
                     <Tag text={`${card.homebase_table.floor}층`} />
                     <Tag text={`${card.period}교시`} />
                   </div>
                 </div>
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-wrap gap-2">
                   {card.participants.map(p => (
-                    <span key={p.school_number} className="text-caption1R text-gray-500">
-                      {p.name} ({p.school_number})
+                    <span key={p.school_number} className="text-body2R text-gray-500">
+                      {p.school_number} {p.name}
                     </span>
                   ))}
                 </div>
