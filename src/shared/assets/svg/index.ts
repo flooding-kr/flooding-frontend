@@ -5,3 +5,6 @@ export { default as HeaderLogo } from './HeaderLogo';
 export { default as SignupLogo } from './SignupLogo';
 export { default as CertificationLogo } from './CertificationLogo';
 export { default as Xbutton } from './Xbutton';
+export { default as MoreVert } from './MoreVert';
+export { default as LogoutLogo } from './LogoutLogo';
+export { default as ArrowBig } from './ArrowBig';
