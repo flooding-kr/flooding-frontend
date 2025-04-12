@@ -2,20 +2,35 @@
 
 import { motion } from 'framer-motion';
 import React, { useState, useRef, useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 import { ArrowBig } from '@/shared/assets/svg';
 import { Button, Tag } from '@/shared/ui';
 
-const cardData = [
-  { id: 1, floor: '2층', time: '8교시' },
-  { id: 2, floor: '3층', time: '7교시' },
-  { id: 3, floor: '4층', time: '6교시' },
-  { id: 4, floor: '5층', time: '5교시' },
-];
+import { deleteHomebaseGroup } from '../../api/deleteHomebaseGroup';
+import { getHomebaseMyselfdata } from '../../api/getHomebasemyselfdata';
+
+type HomebaseCard = {
+  homebase_group_id: string;
+  homebase_table: {
+    id: number;
+    floor: number;
+    table_number: number;
+    max_seats: number;
+  };
+  period: number;
+  is_proposer: boolean;
+  participants: {
+    name: string;
+    school_number: string;
+  }[];
+  max_seats: number;
+};
 
 export default function HomeBaseSlider() {
   const [startIndex, setStartIndex] = useState(0);
   const [containerWidth, setContainerWidth] = useState(0);
+  const [cardData, setCardData] = useState<HomebaseCard[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef(0);
 
@@ -44,7 +59,6 @@ export default function HomeBaseSlider() {
     if (deltaX < -50) handleNext();
   };
 
-  // 슬라이더 너비 측정
   useEffect(() => {
     if (containerRef.current) {
       setContainerWidth(containerRef.current.offsetWidth);
@@ -60,6 +74,29 @@ export default function HomeBaseSlider() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getHomebaseMyselfdata();
+        const apiData = response.data;
+
+        setCardData(apiData);
+      } catch (error) {
+        toast.error('홈베이스 정보 가져오기 실패');
+      }
+    };
+
+    fetchData();
+  }, []);
+  const handleDeleteHomebaseGroup = async (homebaseGroupId: string) => {
+    try {
+      await deleteHomebaseGroup(homebaseGroupId);
+      setCardData(prevData => prevData.filter(card => card.homebase_group_id !== homebaseGroupId));
+    } catch (error) {
+      console.error('홈베이스 그룹 삭제 실패:', error);
+    }
+  };
+
   return (
     <div className="flex flex-col w-full">
       <p className="text-title3B mb-6">홈베이스 신청 정보</p>
@@ -74,7 +111,7 @@ export default function HomeBaseSlider() {
         </button>
 
         <div
-          className="w-full overflow-hidden px-3 touch-pan-x relative h-[200px]"
+          className="w-full overflow-hidden px-3 touch-pan-x relative h-[240px]"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           ref={containerRef}
@@ -86,17 +123,31 @@ export default function HomeBaseSlider() {
           >
             {cardData.map(card => (
               <div
-                key={card.id}
-                className="flex-shrink-0 w-[calc(50%-12px)] flex flex-col gap-8 bg-white rounded-lg py-5 px-6 shadow-md"
+                key={card.homebase_group_id}
+                className="flex-shrink-0 w-[calc(50%-12px)] flex flex-col gap-4 bg-white rounded-lg py-5 px-6 shadow-md"
               >
-                <div className="w-full flex justify-between items-center">
-                  <p className="text-body1R">홈베이스</p>
-                  <div className="flex gap-4">
-                    <Tag text={card.floor} />
-                    <Tag text={card.time} />
+                <div className="flex justify-between items-center">
+                  <p className="text-body1B">홈베이스</p>
+                  <div className="flex gap-2">
+                    <Tag text={`${card.homebase_table.floor}층`} />
+                    <Tag text={`${card.period}교시`} />
                   </div>
                 </div>
-                <Button text="취소하기" error />
+                <div className="flex flex-col gap-1">
+                  {card.participants.map(p => (
+                    <span key={p.school_number} className="text-caption1R text-gray-500">
+                      {p.name} ({p.school_number})
+                    </span>
+                  ))}
+                </div>
+
+                {card.is_proposer && (
+                  <Button
+                    text="취소하기"
+                    error
+                    onClick={() => handleDeleteHomebaseGroup(card.homebase_group_id)}
+                  />
+                )}
               </div>
             ))}
           </motion.div>
