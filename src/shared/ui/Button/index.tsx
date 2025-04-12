@@ -11,6 +11,7 @@ interface Props {
   type?: 'button' | 'submit' | 'reset';
   closed?: boolean;
   toggle?: boolean;
+  error?: boolean;
   homebasemobile?: boolean;
 }
 
@@ -22,6 +23,7 @@ function Button({
   closed,
   toggle,
   homebasemobile,
+  error,
 }: Props) {
   let buttonClass =
     'w-full p-4 rounded-lg text-white text-body2B mobile:text-body3B mobile:px-2 mobile:py-3';
@@ -33,6 +35,8 @@ function Button({
     buttonClass += ' bg-white !text-gray-500';
   } else if (homebasemobile) {
     buttonClass += ' bg-main-100 !text-main-600';
+  } else if (error) {
+    buttonClass += ' bg-error !text-white';
   } else {
     buttonClass += ' bg-main-600';
   }

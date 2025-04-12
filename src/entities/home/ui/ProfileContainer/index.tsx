@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 
-import MypageProfileInfo from '@/entities/profile/ui/MypageProfileInfo';
+import MypageProfileInfo from '@/entities/mypage/ui/MypageProfileInfo';
 import userProfileImage from '@/shared/assets/jpg/userProfileImage.jpg';
 
 import EditProfileModal from '../EditProfileModal';
