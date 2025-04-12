@@ -60,8 +60,8 @@ export default function Header() {
               <Image alt="profile" src={userProfileImage} className="w-8 h-8 rounded-full" />
               <button
                 type="button"
-                onClick={() => router.push('/profile')}
-                className={pathname === '/profile' ? 'text-white' : ''}
+                onClick={() => router.push('/mypage')}
+                className={pathname === '/mypage' ? 'text-white' : ''}
                 aria-label="프로필"
               >
                 {userData?.name}
@@ -92,7 +92,7 @@ export default function Header() {
             <button type="button" onClick={() => router.push('/notifications')} aria-label="공지">
               <HeaderNotification isSelected={pathname === '/notifications'} mobile />
             </button>
-            <button type="button" onClick={() => router.push('/profile')} aria-label="프로필">
+            <button type="button" onClick={() => router.push('/mypage')} aria-label="프로필">
               <Image
                 alt="profile"
                 src={userProfileImage}
