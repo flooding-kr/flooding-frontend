@@ -9,11 +9,11 @@ interface ModalProps {
 }
 export function Modal({ children, onClose, name }: ModalProps) {
   return (
-    <div
+    <button
+      type="button"
       className="fixed inset-0 flex items-center justify-center bg-[#12121266] z-50"
-      role="dialog"
-      aria-modal="true"
       tabIndex={-1}
+      onClick={onClose}
     >
       <div
         className="text-body3B bg-white p-5 rounded-lg shadow-lg max-w-lg w-full relative"
@@ -27,15 +27,8 @@ export function Modal({ children, onClose, name }: ModalProps) {
             <Xbutton />
           </button>
         </div>
-        <button
-          type="button"
-          className="absolute inset-0 w-full h-full cursor-pointer"
-          onClick={onClose}
-          aria-label="Close modal"
-          style={{ backgroundColor: 'transparent' }}
-        />
         {children}
       </div>
-    </div>
+    </button>
   );
 }
