@@ -57,7 +57,7 @@ export default function StudentSearchSection() {
 
       try {
         const response = await getUserSearch({ name: query });
-        let students = response.data;
+        let { students } = response.data;
         students = students.filter(
           (student: Student) =>
             user?.name !== student.name &&
