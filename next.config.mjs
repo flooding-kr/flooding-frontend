@@ -2,6 +2,15 @@
 
 const nextConfig = {
   reactStrictMode: false,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'pub-e40de018bd184237aa27f7a32ee8dcf3.r2.dev',
+        pathname: '/**',
+      },
+    ],
+  },
   async rewrites() {
     return [
       {
