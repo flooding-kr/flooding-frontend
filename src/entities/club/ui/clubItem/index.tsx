@@ -6,14 +6,14 @@ import ClubState from '../clubState';
 interface Props {
   name: string;
   image: string;
-  state?: string;
+  recruiting: boolean;
 }
 
-function ClubItem({ image, name, state }: Props) {
+function ClubItem({ image, name, recruiting }: Props) {
   return (
     <section className="max-w-[252px] h-[300px] w-full bg-white rounded-lg px-4 py-5">
       <div className="relative flex flex-col gap-4">
-        <ClubState state={state} />
+        <ClubState state={recruiting} />
         <Image
           alt={name}
           src={image}
