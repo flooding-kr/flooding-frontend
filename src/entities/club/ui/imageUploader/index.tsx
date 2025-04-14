@@ -3,8 +3,9 @@
 import React, { useRef } from 'react';
 
 import { ImageIcon } from '@/shared/assets/icons';
+import { showError } from '@/shared/libs/showError';
 
-import { useShowImage } from '../../model/useShowImage';
+import { useShowImage } from '../../model';
 
 interface Props {
   isProfile?: boolean;
@@ -16,6 +17,42 @@ function ImageUploader({ isProfile }: Props) {
 
   const handleDivClick = () => {
     inputRef.current?.click();
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+    if (!files) return;
+
+    const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    const maxSize = 20 * 1024 * 1024; // 20MB
+
+    const filteredFiles = Array.from(files).filter(file => {
+      if (!validTypes.includes(file.type)) {
+        showError(`허용되지 않는 파일 형식입니다: ${file.name}`);
+        return false;
+      }
+      if (file.size > maxSize) {
+        showError(`파일 크기가 20MB를 초과합니다: ${file.name}`);
+        return false;
+      }
+      return true;
+    });
+
+    if (filteredFiles.length > 4) {
+      showError('이미지는 최대 4개까지 업로드할 수 있습니다.');
+      return;
+    }
+
+    if (isProfile && filteredFiles.length > 1) {
+      showError('프로필 이미지는 1개만만 업로드할 수 있습니다.');
+      return;
+    }
+
+    if (isProfile) {
+      handleAddProfileImages(e);
+    } else {
+      handleAddImages(e);
+    }
   };
 
   return (
@@ -38,8 +75,9 @@ function ImageUploader({ isProfile }: Props) {
         type="file"
         multiple
         hidden
+        accept=".jpg,.jpeg,.png"
         ref={inputRef}
-        onChange={isProfile ? handleAddProfileImages : handleAddImages}
+        onChange={handleFileChange}
       />
     </div>
   );
