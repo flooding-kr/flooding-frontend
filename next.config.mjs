@@ -9,6 +9,11 @@ const nextConfig = {
         hostname: 'pub-e40de018bd184237aa27f7a32ee8dcf3.r2.dev',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'r2.flooding.kr',
+        pathname: '/**',
+      }
     ],
   },
   async rewrites() {
