@@ -5,6 +5,7 @@ interface HomebaseData {
   floor: number;
   participants: string[];
   period: number;
+  reason: string;
 }
 
 export async function postHomebaseData({
@@ -12,11 +13,13 @@ export async function postHomebaseData({
   floor,
   participants,
   period,
+  reason,
 }: HomebaseData) {
   return axios.post('/api/homebase', {
     table_number,
     floor,
     participants,
     period,
+    reason,
   });
 }

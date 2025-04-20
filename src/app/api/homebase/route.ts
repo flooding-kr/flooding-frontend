@@ -40,14 +40,14 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     /* eslint-disable @typescript-eslint/naming-convention */
-    const { table_number, floor, participants, period } = body;
+    const { table_number, floor, participants, period, reason } = body;
 
     const cookieStore = cookies();
     const accessToken = cookieStore.get('accessToken')?.value;
 
     const response = await apiClient.post(
       '/homebase',
-      { table_number, floor, participants, period },
+      { table_number, floor, participants, period, reason },
       {
         headers: {
           Authorization: accessToken ? `Bearer ${accessToken}` : '',
