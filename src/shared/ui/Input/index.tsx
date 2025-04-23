@@ -10,7 +10,20 @@ interface Props extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>,
 }
 
 const Input = forwardRef<HTMLInputElement, Props>(
-  ({ error, type = 'text', placeholder, onChange, value, bg = false, required, maxLength, ...props }, ref) => {
+  (
+    {
+      error,
+      type = 'text',
+      placeholder,
+      onChange,
+      value,
+      bg = false,
+      required,
+      maxLength,
+      ...props
+    },
+    ref
+  ) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [charCount, setCharCount] = useState(0);
 
