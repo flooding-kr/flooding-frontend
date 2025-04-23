@@ -1,6 +1,9 @@
 'use client';
 
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { LogoutLogo, MoreVert } from '@/shared/assets/svg';
 
@@ -22,9 +25,17 @@ export default function MypageProfileInfo({ stuName, stuNum, setProfile }: Props
     { label: '이름', value: stuName },
     { label: '학번', value: stuNum },
   ];
+  const router = useRouter();
 
-  const handleLogout = () => {
-    // 로그아웃 로직 작성
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post('/api/auth/logout');
+      console.log(response.data.message);
+      router.push('/signin');
+      toast.success('로그아웃 되었습니다.');
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   };
 
   return (
