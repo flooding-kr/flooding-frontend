@@ -9,5 +9,5 @@ export const getHomebasedata = async ({ floor, period }: HomebaseData) => {
   const response = await axios.get(`/api/homebase`, {
     params: { floor, period },
   });
-  return response;
+  return response.data.tables;
 };

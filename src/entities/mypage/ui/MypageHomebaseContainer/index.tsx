@@ -11,7 +11,6 @@ import { deleteHomebaseGroup } from '../../api/deleteHomebaseGroup';
 import { getHomebaseMyselfdata } from '../../api/getHomebasemyselfdata';
 
 type HomebaseCard = {
-  homebase_group_id: string;
   homebase_table: {
     id: number;
     floor: number;
@@ -24,7 +23,9 @@ type HomebaseCard = {
     name: string;
     school_number: string;
   }[];
+  reason: string;
   max_seats: number;
+  homebase_group_id: string;
 };
 
 export default function HomeBaseSlider() {
@@ -78,7 +79,7 @@ export default function HomeBaseSlider() {
     const fetchData = async () => {
       try {
         const response = await getHomebaseMyselfdata();
-        const apiData = response.data;
+        const apiData = response.data.tables;
 
         setCardData(apiData);
       } catch (error) {
@@ -118,24 +119,30 @@ export default function HomeBaseSlider() {
         >
           <motion.div
             className="flex gap-6"
-            animate={{ x: -startIndex * (containerWidth / 2 + 12) }}
+            animate={{ x: -startIndex * (containerWidth / 2 + 14) }}
             transition={{ duration: 0.4, ease: 'easeInOut' }}
           >
             {cardData.map(card => (
               <div
-                key={card.homebase_group_id}
-                className="flex-shrink-0 w-[calc(50%-12px)] flex flex-col gap-4 bg-white rounded-lg py-5 px-6 shadow-md justify-between"
+                key={card.homebase_table.table_number}
+                className="flex-shrink-0 w-[calc(50%)] flex flex-col gap-4 bg-white rounded-lg py-5 px-6 shadow-md justify-between mobile:p-2 "
               >
-                <div className="flex justify-between items-center">
-                  <p className="text-body1R">홈베이스</p>
-                  <div className="flex gap-2">
+                <div className="flex justify-between items-center mobile:place-content-center">
+                  <p className="text-body1R mobile:hidden">홈베이스</p>
+                  <div className="flex gap-2 mobile:hidden">
                     <Tag text={`${card.homebase_table.floor}층`} />
                     <Tag text={`${card.period}교시`} />
+                  </div>
+                  <div className="hidden mobile:block ">
+                    <Tag text={`${card.homebase_table.floor}층 / ${card.period}교시`} />
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {card.participants.map(p => (
-                    <span key={p.school_number} className="text-body2R text-gray-500">
+                    <span
+                      key={p.school_number}
+                      className="text-body2R text-gray-500 mobile:text-body3R"
+                    >
                       {p.school_number} {p.name}
                     </span>
                   ))}
