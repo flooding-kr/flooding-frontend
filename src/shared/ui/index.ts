@@ -7,3 +7,4 @@ export { default as SearchInput } from './SearchInput';
 export { default as FilterContainer } from './FilterContainer';
 export { default as Header } from './Header';
 export { default as MobileFooter } from './MobileFooter';
+export { default as TextArea } from './TextArea';

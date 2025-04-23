@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Club } from '@/views/club';
+import { CreateClub } from '@/views/createClub';
 
 const page = () => (
   <div>
-    <Club />
+    <CreateClub />
   </div>
 );
 

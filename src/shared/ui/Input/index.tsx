@@ -10,8 +10,9 @@ interface Props extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>,
 }
 
 const Input = forwardRef<HTMLInputElement, Props>(
-  ({ error, type = 'text', placeholder, onChange, value, bg = false, required, ...props }, ref) => {
+  ({ error, type = 'text', placeholder, onChange, value, bg = false, required, maxLength, ...props }, ref) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const [charCount, setCharCount] = useState(0);
 
     const togglePasswordVisibility = () => {
       setIsPasswordVisible(prev => !prev);
@@ -28,10 +29,13 @@ const Input = forwardRef<HTMLInputElement, Props>(
       if (onChange) {
         onChange(e);
       }
+      if (maxLength) {
+        setCharCount(e.target.value.length);
+      }
     };
 
     return (
-      <div className="w-full">
+      <div className="relative w-full">
         <div
           className={`relative w-full rounded-md border-[3px] p-4  mobile:px-2 mobile:py-3  ${
             bg ? 'bg-gray-100' : 'bg-white'
@@ -45,6 +49,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
                 type={inputType}
                 className="w-full text-black placeholder-gray-500 bg-transparent text-body2R mobile:text-body3R"
                 style={inputStyle}
+                maxLength={maxLength}
                 placeholder={placeholder}
                 onChange={handleChange}
                 value={value}
@@ -62,6 +67,13 @@ const Input = forwardRef<HTMLInputElement, Props>(
           </div>
         </div>
         {error && <div className="mt-2 flex text-sm text-error">{error}</div>}
+        {maxLength && (
+          <span
+            className={`absolute right-0 text-caption1R ${maxLength === charCount ? 'text-main-600' : 'text-gray-500'}`}
+          >
+            {charCount}/{maxLength}
+          </span>
+        )}
       </div>
     );
   }
