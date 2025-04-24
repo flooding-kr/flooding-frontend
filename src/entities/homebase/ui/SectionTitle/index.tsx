@@ -8,11 +8,13 @@ export default function SectionTitle() {
       <div>
         <HomebaseIcon />
       </div>
-      <p className="text-title3B">홈베이스</p>
+      <p className="text-title3B mobile:text-body1B">홈베이스</p>
       <div className="hidden tablet:block">
         <div className=" w-full max-w-[439px] flex justify-end items-center gap-2 ">
           <InfoCircle />
-          <p className="text-body3R text-gray-500">층, 교시 1개만 선택 가능</p>
+          <p className="text-body3R text-gray-500 mobile:text-caption2M">
+            층, 교시 1개만 선택 가능
+          </p>
         </div>
       </div>
     </div>

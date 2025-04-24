@@ -1,4 +1,7 @@
+'use client';
+
 import React, { useState, useCallback, useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 import { useStore } from '@/entities/homebase/store/useStore';
 import { AddButton, CloseButton, InfoCircleBig } from '@/shared/assets/icons';
@@ -55,7 +58,7 @@ export default function StudentSearchSection() {
 
       try {
         const response = await getUserSearch({ name: query });
-        let students = response.data;
+        let { students } = response.data;
         students = students.filter(
           (student: Student) =>
             user?.name !== student.name &&
@@ -78,6 +81,12 @@ export default function StudentSearchSection() {
     event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>
   ) => {
     event.stopPropagation();
+
+    if (selectedStudents.length >= 6) {
+      toast.error('최대 6명까지만 선택할 수 있어요!');
+      return;
+    }
+
     if (filteredStudent) {
       addStudent(filteredStudent);
       setFilteredStudent(null);
@@ -103,7 +112,7 @@ export default function StudentSearchSection() {
         onClick={() => setSearch('')}
       />
       {filteredStudent || selectedStudents.length > 0 ? (
-        <div className="h-full mt-6 flex flex-wrap gap-8 align-start place-content-start">
+        <div className="h-full mt-6 flex flex-wrap gap-8 align-start place-content-start mobile:gap-6">
           {filteredStudent && (
             <div className="w-[calc(50%-16px)] h-9 flex justify-between items-center py-2">
               <span>{`          ${filteredStudent.student_info.grade}${filteredStudent.student_info.classroom}${filteredStudent.student_info.number.toString().padStart(2, '0')}

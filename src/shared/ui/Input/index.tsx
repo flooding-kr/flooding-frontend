@@ -6,10 +6,24 @@ import { Eye, EyeClose } from '@/shared/assets/icons';
 
 interface Props extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   error?: string;
+  bg?: boolean;
 }
 
 const Input = forwardRef<HTMLInputElement, Props>(
-  ({ error, type = 'text', placeholder, onChange, value, required, maxLength, ...props }, ref) => {
+  (
+    {
+      error,
+      type = 'text',
+      placeholder,
+      onChange,
+      value,
+      bg = false,
+      required,
+      maxLength,
+      ...props
+    },
+    ref
+  ) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [charCount, setCharCount] = useState(0);
 
@@ -20,7 +34,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
     const inputType = type === 'password' && isPasswordVisible ? 'text' : type;
 
     const inputStyle = {
-      WebkitBoxShadow: '0 0 0 30px white inset !important',
+      WebkitBoxShadow: bg ? '' : '0 0 0 30px white inset !important',
       WebkitTextFillColor: 'inherit !important',
     };
 
@@ -35,14 +49,18 @@ const Input = forwardRef<HTMLInputElement, Props>(
 
     return (
       <div className="relative w-full">
-        <div className="relative w-full rounded-md border-[3px] p-[16px] bg-white">
+        <div
+          className={`relative w-full rounded-md border-[3px] p-4  mobile:px-2 mobile:py-3  ${
+            bg ? 'bg-gray-100' : 'bg-white'
+          }`}
+        >
           <div className="w-full">
             <label htmlFor={props.id} className="flex duration-200">
               <input
                 {...props}
                 ref={ref}
                 type={inputType}
-                className="w-full text-black placeholder-gray-500 text-body2R"
+                className="w-full text-black placeholder-gray-500 bg-transparent text-body2R mobile:text-body3R"
                 style={inputStyle}
                 maxLength={maxLength}
                 placeholder={placeholder}

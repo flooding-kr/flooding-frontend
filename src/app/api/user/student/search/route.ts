@@ -12,7 +12,7 @@ export async function GET(req: Request) {
     const cookieStore = cookies();
     const accessToken = cookieStore.get('accessToken')?.value;
 
-    const response = await apiClient.get('/user/search', {
+    const response = await apiClient.get('/user/student/search', {
       params: { name },
       headers: {
         Authorization: accessToken ? `Bearer ${accessToken}` : '',

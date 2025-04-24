@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 
 import { useStore } from '@/entities/homebase/store/useStore';
@@ -9,6 +11,25 @@ interface HomebaseData {
   floor: number;
   period: number;
 }
+export interface HomebaseTable {
+  id: number;
+  floor: number;
+  table_number: number;
+  max_seats: number;
+}
+
+export interface Participant {
+  name: string;
+  school_number: string;
+}
+
+export interface TableData {
+  homebase_table: HomebaseTable;
+  is_attended: boolean;
+  participants: Participant[];
+  max_seats: number;
+  reason: string;
+}
 
 export default function Table() {
   const [tables, setTables] = useState(tables2f);
@@ -18,7 +39,7 @@ export default function Table() {
   const getHomebase = async ({ floor: selectedFloor, period: selectedPeriod }: HomebaseData) => {
     try {
       const response = await getHomebasedata({ floor: selectedFloor, period: selectedPeriod });
-      setData(response.data);
+      setData(response);
     } catch (error) {
       console.error('Failed to fetch data:', error);
     }
@@ -86,7 +107,7 @@ export default function Table() {
           const isSelected = selectedTable === table.id;
           const isTable = typeof table.id === 'number';
           const isAttended = data?.find(
-            (d: { table_number: string | number }) => d.table_number === table.id
+            (d: TableData) => d.homebase_table.table_number === table.id
           )?.is_attended;
           const tableClassName = [
             'flex flex-col border-solid border-gray-500 flex items-center justify-center',
@@ -126,9 +147,9 @@ export default function Table() {
                     <span className="text-blue-500 ml-1">({table.capacity}명)</span>
                   ))}
               </div>
-              <div className="flex flex-wrap justify-center gap-1 text-body3R text-gray-500 max-w-44">
+              <div className="flex flex-wrap justify-center gap-1 text-body3R text-gray-500 max-w-44 mt-1">
                 {data
-                  ?.find((d: { table_number: string | number }) => d.table_number === table.id)
+                  ?.find((d: TableData) => d.homebase_table.table_number === table.id)
                   ?.participants?.map((participant: { school_number: any; name: any }) => (
                     <span key={participant.school_number}>
                       {participant.school_number} {participant.name}

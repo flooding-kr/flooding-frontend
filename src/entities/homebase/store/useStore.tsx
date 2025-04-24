@@ -17,6 +17,7 @@ interface Student {
 interface Store {
   selectedStudents: Student[];
   floor: number | null;
+  reason: string | null;
   period: number | null;
   selectedTable: number | null;
   selectedTableCapacity: number | null;
@@ -27,10 +28,12 @@ interface Store {
   removeStudent: (student: Student) => void;
   setFloor: (floor: number) => void;
   setPeriod: (period: number) => void;
+  setReason: (reason: string) => void;
 }
 
 export const useStore = create<Store>(set => ({
   selectedStudents: [],
+  reason: '',
   floor: 2,
   period: 8,
   selectedTable: null,
@@ -51,4 +54,5 @@ export const useStore = create<Store>(set => ({
     })),
   setFloor: floor => set({ floor }),
   setPeriod: period => set({ period }),
+  setReason: reason => set({ reason }),
 }));

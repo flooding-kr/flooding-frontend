@@ -23,38 +23,12 @@ export async function GET(req: Request) {
     const cookieStore = cookies();
     const accessToken = cookieStore.get('accessToken')?.value;
 
-    const response = await apiClient.get('/homebase', {
+    const response = await apiClient.get('/homebase/myself', {
       params: { floor, period },
       headers: {
         Authorization: accessToken ? `Bearer ${accessToken}` : '',
       },
     });
-
-    return NextResponse.json(response.data);
-  } catch (error) {
-    return handleAxiosError(error);
-  }
-}
-
-export async function POST(req: Request) {
-  try {
-    const body = await req.json();
-    /* eslint-disable @typescript-eslint/naming-convention */
-    const { table_number, floor, participants, period, reason } = body;
-
-    const cookieStore = cookies();
-    const accessToken = cookieStore.get('accessToken')?.value;
-
-    const response = await apiClient.post(
-      '/homebase',
-      { table_number, floor, participants, period, reason },
-      {
-        headers: {
-          Authorization: accessToken ? `Bearer ${accessToken}` : '',
-          'Content-Type': 'application/json',
-        },
-      }
-    );
 
     return NextResponse.json(response.data);
   } catch (error) {

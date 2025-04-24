@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useRef, useState } from 'react';
 
 import { ArrowLeft, ArrowRight, Error } from '@/shared/assets/icons';
