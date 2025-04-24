@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useEffect } from 'react';
 
 import { ArrowLeft, ArrowRight, Error } from '@/shared/assets/icons';
@@ -49,7 +47,7 @@ export default function ScheduleBoard() {
             </div>
           </header>
           <div className="flex flex-1 rounded-lg p-5 bg-gray-100 mobile:px-3 mobile:py-2">
-            {schedule ? (
+            {schedule && !(schedule.length === 0) ? (
               <div className="w-full flex flex-col flex-1 gap-4 mobile:gap-3">
                 {schedule.map((item, idx) => (
                   <div

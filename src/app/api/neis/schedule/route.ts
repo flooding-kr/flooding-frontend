@@ -4,8 +4,12 @@ import { NextResponse } from 'next/server';
 
 import { apiClient } from '@/shared/libs/apiClient';
 
-export async function GET(request: Request, { params }: { params: { date: string } }) {
-  const { date } = params;
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const date = searchParams.get('date');
+  const grade = searchParams.get('grade');
+  const classroom = searchParams.get('classroom');
+
   const cookieStore = cookies();
   const accessToken = cookieStore.get('accessToken')?.value;
 
@@ -18,7 +22,10 @@ export async function GET(request: Request, { params }: { params: { date: string
     : {};
 
   try {
-    const response = await apiClient.get(`/neis/timetable?date=${date}`, config);
+    const response = await apiClient.get(
+      `/neis/timetable?date=${date}&grade=${grade}&classroom=${classroom}`,
+      config
+    );
     return NextResponse.json(response.data.periods);
   } catch (error) {
     const axiosError = error as AxiosError<{ message: string }>;

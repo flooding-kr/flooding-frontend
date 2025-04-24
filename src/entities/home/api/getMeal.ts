@@ -1,11 +1,13 @@
 import axios from 'axios';
 
+import { Meal } from '@/shared/types/meal';
+
 interface Props {
-  currentDate: string;
-  MMEAL_SC_CODE: number;
+  date: string;
+  time: string;
 }
 
-export const getMeal = async ({ currentDate, MMEAL_SC_CODE }: Props) => {
-  const { data } = await axios.get(`neis/meal/${currentDate}/${MMEAL_SC_CODE}`);
-  return data.mealServiceDietInfo?.[1]?.row?.[0] || null;
+export const getMeal = async ({ date, time }: Props): Promise<Meal> => {
+  const { data } = await axios.get(`/api/neis/meal?date=${date}&time=${time}`);
+  return data;
 };
