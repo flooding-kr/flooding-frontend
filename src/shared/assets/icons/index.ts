@@ -29,3 +29,5 @@ export { default as BigArrowRight } from './BigArrowRight';
 export { default as X } from './X';
 export { default as Trash } from './Trash';
 export { default as ImageIcon } from './ImageIcon';
+export { default as KebabMenu } from './KebabMenu';
+export { default as Map } from './Map';

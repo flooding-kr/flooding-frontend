@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface Props {
-  isSelected: boolean;
+  isSelected?: boolean;
   mobile?: boolean;
 }
 export default function HeaderClub({ isSelected, mobile = false }: Props) {
