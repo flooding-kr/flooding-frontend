@@ -1,46 +1,58 @@
 'use client';
 
+import { Image } from '@/shared/types/image';
+
+import { postImage } from '../api/postImage';
 import { useImageStore } from '../store/useImageStore';
 
 export const useShowImage = () => {
   const { images, setImages, setProfileImage } = useImageStore();
 
-  const handleAddImages = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAddImages = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
 
     const imageFiles = Array.from(event.target.files);
-    let imageUrlLists = [...images];
 
+    const formData = new FormData();
     imageFiles.forEach(file => {
-      const currentImageUrl = URL.createObjectURL(file);
-      imageUrlLists.push(currentImageUrl);
+      formData.append('images', file);
     });
+    try {
+      const response = await postImage(formData);
+      const uploadedUrls: Image[] = response.data.image_urls;
 
-    if (imageUrlLists.length > 10) {
-      imageUrlLists = imageUrlLists.slice(0, 10);
+      const updatedImages = [...images, ...uploadedUrls].slice(0, 10);
+      setImages(updatedImages);
+    } catch (error) {
+      console.log(formData);
+      console.error('이미지 업로드 실패:', error);
     }
-
-    setImages(imageUrlLists);
   };
 
-  const handleAddProfileImages = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAddProfileImages = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
 
-    const imageFiles = Array.from(event.target.files);
+    const file = event.target.files[0];
 
-    imageFiles.forEach(file => {
-      const currentImageUrl = URL.createObjectURL(file);
-      setProfileImage(currentImageUrl);
-    });
+    const formData = new FormData();
+    formData.append('images', file);
+
+    try {
+      const { data } = await postImage(formData);
+      const uploadedUrl: Image = data.image_urls[0];
+      setProfileImage(uploadedUrl);
+    } catch (error) {
+      console.log(formData);
+      console.error('프로필 이미지 업로드 실패:', error);
+    }
   };
-
   const handleRemoveImage = (targetUrl: string) => {
-    const filtered = images.filter(url => url !== targetUrl);
+    const filtered = images.filter((url: Image) => url.presigned_url !== targetUrl);
     setImages(filtered);
   };
 
   const handleRemoveProfileImage = () => {
-    setProfileImage('');
+    setProfileImage(null);
   };
 
   return {

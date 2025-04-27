@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from 'react';
 
-import { ClubListType } from '@/shared/types/types/clubListType';
+import { ClubListType } from '@/shared/types/club';
 
 import { getClubList } from '../api/getClubList';
 import { useClubTypeStore } from '../store/useClubTypeStore';
