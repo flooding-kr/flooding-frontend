@@ -37,7 +37,7 @@ const config: Config = {
         black: 'var(--color-black)',
         white: 'var(--color-white)',
         error: 'var(--color-error)',
-        success: 'var(--color-success',
+        success: 'var(--color-success)',
       },
       fontSize: {
         title1M: ['2.5rem', { lineHeight: '3rem', fontWeight: '500' }], // Title 1 (Medium)
