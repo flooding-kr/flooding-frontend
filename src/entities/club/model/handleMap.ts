@@ -1,13 +1,15 @@
-import AuditoriumMap1 from '@/shared/assets/png/auditoriumMap-1.png';
-import AuditoriumMap2 from '@/shared/assets/png/auditoriumMap-2.png';
-import AuditoriumMap3 from '@/shared/assets/png/auditoriumMap-3.png';
-import AuditoriumMap4 from '@/shared/assets/png/auditoriumMap-4.png';
-import DormitoryMap1 from '@/shared/assets/png/dormitory-1.png';
-import DormitoryMap2 from '@/shared/assets/png/dormitory-2.png';
-import MainMap1 from '@/shared/assets/png/mainMap-1.png';
-import MainMap2 from '@/shared/assets/png/mainMap-2.png';
-import MainMap3 from '@/shared/assets/png/mainMap-3.png';
-import MainMap4 from '@/shared/assets/png/mainMap-4.png';
+import {
+  AuditoriumMap1,
+  AuditoriumMap2,
+  AuditoriumMap3,
+  AuditoriumMap4,
+  DormitoryMap1,
+  DormitoryMap2,
+  MainMap1,
+  MainMap2,
+  MainMap3,
+  MainMap4,
+} from '@/shared/assets/png';
 import { BuildingType } from '@/shared/types/club';
 
 interface Props {
