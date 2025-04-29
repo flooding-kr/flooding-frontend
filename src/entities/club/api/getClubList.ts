@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { ClubType } from '@/shared/types/types/clubListType';
+import { ClubType } from '@/shared/types/club';
 
 interface Props {
   type: ClubType;

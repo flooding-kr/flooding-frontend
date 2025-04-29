@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { ClubType } from '@/shared/types/types/clubListType';
+import { ClubType } from '@/shared/types/club';
 
 interface Store {
   type: ClubType;

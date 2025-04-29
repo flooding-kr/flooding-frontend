@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from 'react';
 
-import { ClubListType } from '@/shared/types/types/clubListType';
+import { ClubListType } from '@/shared/types/club';
 
 import { getMyClub } from '../api/getMyClub';
 
@@ -11,7 +11,7 @@ export const useMyClub = () => {
 
   const fetchMyClub = useCallback(async () => {
     const { data } = await getMyClub();
-    setMyClub(data);
+    setMyClub(data.clubs);
   }, []);
 
   return { myClub, fetchMyClub };
