@@ -7,7 +7,7 @@ const meta: Meta<typeof StudentItem> = {
   component: StudentItem,
   args: {
     stuName: '민우석',
-    stuNum: 3308,
+    stuNum: '3308',
   },
   tags: ['autodocs'],
   parameters: {
