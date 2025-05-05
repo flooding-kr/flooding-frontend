@@ -1,7 +1,11 @@
 import React from 'react';
 
-function Dormitory() {
-  return <div>dotori</div>;
-}
+import Dormitory from '@/views/dormitory/ui/Positioner';
 
-export default Dormitory;
+const page = () => (
+  <div>
+    <Dormitory />
+  </div>
+);
+
+export default page;
