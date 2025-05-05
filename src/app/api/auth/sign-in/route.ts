@@ -32,7 +32,7 @@ export async function POST(request: Request) {
       sameSite: 'strict',
     });
 
-    const userResponse = await apiClient.get('/user', {
+    const userResponse = await apiClient.get('/user/myself', {
       headers: { Authorization: `Bearer ${response.data.access_token}` },
     });
 
