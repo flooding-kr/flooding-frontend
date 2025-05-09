@@ -31,3 +31,8 @@ export { default as Trash } from './Trash';
 export { default as ImageIcon } from './ImageIcon';
 export { default as KebabMenu } from './KebabMenu';
 export { default as Map } from './Map';
+export { default as Book } from './Book';
+export { default as Hamburger } from './Hamburger';
+export { default as Check } from './Check';
+export { default as Massage } from './Massage';
+export { default as Music } from './Music';

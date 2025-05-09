@@ -66,6 +66,21 @@ const config: Config = {
       tablet: { max: '1360px' },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }: { addUtilities: any }) {
+      addUtilities({
+        '.bg-gold-gradient': {
+          background: 'linear-gradient(145.91deg, #FFBF0F 2.83%, #FFDB79 49.64%, #997309 110.44%)',
+        },
+        '.bg-silver-gradient': {
+          background: 'linear-gradient(145.91deg, #949494 2.83%, #CECECE 49.64%, #7A7A7A 110.44%)',
+        },
+        '.bg-bronze-gradient': {
+          background: 'linear-gradient(145.91deg, #E27F39 2.83%, #F19B3F 49.64%, #782C09 110.44%)',
+        },
+      });
+    },
+  ],
 };
+
 export default config;

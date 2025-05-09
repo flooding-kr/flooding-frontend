@@ -26,6 +26,20 @@
   --color-success: #1eb916;
 }
 
+/* .custom-scrollbar 클래스를 사용하는 경우에만 스크롤바 커스텀 */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-main-600);
+  border-radius: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: var(--color-main-100);
+  border-radius: 8px;
+}
+
+
 html,
 body,
 div,
@@ -132,7 +146,6 @@ button {
 
 html {
   font-family: 'Pretendard';
-  background-color:;
 }
 body {
   background-color: #f4f4f4;

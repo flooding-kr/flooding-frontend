@@ -13,11 +13,11 @@ interface Props {
   likeState: boolean;
 }
 
-export default function SongItem({ musicImg, applicant, title, likeCount, likeState }: Props) {
+export default function MusicItem({ musicImg, applicant, title, likeCount, likeState }: Props) {
   const [like, setLike] = useState(likeState);
 
   return (
-    <div className="flex justify-between max-w-[606px]">
+    <div className="flex justify-between max-w-[606px] tablet:max-w-full w-full">
       <div className="flex items-center gap-6">
         <Image alt="썸네일" src={musicImg} className="w-20 h-20 rounded-lg" />
         <div className="flex flex-col gap-4">
