@@ -4,9 +4,10 @@ import ReactDOM from 'react-dom';
 interface Props {
   children: React.ReactElement;
   onClose: () => void;
+  sidebar?: boolean;
 }
 
-export default function Portal({ children, onClose }: Props) {
+export default function Portal({ children, onClose, sidebar }: Props) {
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
   useEffect(() => {
@@ -23,6 +24,7 @@ export default function Portal({ children, onClose }: Props) {
       onClose();
     }
   };
+
   return ReactDOM.createPortal(
     <div
       role="button"
@@ -33,7 +35,7 @@ export default function Portal({ children, onClose }: Props) {
           onClick(e as unknown as MouseEvent<HTMLDivElement>);
         }
       }}
-      className="fixed bg-[#12121266] w-dvw h-dvh flex justify-center items-center z-[999]"
+      className={`fixed bg-[#12121266] w-dvw h-dvh flex z-[800] mobile:z-[999] ${sidebar ? 'justify-end items-end' : 'justify-center items-center'}`}
     >
       {children}
     </div>,

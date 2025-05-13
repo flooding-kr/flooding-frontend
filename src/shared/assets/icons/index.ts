@@ -36,3 +36,4 @@ export { default as Hamburger } from './Hamburger';
 export { default as Check } from './Check';
 export { default as Massage } from './Massage';
 export { default as Music } from './Music';
+export { default as Admin } from './Admin';

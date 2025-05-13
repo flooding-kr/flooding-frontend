@@ -1,16 +1,17 @@
 import React from 'react';
 
 interface Props {
-  isSelected: boolean;
+  isSelected?: boolean;
   mobile?: boolean;
+  size?: number;
 }
 
-export default function HeaderNotification({ isSelected, mobile = false }: Props) {
-  const size = mobile ? 36 : 24;
+export default function HeaderNotification({ isSelected, mobile = false, size }: Props) {
+  const s = mobile ? 36 : 24;
 
   return (
     <svg
-      width={size}
+      width={typeof mobile === 'boolean' ? s : size}
       height={size}
       viewBox="0 0 24 24"
       fill="none"
