@@ -21,9 +21,9 @@ export async function GET(request: Request) {
     });
     return NextResponse.json(response.data);
   } catch (error) {
-    const axiosError = error as AxiosError<{ message: string }>;
+    const axiosError = error as AxiosError<{ reason: string }>;
     const status = axiosError.response?.status || 500;
-    const message = axiosError.response?.data?.message || '교실실 정보를 가져오는 데 실패했습니다.';
+    const message = axiosError.response?.data?.reason || '교실실 정보를 가져오는 데 실패했습니다.';
     return NextResponse.json({ error: message }, { status });
   }
 }

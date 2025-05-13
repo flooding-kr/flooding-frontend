@@ -17,10 +17,10 @@ export async function POST(request: Request) {
     );
     return NextResponse.json(response.data);
   } catch (error) {
-    const axiosError = error as AxiosError<{ message: string }>;
+    const axiosError = error as AxiosError<{ reason: string }>;
 
     const status = axiosError.response?.status || 500;
-    const message = axiosError.response?.data?.message || 'Change failed';
+    const message = axiosError.response?.data?.reason || 'Change failed';
 
     return NextResponse.json({ error: message }, { status });
   }
