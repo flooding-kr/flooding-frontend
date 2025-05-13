@@ -47,9 +47,9 @@ export async function POST(request: Request) {
 
     return res;
   } catch (error) {
-    const axiosError = error as AxiosError<{ message: string }>;
+    const axiosError = error as AxiosError<{ reason: string }>;
     const status = axiosError.response?.status || 500;
-    const message = axiosError.response?.data?.message || 'Signin failed';
+    const message = axiosError.response?.data?.reason || 'Signin failed';
 
     return NextResponse.json({ error: message }, { status });
   }

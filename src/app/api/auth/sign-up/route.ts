@@ -10,10 +10,10 @@ export async function POST(request: Request) {
     const response = await apiClient.post('/auth/sign-up', body);
     return NextResponse.json(response.data);
   } catch (error) {
-    const axiosError = error as AxiosError<{ message: string }>;
+    const axiosError = error as AxiosError<{ reason: string }>;
 
     const status = axiosError.response?.status || 500;
-    const message = axiosError.response?.data?.message || 'Signup failed';
+    const message = axiosError.response?.data?.reason || 'Signup failed';
 
     return NextResponse.json({ error: message }, { status });
   }

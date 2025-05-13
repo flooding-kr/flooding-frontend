@@ -14,9 +14,9 @@ export async function GET(request: Request) {
     const response = await apiClient.get(`/club?${type}`, { headers });
     return NextResponse.json(response.data);
   } catch (error) {
-    const axiosError = error as AxiosError<{ message: string }>;
+    const axiosError = error as AxiosError<{ reason: string }>;
     const status = axiosError.response?.status || 500;
-    const message = axiosError.response?.data?.message || '클럽 정보를 가져오는 데 실패했습니다.';
+    const message = axiosError.response?.data?.reason || '클럽 정보를 가져오는 데 실패했습니다.';
     return NextResponse.json({ error: message }, { status });
   }
 }

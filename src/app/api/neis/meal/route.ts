@@ -24,10 +24,10 @@ export async function GET(request: Request) {
     const response = await apiClient.get(`/neis/meal?date=${date}&time=${time}`, config);
     return NextResponse.json(response.data);
   } catch (error) {
-    const axiosError = error as AxiosError<{ message: string }>;
+    const axiosError = error as AxiosError<{ reason: string }>;
 
     const status = axiosError.response?.status || 500;
-    const message = axiosError.response?.data?.message || 'get schedule failed';
+    const message = axiosError.response?.data?.reason || 'get schedule failed';
     console.log(time);
     return NextResponse.json({ error: message }, { status });
   }
