@@ -17,20 +17,24 @@ function MassageFooter() {
         <button
           type="button"
           onClick={() => setClick(!click)}
-          className={`flex items-center p-3 rounded-lg gap-3 ${click ? 'bg-error' : 'bg-transparent border-[1px] border-solid border-gray-400'}`}
+          className={`flex items-center p-3 rounded-lg gap-3 ${click ? 'bg-error' : 'bg-transparent border-[1px] border-solid border-gray-400'} mobile:hidden`}
         >
-          <Error color={click ? '#ffffff' : '#BDBDBD'} />
+          <div className="w-6 h-6">
+            <Error color={click ? '#ffffff' : '#BDBDBD'} />
+          </div>
           <p className={`text-body2R ${click ? 'text-white' : 'text-gray-400'}`}>금지</p>
         </button>
       )}
-      <div className="flex items-center gap-10">
-        <div className="flex items-center gap-4">
-          <Massage size={36} />
-          <p className="text-title3B text-black">
+      <div className="flex items-center gap-10 mobile:gap-6 mobile:w-full">
+        <div className="flex items-center gap-4 mobile:gap-3">
+          <div className="w-9 h-9 mobile:w-6 mobile:h-6">
+            <Massage />
+          </div>
+          <p className="text-title3B text-black mobile:text-body3B">
             {count}/{maxCount}
           </p>
         </div>
-        <div className="w-[422px]">
+        <div className="w-[422px] mobile:w-full">
           <Button type="button" text="신청하기" closed={count >= maxCount} />
         </div>
       </div>
