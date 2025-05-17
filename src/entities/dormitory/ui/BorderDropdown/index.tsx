@@ -50,11 +50,11 @@ function BorderDropdown<T extends string | number>(
   }, [value]);
 
   return (
-    <div ref={dropdownRef} className="relative inline-block text-left w-fit">
+    <div ref={dropdownRef} className="relative inline-block text-left ">
       <button
         type="button"
         onClick={toggleDropdown}
-        className={`flex justify-between gap-3 text-body3R rounded-md p-3 border-[1px] border-solid border-main-600 ${isOpen ? 'bg-main-600 text-white' : 'bg-white text-main-600'}`}
+        className={`flex justify-between gap-3 text-body3R rounded-md p-3 w-[123px] border-[1px] border-solid border-main-600 ${isOpen ? 'bg-main-600 text-white' : 'bg-white text-main-600'}`}
       >
         {selectedItem}
         {isOpen ? (
