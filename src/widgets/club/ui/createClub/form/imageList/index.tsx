@@ -24,7 +24,9 @@ function CreateClubPreviewImageList({ images, profileImage }: Props) {
             onClick={() => handleRemoveImage(item)}
             className="absolute top-4 right-4 flex z-20 bg-white p-2 rounded-lg border-solid border-[1px] border-gray-200 cursor-pointer"
           >
-            <Trash color="#CE2020" size={24} />
+            <div className="w-6 h-6">
+              <Trash color="#CE2020" />
+            </div>
           </button>
           <Image
             src={item}
@@ -42,7 +44,9 @@ function CreateClubPreviewImageList({ images, profileImage }: Props) {
             onClick={() => handleRemoveProfileImage()}
             className="absolute top-2 right-2 flex z-20 bg-white p-2 rounded-lg border-solid border-[1px] border-gray-200 cursor-pointer"
           >
-            <Trash color="#CE2020" size={24} />
+            <div className="w-6 h-6">
+              <Trash color="#CE2020" />
+            </div>
           </button>
           <Image
             src={profileImage}

@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface Props {
-  select: boolean;
+  select?: boolean;
 }
 
 export default function Filter({ select }: Props) {
