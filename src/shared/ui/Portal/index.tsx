@@ -35,7 +35,7 @@ export default function Portal({ children, onClose, sidebar }: Props) {
           onClick(e as unknown as MouseEvent<HTMLDivElement>);
         }
       }}
-      className={`fixed bg-[#12121266] w-dvw h-dvh flex z-[800] mobile:z-[999] ${sidebar ? 'justify-end items-end' : 'justify-center items-center'}`}
+      className={`fixed bg-[#12121266] w-dvw h-dvh flex z-[800] mobile:z-[999] mobile:px-2 ${sidebar ? 'justify-end items-end' : 'justify-center items-center'}`}
     >
       {children}
     </div>,

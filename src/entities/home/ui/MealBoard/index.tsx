@@ -48,9 +48,9 @@ export default function MealBoard() {
   }, [hour]);
 
   return (
-    <section className="bg-white rounded-lg px-8 py-6 max-w-[548px] h-[418px] w-full flex flex-col mobile:max-w-[484px] mobile:min-h-[243px] mobile:h-fit mobile:p-3 tablet:max-w-full">
+    <section className="bg-white rounded-lg px-8 py-6 max-w-[548px] h-[418px] w-full flex flex-col mobile:max-w-[484px] mobile:min-h-[303px] mobile:h-fit mobile:p-3 tablet:max-w-full">
       <div className="flex flex-col gap-2 flex-1 mobile:gap-4">
-        <div className="flex flex-col gap-6 flex-1">
+        <div className="flex flex-col gap-6 flex-1 mobile:gap-4">
           <div className="flex flex-col gap-6 mobile:gap-[13px]">
             <header className="flex justify-between">
               <p className="text-body1B text-black mobile:text-body3B">급식</p>
@@ -95,9 +95,9 @@ export default function MealBoard() {
               ))}
             </div>
           </div>
-          <div className="flex-1 flex justify-center">
+          <div className="flex-1 w-full h-full flex justify-center items-center bg-gray-100 rounded-lg">
             {meal?.menu && !(meal.menu.length === 0) ? (
-              <div className="flex flex-wrap gap-3 h-full justify-start bg-gray-100 rounded-lg px-[30px] py-6">
+              <div className="flex flex-wrap gap-3 h-full justify-start px-[30px] py-6 mobile:p-4">
                 {meal.menu.map(dish => (
                   <p key={dish} className="w-[45%] text-body3R text-black mobile:text-caption1R">
                     {dish}
@@ -105,17 +105,19 @@ export default function MealBoard() {
                 ))}
               </div>
             ) : (
-              <div className="w-full h-full bg-gray-100 rounded-lg flex items-center justify-center">
+              <div className="">
                 <div className="flex flex-col justify-center items-center gap-4">
-                  <Error color="#A7A7A7" />
+                  <div className="w-6 h-6">
+                    <Error color="#A7A7A7" />
+                  </div>
                   <p className="text-body2R text-gray-500">오늘은 급식이 없습니다.</p>
                 </div>
               </div>
             )}
           </div>
         </div>
-        <footer className="flex justify-end mobile:hidden">
-          <p className="text-body3R text-gray-500">{meal?.kcal ?? '0'}Kcal</p>
+        <footer className="flex justify-end">
+          <p className="text-body3R text-gray-500 mobile:text-caption1R">{meal?.kcal ?? '0'}Kcal</p>
         </footer>
       </div>
     </section>

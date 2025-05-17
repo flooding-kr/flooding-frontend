@@ -74,7 +74,9 @@ export default function ScheduleBoard() {
             ) : (
               <div className="w-full h-full flex items-center justify-center">
                 <div className="flex flex-col justify-center items-center gap-4">
-                  <Error color="#A7A7A7" />
+                  <div className="w-6 h-6">
+                    <Error color="#A7A7A7" />
+                  </div>
                   <p className="text-body2R text-gray-500">오늘은 수업이 없습니다.</p>
                 </div>
               </div>

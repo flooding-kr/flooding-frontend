@@ -22,7 +22,9 @@ function AllClubList() {
       <AllClubListHeader />
       {!Array.isArray(clublist) || clublist.length === 0 ? (
         <div className="w-full flex flex-col items-center gap-6 py-[92px]">
-          <Error width={60} height={60} color="#BDBDBD" />
+          <div className="w-[60px] h-[60px]">
+            <Error color="#BDBDBD" />
+          </div>
           <span className="text-title1M text-gray-400">아직 동아리가 없습니다...</span>
         </div>
       ) : (

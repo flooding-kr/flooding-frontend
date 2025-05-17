@@ -4,18 +4,36 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 import { ApplyBoard } from '@/entities/home';
+import { useNotifyStore } from '@/entities/home/store/useNotifyStore';
 import { BigArrowRight, DormitoryIcon } from '@/shared/assets/icons';
+import Portal from '@/shared/ui/Portal';
+
+import useDispatchMassage from '../../model/useDispatchMassage';
+import { useFetchMassage } from '../../model/useFetchMassage';
+import { useFetchSelfStudy } from '../../model/useFetchSelfStudy';
+import MassageNotifyModal from '../massageNotifyModal';
+import SelfStudyNotifyModal from '../selfStudyNotifyModal';
 
 function DormitoryPanel() {
   const [isMobile, setIsMobile] = useState(false);
+  const { type, modal, setModal } = useNotifyStore();
+  const { mutate: selfStudyMutate } = useDispatchMassage();
+  const { mutate: massageMutate } = useDispatchMassage();
+  const { selfStudy, fetchSelfStudy } = useFetchSelfStudy();
+  const { massage, fetchMassage } = useFetchMassage();
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 640);
 
     window.addEventListener('resize', handleResize);
     handleResize();
 
     return () => window.removeEventListener('resize', handleResize);
+  });
+
+  useEffect(() => {
+    fetchSelfStudy();
+    fetchMassage();
   }, []);
 
   return (
@@ -30,10 +48,29 @@ function DormitoryPanel() {
           <BigArrowRight isMobile={isMobile} />
         </Link>
       </header>
-      <div className="flex flex-1 gap-6 mobile:flex-col mobile:gap-4">
-        <ApplyBoard title="자습 신청" count={0} maxCount={50} activationTime="20:00" />
-        <ApplyBoard title="안마의자 신청" count={0} maxCount={5} activationTime="20:20" />
+      <div className="flex flex-1 gap-6 tablet:flex-col mobile:gap-4">
+        <ApplyBoard
+          title="자습 신청"
+          count={selfStudy?.current_count ?? 0}
+          maxCount={selfStudy?.limit ?? 0}
+          activationTime="20:00"
+          onClick={() => selfStudyMutate()}
+          available={selfStudy ? selfStudy.is_available : false}
+        />
+        <ApplyBoard
+          title="안마의자 신청"
+          count={massage?.count ?? 0}
+          maxCount={massage?.limit ?? 0}
+          activationTime="20:20"
+          onClick={() => massageMutate()}
+          available={massage ? massage.is_available : false}
+        />
       </div>
+      {modal && (
+        <Portal onClose={() => setModal(false)}>
+          {type === '자습 신청' ? <SelfStudyNotifyModal /> : <MassageNotifyModal />}
+        </Portal>
+      )}
     </div>
   );
 }
