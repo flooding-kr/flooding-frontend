@@ -9,10 +9,11 @@ interface Props<T extends string | number> {
   items: T[];
   text: string;
   unit?: string;
+  value?: T;
 }
 
 function Dropdown<T extends string | number>(
-  { onChange, items, text, unit }: Props<T>,
+  { onChange, items, text, unit, value }: Props<T>,
   ref: React.Ref<HTMLDivElement>
 ) {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,6 +38,10 @@ function Dropdown<T extends string | number>(
   };
 
   useEffect(() => {
+    if (value) {
+      setSelectedItem(value);
+    }
+
     document.addEventListener('mousedown', closeDropdown);
     return () => {
       document.removeEventListener('mousedown', closeDropdown);
