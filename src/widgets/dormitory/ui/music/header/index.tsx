@@ -1,13 +1,24 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import BorderDropdown from '@/entities/dormitory/ui/BorderDropdown';
 import { Error, Music } from '@/shared/assets/icons';
+import { OrderType } from '@/shared/types/music';
+import { useMusicTypeStore } from '@/widgets/dormitory/store/useMusicTypeStore';
 
 function MusicHeader() {
   const [selected, setSelected] = useState<string>('최신순');
-
+  const { setType } = useMusicTypeStore();
+  useEffect(() => {
+    let type;
+    if (selected === '최신순') {
+      type = 'LATEST';
+    } else if (selected === '좋아요 순') {
+      type = 'LIKES';
+    }
+    setType(type as OrderType);
+  }, [selected]);
   return (
     <header className="flex flex-1 justify-between items-center w-full">
       <div className="flex items-center gap-6 mobile:gap-2">

@@ -1,38 +1,93 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { Like } from '@/shared/assets/icons';
+import { Like, Trash } from '@/shared/assets/icons';
+
+import { useChangeLike } from '../../model/useChangeLike';
+import { useDeleteMusic } from '../../model/useDeleteMusic';
 
 interface Props {
+  id: string;
   musicImg: string;
   title: string;
   applicant: string;
   likeCount: number;
   likeState: boolean;
+  myMusic: boolean;
 }
 
-export default function MusicItem({ musicImg, applicant, title, likeCount, likeState }: Props) {
-  const [like, setLike] = useState(likeState);
+export default function MusicItem({
+  id,
+  musicImg,
+  applicant,
+  title,
+  likeCount,
+  likeState,
+  myMusic,
+}: Props) {
+  const [currentLike, setCurrentLike] = useState(0);
+  const [currentState, setCurrentState] = useState(false);
+  const { mutate: fetchLike } = useChangeLike();
+  const { mutate: deleteMusic } = useDeleteMusic();
+
+  useEffect(() => {
+    setCurrentLike(likeCount);
+    setCurrentState(likeState);
+  }, []);
 
   return (
     <div className="flex justify-between max-w-[606px] tablet:max-w-full w-full">
-      <div className="flex items-center gap-6">
-        <Image alt="썸네일" src={musicImg} className="w-20 h-20 rounded-lg" />
-        <div className="flex flex-col gap-4">
-          <p className="text-body1B text-black truncate max-w-[380px]">{title}</p>
-          <p className="text-body2R text-gray-700">{applicant}</p>
+      <div className="flex items-center gap-6 mobile:gap-3 flex-1 min-w-0">
+        <div className="relative w-20 h-20 mobile:w-[46px] mobile:h-[46px] shrink-0">
+          <Image alt="썸네일" src={musicImg} fill className="rounded-lg object-fill" />
+        </div>
+
+        <div className="flex flex-col gap-4 mobile:gap-2 w-full min-w-0 overflow-hidden">
+          <p className="text-body1B text-black truncate w-full min-w-0 mobile:text-caption1B">
+            {title}
+          </p>
+          <p className="text-body2R text-gray-700 mobile:text-caption2M">{applicant}</p>
         </div>
       </div>
-      <button className="flex items-center gap-3" onClick={() => setLike(!like)} type="button">
-        <div className="w-10 h-10">
-          <Like state={like} />
-        </div>
-        <p className={like ? 'text-body2R text-main-600' : 'text-body2R text-gray-700'}>
-          {likeCount}
-        </p>
-      </button>
+      <div className="flex items-center gap-3">
+        <button
+          className="flex items-center gap-3 shrink-0"
+          onClick={() =>
+            fetchLike(id, {
+              onSuccess: res => {
+                setCurrentLike(res.data.like_count);
+                setCurrentState(res.data.has_user_liked);
+              },
+            })
+          }
+          type="button"
+        >
+          <div className="w-10 h-10 mobile:w-4 mobile:h-4">
+            <Like state={currentState} />
+          </div>
+          <p
+            className={`text-body2R mobile:text-caption2M ${
+              likeState ? 'text-main-600' : 'text-gray-700'
+            }`}
+          >
+            {currentLike}
+          </p>
+        </button>
+        {myMusic && (
+          <button
+            className="flex items-center gap-3 shrink-0"
+            onClick={() => deleteMusic()}
+            type="button"
+          >
+            <div className="w-10 h-10 mobile:w-4 mobile:h-4">
+              <Trash color="#CE2020" />
+            </div>
+            <p className="text-body2R mobile:text-caption2M text-error">삭제</p>
+          </button>
+        )}
+      </div>
     </div>
   );
 }
