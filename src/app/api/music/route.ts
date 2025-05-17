@@ -50,7 +50,7 @@ export async function DELETE() {
   const headers = accessToken ? { Authorization: `Bearer ${accessToken}` } : undefined;
 
   try {
-    const response = await apiClient.get(`/music`, { headers });
+    const response = await apiClient.delete(`/music`, { headers });
     return NextResponse.json(response.data);
   } catch (error) {
     const axiosError = error as AxiosError<{ reason: string }>;

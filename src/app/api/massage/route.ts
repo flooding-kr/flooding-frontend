@@ -26,7 +26,7 @@ export async function DELETE() {
   const headers = accessToken ? { Authorization: `Bearer ${accessToken}` } : undefined;
 
   try {
-    const response = await apiClient.get(`/massage`, { headers });
+    const response = await apiClient.delete(`/massage`, { headers });
     return NextResponse.json(response.data);
   } catch (error) {
     const axiosError = error as AxiosError<{ reason: string }>;
