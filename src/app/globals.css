@@ -26,7 +26,21 @@
   --color-success: #1eb916;
 }
 
-/* .custom-scrollbar 클래스를 사용하는 경우에만 스크롤바 커스텀 */
+.hidden-scrollbar::-webkit-scrollbar {
+  width: 0;
+}
+
+@media (max-width: 640px) {
+  .hide-scrollbar-mobile::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  .hide-scrollbar-mobile {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;
 }
