@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { Error } from '@/shared/assets/icons';
+import { ApplyType } from '@/shared/types/home';
 import { Button } from '@/shared/ui';
 
 import checkApply from '../../model/checkApply';
@@ -13,7 +14,7 @@ interface Props {
   count: number;
   maxCount: number;
   activationTime: string;
-  available: boolean;
+  available: ApplyType;
   onClick: () => void;
 }
 

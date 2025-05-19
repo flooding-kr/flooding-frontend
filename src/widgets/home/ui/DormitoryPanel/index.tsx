@@ -55,7 +55,7 @@ function DormitoryPanel() {
           maxCount={selfStudy?.limit ?? 0}
           activationTime="20:00"
           onClick={() => selfStudyMutate()}
-          available={selfStudy ? selfStudy.is_available : false}
+          available={selfStudy?.status || 'IMPOSSIBLE'}
         />
         <ApplyBoard
           title="안마의자 신청"
@@ -63,7 +63,7 @@ function DormitoryPanel() {
           maxCount={massage?.limit ?? 0}
           activationTime="20:20"
           onClick={() => massageMutate()}
-          available={massage ? massage.is_available : false}
+          available={massage?.status || 'IMPOSSIBLE'}
         />
       </div>
       {modal && (

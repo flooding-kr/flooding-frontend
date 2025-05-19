@@ -24,7 +24,7 @@ function Massage() {
       </div>
       <MassageFooter
         activationTime="20:20"
-        available={massage?.is_available || false}
+        available={massage?.status || 'IMPOSSIBLE'}
         count={massage?.current_count || 0}
         maxCount={massage?.limit || 0}
       />
