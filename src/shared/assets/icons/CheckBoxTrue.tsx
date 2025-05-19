@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface Props {
-  color: string;
+  color?: string;
 }
 
 export default function CheckBoxTrue({ color }: Props) {
