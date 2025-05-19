@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import checkApply from '@/entities/home/model/checkApply';
-import { Error, Massage } from '@/shared/assets/icons';
+import { Massage } from '@/shared/assets/icons';
 import { ApplyType } from '@/shared/types/home';
 import { Button } from '@/shared/ui';
-import { deleteMassage } from '@/widgets/dormitory/api/deleteMassage';
+import useDeleteMassage from '@/widgets/dormitory/model/useDeleteMassage';
 import useDispatchMassage from '@/widgets/dormitory/model/useDispatchMassage';
 
 interface Props {
@@ -17,7 +17,8 @@ interface Props {
 function MassageFooter({ count, maxCount, activationTime, available }: Props) {
   const [isActive, setIsActive] = useState(false);
   const [text, setText] = useState('');
-  const { mutate } = useDispatchMassage();
+  const { mutate: postMassage } = useDispatchMassage();
+  const { mutate: deleteMassage } = useDeleteMassage();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -44,7 +45,7 @@ function MassageFooter({ count, maxCount, activationTime, available }: Props) {
             text={text}
             closed={text === '신청 불가'}
             disabled={!isActive}
-            onClick={text === '신청 취소' ? () => deleteMassage() : () => mutate()}
+            onClick={text === '신청 취소' ? () => deleteMassage() : () => postMassage()}
           />
         </div>
       </div>

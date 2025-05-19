@@ -1,5 +1,6 @@
 import StudentItem from '@/entities/dormitory/ui/StudentItem';
 import { Error } from '@/shared/assets/icons';
+import userProfileImage from '@/shared/assets/jpg/userProfileImage.jpg';
 import { MassageType } from '@/shared/types/dormitory';
 
 interface Props {
@@ -32,12 +33,12 @@ function ReservationList({ type, data }: Props) {
           {hasData ? (
             <div className={containerClass}>
               {data.map((item, idx) => (
-                <div key={item.school_number} className={itemClass}>
+                <div key={item.student_number} className={itemClass}>
                   <StudentItem
                     type={type}
-                    stuImg={item.profile_image.presigned_url}
+                    stuImg={item.profile_image?.presigned_url || userProfileImage.src}
                     stuName={item.name}
-                    stuNum={item.school_number}
+                    stuNum={item.student_number || item.school_number || ''}
                     rank={idx + 1}
                   />
                 </div>
