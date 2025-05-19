@@ -4,7 +4,7 @@ import { useAttendStore } from '@/entities/dormitory/store/useAttendStore';
 import checkApply from '@/entities/home/model/checkApply';
 import { Book, CheckBoxTrue } from '@/shared/assets/icons';
 import useUser from '@/shared/hooks/useUser';
-import { applyType } from '@/shared/types/home';
+import { ApplyType } from '@/shared/types/home';
 import { Button } from '@/shared/ui';
 import { deleteSelfStudy } from '@/widgets/dormitory/api/deleteSelfStudy';
 import useDispatchSelfStudy from '@/widgets/dormitory/model/useDispatchSelfStudy';
@@ -13,7 +13,7 @@ interface Props {
   count: number;
   maxCount: number;
   activationTime: string;
-  available: applyType;
+  available: ApplyType;
 }
 
 function SelfStudyFooter({ activationTime, available, count, maxCount }: Props) {
