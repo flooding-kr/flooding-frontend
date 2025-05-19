@@ -50,36 +50,41 @@ function BorderDropdown<T extends string | number>(
   }, [value]);
 
   return (
-    <div ref={dropdownRef} className="relative inline-block text-left w-fit">
+    <div ref={dropdownRef} className="relative inline-block text-left">
       <button
         type="button"
         onClick={toggleDropdown}
-        className={`flex justify-between gap-3 text-body3R rounded-md p-3 border-[1px] border-solid border-main-600 ${isOpen ? 'bg-main-600 text-white' : 'bg-white text-main-600'}`}
+        className={`flex justify-between items-center gap-3 text-body3R rounded-md p-3 w-[123px] border-[1px] border-solid border-main-600 
+        mobile:text-caption1R mobile:px-2 mobile:py-1 mobile:gap-1 mobile:w-fit ${isOpen ? 'bg-main-600 text-white' : 'bg-white text-main-600'}`}
       >
         {selectedItem}
         {isOpen ? (
-          <ArrowUp color={isOpen ? '#ffffff' : '#5E7EF3'} />
+          <div className="w-6 h-6 mobile:w-4 mobile:h-4">
+            <ArrowUp color={isOpen ? '#ffffff' : '#5E7EF3'} />
+          </div>
         ) : (
-          <ArrowDown color={isOpen ? '#ffffff' : '#5E7EF3'} />
+          <div className="w-6 h-6 mobile:w-4 mobile:h-4">
+            <ArrowDown color={isOpen ? '#ffffff' : '#5E7EF3'} />
+          </div>
         )}
       </button>
       {isOpen && (
         <div
-          className={`absolute top-16 right-0 bg-white rounded-lg shadow-lg z-10 w-full ${
+          className={`absolute top-16 right-0 bg-white rounded-lg shadow-lg z-10 w-full mobile:top-10 ${
             items.length > 4 ? 'max-h-40 overflow-y-auto' : ''
           }`}
         >
-          <ul className="text-gray-500 text-body2R bg-main-600 rounded-lg">
+          <ul className="text-gray-500 text-body2R bg-main-600 rounded-lg mobile:text-body3R">
             {items.map(item => (
               <li
                 key={item}
-                className="p-4 first:border-none border-t-1px border-white border-solid "
+                className="p-4 first:border-none border-t-1px border-white border-solid mobile:p-2"
               >
                 <button
                   type="button"
                   role="menuitem"
                   onClick={() => handleItemClick(item)}
-                  className={`w-full text-left text-body3B bg-main-600 hover:text-white cursor-pointer ${
+                  className={`w-full text-left text-body3B bg-main-600 hover:text-white cursor-pointer mobile:text-caption1R ${
                     selectedItem === item ? 'text-white' : 'text-gray-400'
                   }`}
                 >

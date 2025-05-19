@@ -7,8 +7,9 @@ import { ApplyBoard } from '@/entities/home';
 import { useNotifyStore } from '@/entities/home/store/useNotifyStore';
 import { BigArrowRight, DormitoryIcon } from '@/shared/assets/icons';
 import Portal from '@/shared/ui/Portal';
+import useDispatchMassage from '@/widgets/dormitory/model/useDispatchMassage';
+import useDispatchSelfStudy from '@/widgets/dormitory/model/useDispatchSelfStudy';
 
-import useDispatchMassage from '../../model/useDispatchMassage';
 import { useFetchMassage } from '../../model/useFetchMassage';
 import { useFetchSelfStudy } from '../../model/useFetchSelfStudy';
 import MassageNotifyModal from '../massageNotifyModal';
@@ -17,7 +18,7 @@ import SelfStudyNotifyModal from '../selfStudyNotifyModal';
 function DormitoryPanel() {
   const [isMobile, setIsMobile] = useState(false);
   const { type, modal, setModal } = useNotifyStore();
-  const { mutate: selfStudyMutate } = useDispatchMassage();
+  const { mutate: selfStudyMutate } = useDispatchSelfStudy();
   const { mutate: massageMutate } = useDispatchMassage();
   const { selfStudy, fetchSelfStudy } = useFetchSelfStudy();
   const { massage, fetchMassage } = useFetchMassage();
@@ -26,7 +27,6 @@ function DormitoryPanel() {
     const handleResize = () => setIsMobile(window.innerWidth < 640);
 
     window.addEventListener('resize', handleResize);
-    handleResize();
 
     return () => window.removeEventListener('resize', handleResize);
   });
@@ -59,7 +59,7 @@ function DormitoryPanel() {
         />
         <ApplyBoard
           title="안마의자 신청"
-          count={massage?.count ?? 0}
+          count={massage?.current_count ?? 0}
           maxCount={massage?.limit ?? 0}
           activationTime="20:20"
           onClick={() => massageMutate()}

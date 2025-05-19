@@ -1,10 +1,12 @@
 import React from 'react';
 
+import Build from '@/views/build/ui';
 import { Club } from '@/views/club';
 
 const page = () => (
   <div>
-    <Club />
+    {/* <Club /> */}
+    <Build />
   </div>
 );
 

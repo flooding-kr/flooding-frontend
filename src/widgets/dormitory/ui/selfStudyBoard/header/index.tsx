@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 
 import { Book } from '@/shared/assets/icons';
 import FilterButton from '@/shared/ui/FilterButton';
+import FilterModal from '@/shared/ui/FilterModal';
+import Portal from '@/shared/ui/Portal';
 
 function SelfStudyHeader() {
   const [selected, setSelected] = useState<boolean>(false);
@@ -16,9 +18,15 @@ function SelfStudyHeader() {
         </div>
         <p className="text-title3B text-black mobile:text-body2B">자습 신청</p>
       </div>
-      <div className="mobile:hidden">
-        <FilterButton onClick={() => setSelected(!selected)} select={selected} />
-      </div>
+      {/* <FilterButton onClick={() => setSelected(true)} select={selected} />
+      {selected && (
+        <Portal onClose={() => setSelected(false)}>
+          <FilterModal
+            list={['기숙사', '홈베이스', '동아리', '전체']}
+            onClick={() => setSelected(false)}
+          />
+        </Portal>
+      )} */}
     </header>
   );
 }

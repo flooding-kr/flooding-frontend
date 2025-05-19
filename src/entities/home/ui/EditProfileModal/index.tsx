@@ -70,7 +70,9 @@ export default function EditProfileModal({ src, onClose }: Props) {
                 type="button"
                 className="max-w-[182px] w-full flex justify-center gap-2 bg-error rounded-lg px-10 py-4"
               >
-                <Trash />
+                <div className="w-6 h-6">
+                  <Trash />
+                </div>
                 <p className="text-white text-body2B">삭제</p>
               </button>
             </div>

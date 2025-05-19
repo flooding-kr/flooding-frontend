@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { Error } from '@/shared/assets/icons';
 import { Button } from '@/shared/ui';
 
+import checkApply from '../../model/checkApply';
 import { useNotifyStore } from '../../store/useNotifyStore';
 
 interface Props {
@@ -28,38 +29,18 @@ export default function ApplyBoard({
   const { setModal, setType } = useNotifyStore();
   const [text, setText] = useState('');
 
-  const tick = () => {
-    const currentTime = new Intl.DateTimeFormat('kr', {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false,
-    }).format();
-    const [hour, minute] = activationTime.split(':');
-    const isTimeActive = currentTime >= activationTime && currentTime < '21:00';
-    const isCountFull = count === maxCount;
-
-    setIsActive(isTimeActive && !isCountFull);
-
-    if (available) {
-      setText('신청하기');
-    } else if (!isTimeActive) {
-      setText(`${hour}시 ${minute}분 시작`);
-    } else if (isCountFull) {
-      setText('신청 불가');
-    } else if (!available) {
-      setText('신청 취소');
-    }
-  };
-
   const notifyClick = () => {
     setType(title);
     setModal(true);
   };
 
   useEffect(() => {
-    const time = setInterval(tick, 1000);
-    return () => clearInterval(time);
-  }, []);
+    const interval = setInterval(() => {
+      checkApply({ activationTime, available, count, maxCount, setIsActive, setText });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [activationTime, available, count, maxCount]);
 
   return (
     <section className="flex-1 bg-white rounded-lg px-12 py-8 w-full max-w-[668px] max-h-[305px] tablet:max-w-full mobile:px-5 mobile:py-4">
