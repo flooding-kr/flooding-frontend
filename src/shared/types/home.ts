@@ -1,6 +1,7 @@
+export type ApplyType = 'IMPOSSIBLE' | 'APPLIED' | 'POSSIBLE';
+
 export interface DormitoryData {
-  current_count?: number;
-  count: number;
+  current_count: number;
   limit: number;
-  is_available: boolean;
+  status: ApplyType;
 }
