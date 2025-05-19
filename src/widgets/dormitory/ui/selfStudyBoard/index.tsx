@@ -24,7 +24,7 @@ function SelfStudy() {
       </div>
       <SelfStudyFooter
         activationTime="20:00"
-        available={selfStudy?.is_available || false}
+        available={selfStudy?.status || 'IMPOSSIBLE'}
         count={selfStudy?.current_count || 0}
         maxCount={selfStudy?.limit || 0}
       />

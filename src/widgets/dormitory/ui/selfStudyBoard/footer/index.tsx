@@ -4,17 +4,21 @@ import { useAttendStore } from '@/entities/dormitory/store/useAttendStore';
 import checkApply from '@/entities/home/model/checkApply';
 import { Book, CheckBoxTrue } from '@/shared/assets/icons';
 import useUser from '@/shared/hooks/useUser';
+import { applyType } from '@/shared/types/home';
 import { Button } from '@/shared/ui';
+import { deleteSelfStudy } from '@/widgets/dormitory/api/deleteSelfStudy';
+import useDispatchSelfStudy from '@/widgets/dormitory/model/useDispatchSelfStudy';
 
 interface Props {
   count: number;
   maxCount: number;
   activationTime: string;
-  available: boolean;
+  available: applyType;
 }
 
 function SelfStudyFooter({ activationTime, available, count, maxCount }: Props) {
   const user = useUser();
+  const { mutate: postSelfStudy } = useDispatchSelfStudy();
   const { attend, setAttend } = useAttendStore();
   const [isActive, setIsActive] = useState(false);
   const [text, setText] = useState('');
@@ -53,7 +57,13 @@ function SelfStudyFooter({ activationTime, available, count, maxCount }: Props) 
           </p>
         </div>
         <div className="w-[422px] mobile:w-full">
-          <Button type="button" text={text} closed={text === '신청 불가'} disabled={!isActive} />
+          <Button
+            type="button"
+            text={text}
+            closed={text === '신청 불가'}
+            disabled={!isActive}
+            onClick={text === '신청 취소' ? () => deleteSelfStudy() : () => postSelfStudy()}
+          />
         </div>
       </div>
     </footer>
