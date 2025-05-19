@@ -7,13 +7,13 @@ import { MassageType } from '@/shared/types/dormitory';
 import { getSelfStudyList } from '../api/getSelfStudyList';
 
 export const useFetchSelfStudyList = () => {
-  const [selfStudy, setSelfStudy] = useState<MassageType[]>([]);
+  const [selfStudyList, setSelfStudyList] = useState<MassageType[]>([]);
 
-  const fetchSelfStudy = useCallback(async () => {
+  const fetchSelfStudyList = useCallback(async () => {
     const { reservations } = await getSelfStudyList();
 
-    setSelfStudy(reservations);
+    setSelfStudyList(reservations);
   }, []);
 
-  return { selfStudy, fetchSelfStudy };
+  return { selfStudyList, fetchSelfStudyList };
 };

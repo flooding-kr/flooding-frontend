@@ -7,13 +7,13 @@ import { MassageType } from '@/shared/types/dormitory';
 import { getMassageList } from '../api/getMassageList';
 
 export const useFetchMassageList = () => {
-  const [massage, setMassage] = useState<MassageType[]>([]);
+  const [massageList, setMassageList] = useState<MassageType[]>([]);
 
-  const fetchMassage = useCallback(async () => {
+  const fetchMassageList = useCallback(async () => {
     const { reservations } = await getMassageList();
 
-    setMassage(reservations);
+    setMassageList(reservations);
   }, []);
 
-  return { massage, fetchMassage };
+  return { massageList, fetchMassageList };
 };
