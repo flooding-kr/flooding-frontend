@@ -6,7 +6,7 @@ import { Book, CheckBoxTrue } from '@/shared/assets/icons';
 import useUser from '@/shared/hooks/useUser';
 import { ApplyType } from '@/shared/types/home';
 import { Button } from '@/shared/ui';
-import { deleteSelfStudy } from '@/widgets/dormitory/api/deleteSelfStudy';
+import useDeleteSelfStudy from '@/widgets/dormitory/model/useDeleteSelfStudy';
 import useDispatchSelfStudy from '@/widgets/dormitory/model/useDispatchSelfStudy';
 
 interface Props {
@@ -19,6 +19,7 @@ interface Props {
 function SelfStudyFooter({ activationTime, available, count, maxCount }: Props) {
   const user = useUser();
   const { mutate: postSelfStudy } = useDispatchSelfStudy();
+  const { mutate: deleteSelfStudy } = useDeleteSelfStudy();
   const { attend, setAttend } = useAttendStore();
   const [isActive, setIsActive] = useState(false);
   const [text, setText] = useState('');
