@@ -1,31 +1,30 @@
-'use client';
-
-import { usePathname } from 'next/navigation';
-import { ToastContainer } from 'react-toastify';
+import { Metadata } from 'next';
 
 import { pretendard } from '@/shared/style/font';
-import { Header, MobileFooter } from '@/shared/ui';
 
+import LayoutWrapper from './_component/LayoutWrapper';
 import TanstackProvider from './_provider/TanstackProvider';
 import './globals.css';
+
+export const metadata: Metadata = {
+  title: '플러딩',
+  description: 'gsm 통합 관리 서비스 ',
+  icons: {
+    icon: '/favicon.ico',
+  },
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname();
-  const isAuthPage = pathname.startsWith('/sign');
-
   return (
     <html lang="ko">
       <body className={pretendard.className}>
         <TanstackProvider>
-          <ToastContainer position="top-right" autoClose={2000} />
           <div id="portal" />
-          {!isAuthPage && <Header />}
-          <main className={isAuthPage ? '' : 'mobile:pt-[98px] mobile:pb-[63px]'}>{children}</main>
-          {!isAuthPage && <MobileFooter />}
+          <LayoutWrapper>{children}</LayoutWrapper>
         </TanstackProvider>
       </body>
     </html>
