@@ -1,11 +1,11 @@
 import React from 'react';
 
+import AttendPositioner from '@/views/attendance/ui/positioner';
 import Build from '@/views/build/ui';
-import { Club } from '@/views/club';
 
 const page = () => (
   <div>
-    {/* <Club /> */}
+    {/* <AttendPositioner /> */}
     <Build />
   </div>
 );
