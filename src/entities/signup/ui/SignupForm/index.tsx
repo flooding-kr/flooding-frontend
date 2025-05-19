@@ -29,7 +29,25 @@ export default function SignupForm() {
   } = useForm<FormType>();
 
   const formValues = watch();
-  const isFormValid = useMemo(() => Object.values(formValues).every(value => value), [formValues]);
+  const isFormValid = useMemo(() => {
+    const requiredFields: (keyof FormType)[] = ['name', 'email', 'password', 'gender', 'role'];
+    const isBasicValid = requiredFields.every(field => !!formValues[field]);
+
+    if (formValues.role === 'STUDENT') {
+      return (
+        isBasicValid &&
+        !!formValues.year &&
+        !!formValues.classroom &&
+        !!formValues.number &&
+        formValues.checkbox === true
+      );
+    }
+    if (formValues.role === 'TEACHER') {
+      return isBasicValid && formValues.checkbox === true;
+    }
+
+    return false;
+  }, [formValues]);
 
   const selectedRole = useWatch({ control, name: 'role' });
   const isStudent = selectedRole === 'STUDENT';
@@ -45,10 +63,9 @@ export default function SignupForm() {
   };
 
   const onSubmit = (data: FormType) => {
-    const { role, checkbox, ...submitData } = data;
-    setName(submitData.name);
-    setEmail(submitData.email);
-    signup(submitData);
+    setName(data.name);
+    setEmail(data.email);
+    signup(data);
   };
 
   return (
@@ -78,9 +95,7 @@ export default function SignupForm() {
           error={errors.email?.message}
         />
         <SignupRoleToggle control={control} />
-
         {isStudent && <SignupStudentFields control={control} />}
-
         <Input
           {...register('password', passwordValidation)}
           type="password"

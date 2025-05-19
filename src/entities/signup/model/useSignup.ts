@@ -6,13 +6,16 @@ import { useModalPageStore } from '@/entities/signup/store/useStore';
 import { postSignup } from '../api/postSignup';
 
 interface SignUpData {
-  email: string;
-  password: string;
-  classroom: number;
-  number: number;
-  year: number;
   name: string;
+  email: string;
+  role: 'STUDENT' | 'TEACHER';
+  password: string;
   gender: 'MALE' | 'FEMALE';
+  checkbox: boolean;
+  // 학생 전용
+  year?: number;
+  classroom?: number;
+  number?: number;
 }
 
 export const useSignup = () => {
