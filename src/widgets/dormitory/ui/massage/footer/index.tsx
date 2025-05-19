@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import checkApply from '@/entities/home/model/checkApply';
 import { Error, Massage } from '@/shared/assets/icons';
-import { applyType } from '@/shared/types/home';
+import { ApplyType } from '@/shared/types/home';
 import { Button } from '@/shared/ui';
 import { deleteMassage } from '@/widgets/dormitory/api/deleteMassage';
 import useDispatchMassage from '@/widgets/dormitory/model/useDispatchMassage';
@@ -11,7 +11,7 @@ interface Props {
   count: number;
   maxCount: number;
   activationTime: string;
-  available: applyType;
+  available: ApplyType;
 }
 
 function MassageFooter({ count, maxCount, activationTime, available }: Props) {
