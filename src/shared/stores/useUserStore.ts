@@ -13,6 +13,8 @@ interface User {
     year: number;
   };
   stuNum?: number;
+
+  roles?: string[];
 }
 
 interface UserState {
