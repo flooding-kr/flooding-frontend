@@ -59,7 +59,15 @@ function Dropdown<T extends string | number>(
       >
         {selectedItem}
         {showUnit && ` ${unit}`}
-        {isOpen ? <ArrowUp /> : <ArrowDown />}
+        {isOpen ? (
+          <div className="w-6 h-6">
+            <ArrowUp />
+          </div>
+        ) : (
+          <div className="w-6 h-6">
+            <ArrowDown />
+          </div>
+        )}
       </button>
       {isOpen && (
         <div
