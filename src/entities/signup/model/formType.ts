@@ -1,11 +1,12 @@
 export type FormType = {
   name: string;
   email: string;
-  role: string;
+  role: 'STUDENT' | 'TEACHER';
   password: string;
   gender: 'MALE' | 'FEMALE';
   checkbox: boolean;
-  year: number;
-  classroom: number;
-  number: number;
+  // 학생 전용
+  year?: number;
+  classroom?: number;
+  number?: number;
 };
