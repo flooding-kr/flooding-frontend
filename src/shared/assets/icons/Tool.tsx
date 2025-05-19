@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Tool(props) {
+function Tool() {
   return (
     <svg
       width="161"
