@@ -1,30 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
+import checkApply from '@/entities/home/model/checkApply';
 import { Error, Massage } from '@/shared/assets/icons';
 import { Button } from '@/shared/ui';
 
-function MassageFooter() {
+interface Props {
+  count: number;
+  maxCount: number;
+  activationTime: string;
+  available: boolean;
+}
+
+function MassageFooter({ count, maxCount, activationTime, available }: Props) {
   const [click, setClick] = useState(false);
-  const role = 'admin';
-  const count = 0;
-  const maxCount = 5;
+  const [isActive, setIsActive] = useState(false);
+  const [text, setText] = useState('');
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      checkApply({ activationTime, available, count, maxCount, setIsActive, setText });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [activationTime, available, count, maxCount]);
 
   return (
-    <footer
-      className={`flex flex-1 ${role === 'admin' ? 'justify-between' : 'justify-end'} w-full`}
-    >
-      {role === 'admin' && (
-        <button
-          type="button"
-          onClick={() => setClick(!click)}
-          className={`flex items-center p-3 rounded-lg gap-3 ${click ? 'bg-error' : 'bg-transparent border-[1px] border-solid border-gray-400'} mobile:hidden`}
-        >
-          <div className="w-6 h-6">
-            <Error color={click ? '#ffffff' : '#BDBDBD'} />
-          </div>
-          <p className={`text-body2R ${click ? 'text-white' : 'text-gray-400'}`}>금지</p>
-        </button>
-      )}
+    <footer className="flex flex-1 justify-end w-full">
       <div className="flex items-center gap-10 mobile:gap-6 mobile:w-full">
         <div className="flex items-center gap-4 mobile:gap-3">
           <div className="w-9 h-9 mobile:w-6 mobile:h-6">
@@ -35,7 +36,7 @@ function MassageFooter() {
           </p>
         </div>
         <div className="w-[422px] mobile:w-full">
-          <Button type="button" text="신청하기" closed={count >= maxCount} />
+          <Button type="button" text={text} closed={text === '신청 불가'} disabled={!isActive} />
         </div>
       </div>
     </footer>
