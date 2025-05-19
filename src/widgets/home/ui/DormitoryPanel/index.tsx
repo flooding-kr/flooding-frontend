@@ -27,7 +27,6 @@ function DormitoryPanel() {
     const handleResize = () => setIsMobile(window.innerWidth < 640);
 
     window.addEventListener('resize', handleResize);
-    handleResize();
 
     return () => window.removeEventListener('resize', handleResize);
   });
