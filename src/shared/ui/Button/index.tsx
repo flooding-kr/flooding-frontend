@@ -46,7 +46,7 @@ function Button({
       type={type || 'button'}
       onClick={onClick || (() => {})}
       className={buttonClass}
-      disabled={disabled}
+      disabled={disabled || closed}
     >
       {text}
     </button>
