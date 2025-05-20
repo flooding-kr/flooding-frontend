@@ -12,8 +12,8 @@ export async function middleware(request: NextRequest) {
   }
 
   const { isAccessTokenValid, isRefreshTokenValid } = isValidToken({
-    accesstoken: accessToken,
-    refreshtoken: refreshToken,
+    accessToken,
+    refreshToken,
   });
 
   if (!isRefreshTokenValid) {
