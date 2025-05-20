@@ -7,6 +7,8 @@ import { ApplyBoard } from '@/entities/home';
 import { useNotifyStore } from '@/entities/home/store/useNotifyStore';
 import { BigArrowRight, DormitoryIcon } from '@/shared/assets/icons';
 import Portal from '@/shared/ui/Portal';
+import useDeleteMassage from '@/widgets/dormitory/model/useDeleteMassage';
+import useDeleteSelfStudy from '@/widgets/dormitory/model/useDeleteSelfStudy';
 import useDispatchMassage from '@/widgets/dormitory/model/useDispatchMassage';
 import useDispatchSelfStudy from '@/widgets/dormitory/model/useDispatchSelfStudy';
 
@@ -18,8 +20,10 @@ import SelfStudyNotifyModal from '../selfStudyNotifyModal';
 function DormitoryPanel() {
   const [isMobile, setIsMobile] = useState(false);
   const { type, modal, setModal } = useNotifyStore();
-  const { mutate: selfStudyMutate } = useDispatchSelfStudy();
-  const { mutate: massageMutate } = useDispatchMassage();
+  const { mutate: postMassage } = useDispatchMassage();
+  const { mutate: deleteMassage } = useDeleteMassage();
+  const { mutate: postSelfStudy } = useDispatchSelfStudy();
+  const { mutate: deleteSelfStudy } = useDeleteSelfStudy();
   const { selfStudy, fetchSelfStudy } = useFetchSelfStudy();
   const { massage, fetchMassage } = useFetchMassage();
 
@@ -56,7 +60,9 @@ function DormitoryPanel() {
           count={selfStudy?.current_count ?? 0}
           maxCount={selfStudy?.limit ?? 0}
           activationTime="20:00"
-          onClick={() => selfStudyMutate()}
+          onClick={
+            selfStudy?.status === 'APPLIED' ? () => deleteSelfStudy() : () => postSelfStudy()
+          }
           available={selfStudy?.status || 'IMPOSSIBLE'}
         />
         <ApplyBoard
@@ -64,7 +70,7 @@ function DormitoryPanel() {
           count={massage?.current_count ?? 0}
           maxCount={massage?.limit ?? 0}
           activationTime="20:20"
-          onClick={() => massageMutate()}
+          onClick={massage?.status === 'APPLIED' ? () => deleteMassage() : () => postMassage()}
           available={massage?.status || 'IMPOSSIBLE'}
         />
       </div>
