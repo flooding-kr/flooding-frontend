@@ -1,28 +1,30 @@
 function isValidToken({
-  accesstoken,
-  refreshtoken,
+  accessToken,
+  refreshToken,
 }: {
-  accesstoken?: string;
-  refreshtoken?: string;
+  accessToken?: string;
+  refreshToken?: string;
 }): {
   isAccessTokenValid?: boolean;
   isRefreshTokenValid?: boolean;
 } {
   const currentTime = Math.floor(Date.now() / 1000);
-
   const result: {
     isAccessTokenValid?: boolean;
     isRefreshTokenValid?: boolean;
   } = {};
 
+  const decode = (token: string) =>
+    JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString('utf-8'));
+
   try {
-    if (accesstoken) {
-      const accessTokenPayload = JSON.parse(atob(accesstoken.split('.')[1]));
-      result.isAccessTokenValid = accessTokenPayload.exp > currentTime;
+    if (accessToken) {
+      const payload = decode(accessToken);
+      result.isAccessTokenValid = payload.exp > currentTime;
     }
-    if (refreshtoken) {
-      const refreshTokenPayload = JSON.parse(atob(refreshtoken.split('.')[1]));
-      result.isRefreshTokenValid = refreshTokenPayload.exp > currentTime;
+    if (refreshToken) {
+      const payload = decode(refreshToken);
+      result.isRefreshTokenValid = payload.exp > currentTime;
     }
   } catch (error) {
     console.error('토큰 디코딩 실패:', error);
