@@ -30,13 +30,14 @@ export default function MealBoard() {
     if (hour >= 19) {
       handleDateChange(1);
       return 0;
-    } else if (hour >= 13) {
-      return 2;
-    } else if (hour >= 8) {
-      return 1;
-    } else {
-      return 0;
     }
+    if (hour >= 13) {
+      return 2;
+    }
+    if (hour >= 8) {
+      return 1;
+    }
+    return 0;
   });
 
   const handleMealChange = (idx: number) => {
