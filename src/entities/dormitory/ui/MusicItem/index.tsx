@@ -4,7 +4,9 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
 import { Like, Trash } from '@/shared/assets/icons';
+import useUser from '@/shared/hooks/useUser';
 
+import { useAdminDeleteMusic } from '../../model/useAdminDeleteMusic';
 import { useChangeLike } from '../../model/useChangeLike';
 import { useDeleteMusic } from '../../model/useDeleteMusic';
 
@@ -27,15 +29,26 @@ export default function MusicItem({
   likeState,
   myMusic,
 }: Props) {
-  const [currentLike, setCurrentLike] = useState(0);
-  const [currentState, setCurrentState] = useState(false);
+  const [like, setLike] = useState({ count: likeCount, liked: likeState });
   const { mutate: fetchLike } = useChangeLike();
   const { mutate: deleteMusic } = useDeleteMusic();
+  const { mutate: deleteAdminMusic } = useAdminDeleteMusic({ id });
+  const user = useUser();
 
+  // props 변경 시 상태 초기화
   useEffect(() => {
-    setCurrentLike(likeCount);
-    setCurrentState(likeState);
-  }, []);
+    setLike({ count: likeCount, liked: likeState });
+  }, [likeCount, likeState]);
+
+  const handleDeleteType = () => {
+    if (
+      user?.roles?.includes('ROLE_DORMITORY_COUNCIL') ||
+      user?.roles?.includes('ROLE_DORMITORY_TEACHER')
+    ) {
+      return deleteAdminMusic();
+    }
+    return deleteMusic();
+  };
 
   return (
     <div className="flex justify-between max-w-[606px] tablet:max-w-full w-full">
@@ -54,31 +67,37 @@ export default function MusicItem({
       <div className="flex items-center gap-3">
         <button
           className="flex items-center gap-3 shrink-0"
-          onClick={() =>
-            fetchLike(id, {
-              onSuccess: res => {
-                setCurrentLike(res.data.like_count);
-                setCurrentState(res.data.has_user_liked);
-              },
-            })
-          }
+          onClick={() => {
+            setLike(prev => {
+              const liked = !prev.liked;
+              const count = liked ? prev.count + 1 : prev.count - 1;
+              fetchLike(id, {
+                onSuccess: res => {
+                  setLike({ count: res.data.like_count, liked: res.data.has_user_liked });
+                },
+              });
+              return { count, liked };
+            });
+          }}
           type="button"
         >
           <div className="w-10 h-10 mobile:w-4 mobile:h-4">
-            <Like state={currentState} />
+            <Like state={like.liked} />
           </div>
           <p
             className={`text-body2R mobile:text-caption2M ${
-              likeState ? 'text-main-600' : 'text-gray-700'
+              like.liked ? 'text-main-600' : 'text-gray-700'
             }`}
           >
-            {currentLike}
+            {like.count}
           </p>
         </button>
-        {myMusic && (
+        {(myMusic ||
+          user?.roles?.includes('ROLE_DORMITORY_COUNCIL') ||
+          user?.roles?.includes('ROLE_DORMITORY_TEACHER')) && (
           <button
             className="flex items-center gap-3 shrink-0"
-            onClick={() => deleteMusic()}
+            onClick={handleDeleteType}
             type="button"
           >
             <div className="w-10 h-10 mobile:w-4 mobile:h-4">
