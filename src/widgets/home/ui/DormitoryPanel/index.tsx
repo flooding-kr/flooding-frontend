@@ -40,7 +40,9 @@ function DormitoryPanel() {
     <div className="w-full max-w-[1360px] flex flex-col gap-10 mobile:gap-4">
       <header className="flex justify-between items-center">
         <div className="flex gap-5 mobile:gap-2">
-          <DormitoryIcon isMobile={isMobile} />
+          <div className="w-10 h-10 mobile:w-6 mobile:h-6">
+            <DormitoryIcon />
+          </div>
           <p className="text-title3B text-black mobile:text-body2B">기숙사</p>
         </div>
         <Link href="/dormitory" className="flex items-center gap-5 mobile:gap-2">

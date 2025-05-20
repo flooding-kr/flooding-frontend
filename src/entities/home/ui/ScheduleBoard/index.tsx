@@ -18,11 +18,11 @@ export default function ScheduleBoard() {
   }, [currentDate, fetchSchedule]);
 
   return (
-    <section className="bg-white rounded-lg px-7 py-6 max-w-[484px] h-[420px] w-full flex flex-col mobile:max-h-[286px] mobile:p-3 tablet:max-w-full">
+    <section className="bg-white rounded-lg px-7 py-6 w-full h-[420px] flex flex-col mobile:max-h-[286px] mobile:p-3 mobile:w-full tablet:max-w-full">
       <div className="flex flex-col gap-6 flex-1">
         <div className="flex flex-col gap-6 flex-1 mobile:gap-3">
           <header className="flex justify-between">
-            <p className="text-body1B text-black mobile:text-body3B">시간표</p>
+            <p className="text-body1B text-black tablet:text-body2B mobile:text-body3B">시간표</p>
             <div className="flex items-center gap-4 mobile:gap-3">
               <button
                 type="button"
@@ -32,7 +32,7 @@ export default function ScheduleBoard() {
               >
                 <ArrowLeft color="#121212" />
               </button>
-              <div className="text-body2R text-black mobile:text-caption1R">
+              <div className="text-body2R text-black tablet:text-body3R mobile:text-caption1R">
                 {date.year}.{String(date.month).padStart(2, '0')}.
                 {String(date.day).padStart(2, '0')} ({weekArr[date.weekday]})
               </div>
@@ -48,7 +48,7 @@ export default function ScheduleBoard() {
           </header>
           <div className="flex flex-1 rounded-lg p-5 bg-gray-100 mobile:px-3 mobile:py-2">
             {schedule && !(schedule.length === 0) ? (
-              <div className="w-full flex flex-col flex-1 gap-4 mobile:gap-3">
+              <div className="w-full flex flex-col flex-1 gap-4 min-w-0 mobile:gap-3">
                 {schedule.map((item, idx) => (
                   <div
                     key={`${currentDate}-${item}-${weekArr[idx]}`}
