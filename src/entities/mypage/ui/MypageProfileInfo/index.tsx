@@ -60,7 +60,7 @@ export default function MypageProfileInfo({ stuName, stuNum, setProfile }: Props
 
       {menuOpen && (
         <div className="absolute top-[77px] right-12 text-body2R text-gray-500 p-6 shadow-[0_0_20px_0_#00000033] rounded-lg bg-white">
-          <button
+          {/* <button
             type="button"
             className="w-full text-left px-6 py-3 cursor-pointer"
             onClick={() => {
@@ -69,7 +69,7 @@ export default function MypageProfileInfo({ stuName, stuNum, setProfile }: Props
             }}
           >
             프로필 수정
-          </button>
+          </button> */}
           <button
             type="button"
             className="flex gap-2 px-6 py-3 cursor-pointer"
