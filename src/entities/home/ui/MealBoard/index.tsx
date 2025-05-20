@@ -107,7 +107,7 @@ export default function MealBoard() {
                 ))}
               </div>
             ) : (
-              <div className="">
+              <div className="w-full flex justify-center">
                 <div className="flex flex-col justify-center items-center gap-4">
                   <div className="w-6 h-6">
                     <Error color="#A7A7A7" />
