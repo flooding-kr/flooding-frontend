@@ -108,7 +108,7 @@ export default function Table() {
           const isTable = typeof table.id === 'number';
           const isAttended = data?.find(
             (d: TableData) => d.homebase_table.table_number === table.id
-          )?.is_attended;
+          )?.participants?.length;
           const tableClassName = [
             'flex flex-col border-solid border-gray-500 flex items-center justify-center',
             isSelected && 'bg-main-100',
