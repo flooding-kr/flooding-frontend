@@ -60,7 +60,9 @@ function DormitoryPanel() {
           count={selfStudy?.current_count ?? 0}
           maxCount={selfStudy?.limit ?? 0}
           activationTime="20:00"
-          onClick={selfStudy?.status === 'APPLIED' ? () => deleteMassage() : () => postSelfStudy()}
+          onClick={
+            selfStudy?.status === 'APPLIED' ? () => deleteSelfStudy() : () => postSelfStudy()
+          }
           available={selfStudy?.status || 'IMPOSSIBLE'}
         />
         <ApplyBoard
