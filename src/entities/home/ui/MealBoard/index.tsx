@@ -47,7 +47,24 @@ export default function MealBoard() {
     fetchMeal(currentDate, dailyMeal);
   }, [currentDate, dailyMeal]);
 
-  useEffect(() => {}, [hour]);
+  useEffect(() => {
+    if (hour >= 19) {
+      const newDate = new Date(year, month - 1, day + 1);
+      setDate({
+        year: newDate.getFullYear(),
+        month: newDate.getMonth() + 1,
+        day: newDate.getDate(),
+        weekday: newDate.getDay(),
+      });
+      setDailyMeal(0);
+    } else if (hour >= 13) {
+      setDailyMeal(2);
+    } else if (hour >= 8) {
+      setDailyMeal(1);
+    } else {
+      setDailyMeal(0);
+    }
+  }, []);
 
   return (
     <section className="bg-white rounded-lg px-8 py-6 w-full h-[418px] flex flex-col mobile:min-h-[303px] mobile:h-fit mobile:p-3 mobile:w-full tablet:min-w-[300px] tablet:max-w-full">
