@@ -26,19 +26,7 @@ export default function MealBoard() {
     });
   };
 
-  const [dailyMeal, setDailyMeal] = useState(() => {
-    if (hour >= 19) {
-      handleDateChange(1);
-      return 0;
-    }
-    if (hour >= 13) {
-      return 2;
-    }
-    if (hour >= 8) {
-      return 1;
-    }
-    return 0;
-  });
+  const [dailyMeal, setDailyMeal] = useState(0);
 
   const handleMealChange = (idx: number) => {
     setDailyMeal(idx);
