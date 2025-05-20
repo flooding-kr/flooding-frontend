@@ -1,0 +1,26 @@
+import { AxiosError } from 'axios';
+import { cookies } from 'next/headers';
+import { NextResponse } from 'next/server';
+
+import { apiClient } from '@/shared/libs/apiClient';
+
+export async function DELETE(request: Request) {
+  const { searchParams } = new URL(request.url);
+
+  const accessToken = cookies().get('accessToken')?.value;
+  const headers = accessToken ? { Authorization: `Bearer ${accessToken}` } : undefined;
+
+  const id = searchParams.get('id');
+
+  try {
+    const response = await apiClient.delete(`/admin/music/${id}`, { headers });
+    return NextResponse.json(response.data);
+  } catch (error) {
+    const axiosError = error as AxiosError<{ reason: string }>;
+
+    const status = axiosError.response?.status || 500;
+    const message = axiosError.response?.data?.reason || 'delete failed';
+
+    return NextResponse.json({ error: message }, { status });
+  }
+}
