@@ -21,8 +21,10 @@ export default function ProfileContainer({ src, stuName, stuNum, mypage }: Props
   return (
     <>
       <section
-        className={`flex max-w-[296px] w-full px-12 py-9 rounded-lg bg-white place-items-center ${
-          !mypage ? 'tablet:hidden flex-col justify-between' : 'gap-14 mobile:gap-10 relative '
+        className={`flex w-full px-12 py-9 rounded-lg bg-white place-items-center ${
+          !mypage
+            ? 'tablet:hidden flex-col justify-between max-w-[296px] '
+            : 'gap-14 mobile:gap-10 relative '
         }`}
       >
         <div

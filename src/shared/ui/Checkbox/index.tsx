@@ -17,7 +17,13 @@ function Checkbox({ label, checked, onChange }: Props) {
         {label}
       </label>
       <button id={buttonId} type="button" onClick={() => onChange(!checked)} aria-pressed={checked}>
-        {checked ? <CheckBoxTrue /> : <CheckBoxFalse />}
+        {checked ? (
+          <div className="w-6 h-6">
+            <CheckBoxTrue />
+          </div>
+        ) : (
+          <CheckBoxFalse />
+        )}
       </button>
     </div>
   );
