@@ -85,7 +85,7 @@ export default function MealBoard() {
                   className={`px-12 py-4 w-[33%] mobile:flex mobile:justify-center mobile:items-center tablet:px-[24px] tablet:py-3 mobile:py-3 mobile:max-w-[28%] rounded-lg transition-colors duration-300 ease-in-out ${
                     dailyMeal === idx && 'bg-main-600'
                   }`}
-                  disabled={dailyMeal === idx}
+                  disabled={dailyMeal === idx + 1}
                   onClick={() => handleMealChange(idx)}
                 >
                   <p
