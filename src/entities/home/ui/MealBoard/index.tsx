@@ -30,13 +30,14 @@ export default function MealBoard() {
     if (hour >= 19) {
       handleDateChange(1);
       return 0;
-    } else if (hour >= 13) {
-      return 2;
-    } else if (hour >= 8) {
-      return 1;
-    } else {
-      return 0;
     }
+    if (hour >= 13) {
+      return 2;
+    }
+    if (hour >= 8) {
+      return 1;
+    }
+    return 0;
   });
 
   const handleMealChange = (idx: number) => {
@@ -84,7 +85,7 @@ export default function MealBoard() {
                   className={`px-12 py-4 w-[33%] mobile:flex mobile:justify-center mobile:items-center tablet:px-[24px] tablet:py-3 mobile:py-3 mobile:max-w-[28%] rounded-lg transition-colors duration-300 ease-in-out ${
                     dailyMeal === idx && 'bg-main-600'
                   }`}
-                  disabled={dailyMeal === idx + 1}
+                  disabled={dailyMeal === idx}
                   onClick={() => handleMealChange(idx)}
                 >
                   <p
