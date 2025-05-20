@@ -33,10 +33,12 @@ function SideBar() {
         <HeaderNotification size={28} />
         <p className="text-body3R text-gray-300">공지</p>
       </Link>
-      <Link href="/manager" className="flex items-center gap-4">
-        <Admin />
-        <p className="text-body3R text-gray-300">관리자</p>
-      </Link>
+      {user?.roles?.includes('ROLE_TEACHER') && (
+        <Link href="/manager" className="flex items-center gap-4">
+          <Admin />
+          <p className="text-body3R text-gray-300">관리자</p>
+        </Link>
+      )}
     </aside>
   );
 }
