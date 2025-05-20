@@ -66,7 +66,7 @@ export default function Header() {
                 <button
                   key={path}
                   type="button"
-                  className="flex items-center gap-2"
+                  className={`flex items-center gap-2 ${label === '관리자' && !userData?.roles?.includes('ROLE_TEACHER') && 'hidden'}`}
                   onClick={() => router.push(`/${path}`)}
                   onMouseEnter={() => setHoverItem(path)}
                   onMouseLeave={() => setHoverItem(null)}
