@@ -1,18 +1,11 @@
 'use client';
 
-import useStore from '@/shared/stores/useStore';
+import { Home } from '@/views/home';
 
-export default function Home() {
-  const { count, increment, decrement } = useStore();
+export default function page() {
   return (
     <div>
-      {count}
-      <button type="button" onClick={increment}>
-        +
-      </button>
-      <button type="button" onClick={decrement}>
-        -
-      </button>
+      <Home />
     </div>
   );
 }

@@ -1,7 +1,13 @@
 import React from 'react';
 
-function Club() {
-  return <div>club</div>;
-}
+import Build from '@/views/build/ui';
+import { Club } from '@/views/club';
 
-export default Club;
+const page = () => (
+  <div>
+    {/* <Club /> */}
+    <Build />
+  </div>
+);
+
+export default page;

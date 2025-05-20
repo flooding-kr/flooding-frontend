@@ -13,18 +13,46 @@
   --color-gray-800: #646464;
   --color-gray-900: #4e4e4e;
 
-  --color-main-100: #dce3fc;
-  --color-main-200: #b8c6f9;
-  --color-main-300: #95aaf6;
-  --color-main-400: #728ef3;
-  --color-main-500: #4e71f0;
-  --color-main-600: #2b55ed;
+  --color-main-100: #e4eafd;
+  --color-main-200: #c9d4fb;
+  --color-main-300: #afbff9;
+  --color-main-400: #94a9f7;
+  --color-main-500: #7994f5;
+  --color-main-600: #5e7ef3;
 
   --color-black: #121212;
   --color-white: #ffffff;
   --color-error: #ce2020;
   --color-success: #1eb916;
 }
+
+.hidden-scrollbar::-webkit-scrollbar {
+  width: 0;
+}
+
+@media (max-width: 640px) {
+  .hide-scrollbar-mobile::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  .hide-scrollbar-mobile {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-main-600);
+  border-radius: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: var(--color-main-100);
+  border-radius: 8px;
+}
+
 
 html,
 body,
@@ -134,5 +162,5 @@ html {
   font-family: 'Pretendard';
 }
 body {
-  background-color: #fff;
+  background-color: #f4f4f4;
 }

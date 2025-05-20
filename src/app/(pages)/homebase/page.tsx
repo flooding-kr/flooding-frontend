@@ -1,7 +1,11 @@
-import React from 'react';
+'use client';
 
-function HomeBase() {
-  return <div>homebase</div>;
+import HomeBasePageWrapper from '@/widgets/homebase/ui/HomeBasePageWrapper';
+
+export default function HomeBase() {
+  return (
+    <div className="h-[calc(100vh-167px)] content-center justify-items-center overflow-y-auto tablet:p-4">
+      <HomeBasePageWrapper />
+    </div>
+  );
 }
-
-export default HomeBase;

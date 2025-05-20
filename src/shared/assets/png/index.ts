@@ -1,0 +1,10 @@
+export { default as AuditoriumMap1 } from './auditoriumMap-1.png';
+export { default as AuditoriumMap2 } from './auditoriumMap-2.png';
+export { default as AuditoriumMap3 } from './auditoriumMap-3.png';
+export { default as AuditoriumMap4 } from './auditoriumMap-4.png';
+export { default as DormitoryMap1 } from './dormitory-1.png';
+export { default as DormitoryMap2 } from './dormitory-2.png';
+export { default as MainMap1 } from './mainMap-1.png';
+export { default as MainMap2 } from './mainMap-2.png';
+export { default as MainMap3 } from './mainMap-3.png';
+export { default as MainMap4 } from './mainMap-4.png';
