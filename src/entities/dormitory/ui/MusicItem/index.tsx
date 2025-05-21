@@ -66,7 +66,7 @@ export default function MusicItem({
       </div>
       <div className="flex items-center gap-3">
         <button
-          className="w-12 flex items-center gap-3 shrink-0"
+          className="w-16 flex items-center gap-3 shrink-0 mobile:w-12"
           onClick={() => {
             setLike(prev => {
               const liked = !prev.liked;
