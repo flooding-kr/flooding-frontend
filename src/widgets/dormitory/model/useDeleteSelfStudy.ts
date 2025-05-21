@@ -12,10 +12,10 @@ function useDeleteSelfStudy() {
     mutationFn: () => deleteSelfStudy(),
     onSuccess: () => {
       fetchSelfStudy();
-      toast.success('안마의자 삭제에 성공하였습니다.');
+      toast.success('자습신청 삭제에 성공하였습니다.');
     },
     onError: () => {
-      toast.error('안마의자 삭제에 실패하였습니다.');
+      toast.error('자습신청 삭제에 실패하였습니다.');
     },
   });
 }
