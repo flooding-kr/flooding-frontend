@@ -6,7 +6,6 @@ import { getDate } from '../../model/getDate';
 import { useMeal } from '../../model/useMeal';
 
 export default function MealBoard() {
-  const { meal, fetchMeal } = useMeal();
   const { year, month, day, weekday, hour } = getDate();
   const [date, setDate] = useState({ year, month, day, weekday });
 
@@ -40,21 +39,20 @@ export default function MealBoard() {
     return 0;
   });
 
+  const { meal } = useMeal({ currentDate, dailyMeal });
+
   const handleMealChange = (idx: number) => {
     setDailyMeal(idx);
   };
-  useEffect(() => {
-    fetchMeal(currentDate, dailyMeal);
-  }, [currentDate, dailyMeal]);
 
   return (
     <section className="bg-white rounded-lg px-8 py-6 w-full h-[418px] flex flex-col mobile:min-h-[303px] mobile:h-fit mobile:p-3 mobile:w-full tablet:min-w-[300px] tablet:max-w-full">
       <div className="flex flex-col gap-2 flex-1 mobile:gap-4">
         <div className="flex flex-col gap-6 flex-1 mobile:gap-4">
           <div className="flex flex-col gap-6 mobile:gap-[13px]">
-            <header className="flex justify-between">
+            <header className="w-full flex justify-between">
               <p className="text-body1B text-black tablet:text-body2B mobile:text-body3B">급식</p>
-              <div className="flex items-center gap-4 mobile:gap-3">
+              <div className="w-[200px] flex items-center justify-between mobile:justify-normal mobile:w-[170px] mobile:gap-3">
                 <button
                   type="button"
                   className="flex justify-center items-center"

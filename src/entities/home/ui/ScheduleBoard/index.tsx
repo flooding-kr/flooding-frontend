@@ -23,7 +23,7 @@ export default function ScheduleBoard() {
         <div className="flex flex-col gap-6 flex-1 mobile:gap-3">
           <header className="flex justify-between">
             <p className="text-body1B text-black tablet:text-body2B mobile:text-body3B">시간표</p>
-            <div className="flex items-center gap-4 mobile:gap-3">
+            <div className="w-[200px] flex items-center justify-between mobile:justify-normal mobile:w-[170px] mobile:gap-3">
               <button
                 type="button"
                 className="flex justify-center items-center"
