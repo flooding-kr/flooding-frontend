@@ -1,17 +1,15 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
-
-import { useFetchMassage } from '@/widgets/home/model/useFetchMassage';
 
 import { postMassage } from '../api/postMassage';
 
 function useDispatchMassage() {
-  const { fetchMassage } = useFetchMassage();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: () => postMassage(),
     onSuccess: () => {
-      fetchMassage();
+      queryClient.invalidateQueries({ queryKey: ['massage'] });
       toast.success('안마의자 신청에 성공하였습니다.');
     },
     onError: () => {

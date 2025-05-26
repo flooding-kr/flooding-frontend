@@ -1,19 +1,16 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import { DormitoryData } from '@/shared/types/home';
 
 import { getSelfStudy } from '../api/getSelfStudy';
-import { useSelfStudyStore } from '../store/useSelfStudyStore';
 
 export const useFetchSelfStudy = () => {
-  const { selfStudy, setSelfStudy } = useSelfStudyStore();
+  const selfStudy = useQuery<DormitoryData>({
+    queryKey: ['selfStudy'],
+    queryFn: () => getSelfStudy(),
+  });
 
-  const fetchSelfStudy = useCallback(async () => {
-    const { data } = await getSelfStudy();
-    setSelfStudy(data);
-  }, []);
-
-  return { selfStudy, fetchSelfStudy };
+  return selfStudy.data;
 };

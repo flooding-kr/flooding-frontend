@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { useAttendStore } from '@/entities/dormitory/store/useAttendStore';
+import { useCheckStore } from '@/entities/dormitory/store/useAttendStore';
 import checkApply from '@/entities/home/model/checkApply';
 import { Book, CheckBoxTrue } from '@/shared/assets/icons';
 import useUser from '@/shared/hooks/useUser';
@@ -18,9 +18,9 @@ interface Props {
 
 function SelfStudyFooter({ activationTime, available, count, maxCount }: Props) {
   const user = useUser();
-  const { mutate: postSelfStudy } = useDispatchSelfStudy();
-  const { mutate: deleteSelfStudy } = useDeleteSelfStudy();
-  const { attend, setAttend } = useAttendStore();
+  const { mutate: postSelfStudy, isPending: postPending } = useDispatchSelfStudy();
+  const { mutate: deleteSelfStudy, isPending: deletePending } = useDeleteSelfStudy();
+  const { check, setCheck } = useCheckStore();
   const [isActive, setIsActive] = useState(false);
   const [text, setText] = useState('');
   const dormitoryAdmin =
@@ -39,13 +39,13 @@ function SelfStudyFooter({ activationTime, available, count, maxCount }: Props) 
       {dormitoryAdmin && (
         <button
           type="button"
-          onClick={() => setAttend(!attend)}
-          className={`flex items-center p-3 rounded-lg gap-3 ${attend ? 'bg-main-600' : 'bg-transparent border-[1px] border-solid border-gray-400'} mobile:hidden`}
+          onClick={() => setCheck(!check)}
+          className={`flex items-center p-3 rounded-lg gap-3 ${check ? 'bg-main-600' : 'bg-transparent border-[1px] border-solid border-gray-400'} mobile:hidden`}
         >
           <div className="w-6 h-6">
-            <CheckBoxTrue color={attend ? '#ffffff' : '#BDBDBD'} />
+            <CheckBoxTrue color={check ? '#ffffff' : '#BDBDBD'} />
           </div>
-          <p className={`text-body2R ${attend ? 'text-white' : 'text-gray-400'}`}>출석</p>
+          <p className={`text-body2R ${check ? 'text-white' : 'text-gray-400'}`}>출석</p>
         </button>
       )}
       <div className="flex items-center gap-10 mobile:gap-6 mobile:w-full">
@@ -62,7 +62,7 @@ function SelfStudyFooter({ activationTime, available, count, maxCount }: Props) 
             type="button"
             text={text}
             closed={text === '신청 불가'}
-            disabled={!isActive}
+            disabled={!isActive || deletePending || postPending}
             onClick={text === '신청 취소' ? () => deleteSelfStudy() : () => postSelfStudy()}
           />
         </div>

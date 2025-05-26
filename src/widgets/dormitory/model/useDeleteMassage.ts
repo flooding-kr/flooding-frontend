@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 
 import { useFetchMassage } from '@/widgets/home/model/useFetchMassage';
@@ -6,12 +6,12 @@ import { useFetchMassage } from '@/widgets/home/model/useFetchMassage';
 import { deleteMassage } from '../api/deleteMassage';
 
 function useDeleteMassage() {
-  const { fetchMassage } = useFetchMassage();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: () => deleteMassage(),
     onSuccess: () => {
-      fetchMassage();
+      queryClient.invalidateQueries({ queryKey: ['massage'] });
       toast.success('안마의자 삭제에 성공하였습니다.');
     },
     onError: () => {

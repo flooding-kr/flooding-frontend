@@ -6,4 +6,5 @@ export interface MassageType {
   name: string;
   profile_image: Image;
   school_number?: string;
+  is_present?: boolean;
 }

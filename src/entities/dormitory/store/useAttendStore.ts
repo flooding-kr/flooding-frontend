@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 
 interface Store {
-  attend: boolean;
-  setAttend: (attend: boolean) => void;
+  check: boolean;
+  setCheck: (check: boolean) => void;
 }
 
-export const useAttendStore = create<Store>(set => ({
-  attend: false,
-  setAttend: (attend: boolean) => set({ attend }),
+export const useCheckStore = create<Store>(set => ({
+  check: false,
+  setCheck: (check: boolean) => set({ check }),
 }));
