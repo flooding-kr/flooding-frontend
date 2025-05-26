@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import StudentItem from '@/entities/dormitory/ui/StudentItem';
 import { Error } from '@/shared/assets/icons';
 import userProfileImage from '@/shared/assets/jpg/userProfileImage.jpg';
@@ -36,10 +38,12 @@ function ReservationList({ type, data }: Props) {
                 <div key={item.student_number} className={itemClass}>
                   <StudentItem
                     type={type}
+                    id={item.id}
                     stuImg={item.profile_image?.presigned_url || userProfileImage.src}
                     stuName={item.name}
                     stuNum={item.student_number || item.school_number || ''}
                     rank={idx + 1}
+                    attend={item?.is_present}
                   />
                 </div>
               ))}

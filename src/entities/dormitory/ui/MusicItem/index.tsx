@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 import { Like, Trash } from '@/shared/assets/icons';
@@ -17,6 +18,7 @@ interface Props {
   applicant: string;
   likeCount: number;
   likeState: boolean;
+  musicUrl: string;
   myMusic: boolean;
 }
 
@@ -27,6 +29,7 @@ export default function MusicItem({
   title,
   likeCount,
   likeState,
+  musicUrl,
   myMusic,
 }: Props) {
   const [like, setLike] = useState({ count: likeCount, liked: likeState });
@@ -35,7 +38,6 @@ export default function MusicItem({
   const { mutate: deleteAdminMusic } = useAdminDeleteMusic({ id });
   const user = useUser();
 
-  // props 변경 시 상태 초기화
   useEffect(() => {
     setLike({ count: likeCount, liked: likeState });
   }, [likeCount, likeState]);
@@ -51,7 +53,11 @@ export default function MusicItem({
   };
 
   return (
-    <div className="flex justify-between max-w-[606px] tablet:max-w-full w-full">
+    <Link
+      href={musicUrl}
+      target="_blank"
+      className="flex justify-between max-w-[606px] tablet:max-w-full w-full"
+    >
       <div className="flex items-center gap-6 mobile:gap-3 flex-1 min-w-0">
         <div className="relative w-20 h-20 mobile:w-[46px] mobile:h-[46px] shrink-0">
           <Image alt="썸네일" src={musicImg} fill className="rounded-lg object-fill" />
@@ -67,7 +73,9 @@ export default function MusicItem({
       <div className="flex items-center gap-3">
         <button
           className="w-16 flex items-center gap-3 shrink-0 mobile:w-12"
-          onClick={() => {
+          onClick={e => {
+            e.preventDefault();
+            e.stopPropagation();
             setLike(prev => {
               const liked = !prev.liked;
               const count = liked ? prev.count + 1 : prev.count - 1;
@@ -97,7 +105,11 @@ export default function MusicItem({
           user?.roles?.includes('ROLE_DORMITORY_TEACHER')) && (
           <button
             className="flex items-center gap-3 shrink-0"
-            onClick={handleDeleteType}
+            onClick={e => {
+              e.preventDefault();
+              e.stopPropagation();
+              handleDeleteType();
+            }}
             type="button"
           >
             <div className="w-10 h-10 mobile:w-4 mobile:h-4">
@@ -107,6 +119,6 @@ export default function MusicItem({
           </button>
         )}
       </div>
-    </div>
+    </Link>
   );
 }

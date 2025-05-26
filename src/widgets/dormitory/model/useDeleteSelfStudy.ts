@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 
 import { useFetchSelfStudy } from '@/widgets/home/model/useFetchSelfStudy';
@@ -6,12 +6,12 @@ import { useFetchSelfStudy } from '@/widgets/home/model/useFetchSelfStudy';
 import { deleteSelfStudy } from '../api/deleteSelfStudy';
 
 function useDeleteSelfStudy() {
-  const { fetchSelfStudy } = useFetchSelfStudy();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: () => deleteSelfStudy(),
     onSuccess: () => {
-      fetchSelfStudy();
+      queryClient.invalidateQueries({ queryKey: ['selfStudy'] });
       toast.success('자습신청 삭제에 성공하였습니다.');
     },
     onError: () => {

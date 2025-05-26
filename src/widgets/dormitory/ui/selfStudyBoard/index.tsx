@@ -8,11 +8,10 @@ import { useFetchSelfStudyList } from '../../model/useFetchSelfStudyList';
 import ReservationList from '../reservationList';
 
 function SelfStudy() {
-  const { selfStudy, fetchSelfStudy } = useFetchSelfStudy();
+  const selfStudy = useFetchSelfStudy();
   const { selfStudyList, fetchSelfStudyList } = useFetchSelfStudyList();
 
   useEffect(() => {
-    fetchSelfStudy();
     fetchSelfStudyList();
   }, []);
 

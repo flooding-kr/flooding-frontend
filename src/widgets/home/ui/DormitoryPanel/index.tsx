@@ -24,8 +24,8 @@ function DormitoryPanel() {
   const { mutate: deleteMassage } = useDeleteMassage();
   const { mutate: postSelfStudy } = useDispatchSelfStudy();
   const { mutate: deleteSelfStudy } = useDeleteSelfStudy();
-  const { selfStudy, fetchSelfStudy } = useFetchSelfStudy();
-  const { massage, fetchMassage } = useFetchMassage();
+  const selfStudy = useFetchSelfStudy();
+  const massage = useFetchMassage();
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 640);
@@ -34,11 +34,6 @@ function DormitoryPanel() {
 
     return () => window.removeEventListener('resize', handleResize);
   });
-
-  useEffect(() => {
-    fetchSelfStudy();
-    fetchMassage();
-  }, []);
 
   return (
     <div className="w-full max-w-[1360px] flex flex-col gap-10 mobile:gap-4">
