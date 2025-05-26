@@ -8,11 +8,10 @@ import MassageHeader from './header';
 import { useFetchMassageList } from '../../model/useFetchMassageList';
 
 function Massage() {
-  const { massage, fetchMassage } = useFetchMassage();
+  const massage = useFetchMassage();
   const { massageList, fetchMassageList } = useFetchMassageList();
 
   useEffect(() => {
-    fetchMassage();
     fetchMassageList();
   }, []);
 
