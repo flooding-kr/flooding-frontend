@@ -32,7 +32,6 @@ export async function POST(request: Request) {
   const headers = accessToken ? { Authorization: `Bearer ${accessToken}` } : undefined;
 
   try {
-    console.log(body.music_url);
     const response = await apiClient.post(`/music`, body, { headers });
     return NextResponse.json(response.data);
   } catch (error) {

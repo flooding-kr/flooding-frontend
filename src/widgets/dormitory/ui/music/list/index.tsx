@@ -4,27 +4,22 @@ import MusicItem from '@/entities/dormitory/ui/MusicItem';
 import { getDate } from '@/entities/home/model/getDate';
 import { Error } from '@/shared/assets/icons';
 import useUser from '@/shared/hooks/useUser';
+import { Music } from '@/shared/types/music';
 import { useFetchMusic } from '@/widgets/dormitory/model/useFetchMusic';
-import { useMusicStore } from '@/widgets/dormitory/store/useMusicStore';
 import { useMusicTypeStore } from '@/widgets/dormitory/store/useMusicTypeStore';
 
 function MusicList() {
   const { year, month, day } = getDate();
   const user = useUser();
-  const { music } = useMusicStore();
   const { type } = useMusicTypeStore();
   const currentDate = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-  const { fetchMusic } = useFetchMusic({ date: currentDate, type });
-
-  useEffect(() => {
-    fetchMusic();
-  }, [type]);
+  const music = useFetchMusic({ date: currentDate, type });
 
   return (
     <div className="w-[1360px] h-[352px] text- bg-white flex flex-col px-7 py-6 overflow-y-auto hidden-scrollbar rounded-lg tablet:w-full mobile:px-3 mobile:py-4">
-      {music.length ? (
+      {music?.length ? (
         <div className="w-full flex flex-wrap justify-between gap-y-7 tablet:gap-4 tablet:flex-col">
-          {music.map(item => (
+          {music?.map((item: Music) => (
             <MusicItem
               key={item.music_id}
               id={item.music_id}
@@ -33,6 +28,7 @@ function MusicList() {
               likeState={item.is_liked_by_user}
               musicImg={item.thumbnail_image_url}
               title={item.music_name}
+              musicUrl={item.music_url}
               myMusic={item.is_applied_by_user || user?.roles?.includes('ROLE_ADMIN') || false}
             />
           ))}

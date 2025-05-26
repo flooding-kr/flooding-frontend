@@ -1,21 +1,20 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useQuery } from '@tanstack/react-query';
+
+import { Music } from '@/shared/types/music';
 
 import { getMusic } from '../api/getMusic';
-import { useMusicStore } from '../store/useMusicStore';
 
 interface DataType {
   date: string;
   type: 'LATEST' | 'LIKES';
 }
 export const useFetchMusic = ({ date, type }: DataType) => {
-  const { setMusic } = useMusicStore();
+  const { data: music } = useQuery({
+    queryKey: ['music', date, type],
+    queryFn: () => getMusic({ date, type }),
+  });
 
-  const fetchMusic = useCallback(async () => {
-    const data = await getMusic({ date, type });
-    setMusic(data.music_list);
-  }, [date, type]);
-
-  return { fetchMusic };
+  return music?.music_list;
 };
