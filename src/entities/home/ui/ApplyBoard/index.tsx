@@ -16,6 +16,7 @@ interface Props {
   activationTime: string;
   available: ApplyType;
   onClick: () => void;
+  isPending?: boolean;
 }
 
 export default function ApplyBoard({
@@ -25,6 +26,7 @@ export default function ApplyBoard({
   activationTime,
   available,
   onClick,
+  isPending,
 }: Props) {
   const [isActive, setIsActive] = useState(false);
   const { setModal, setType } = useNotifyStore();
@@ -69,7 +71,7 @@ export default function ApplyBoard({
         </div>
         <Button
           text={text}
-          disabled={!isActive}
+          disabled={!isActive || isPending}
           onClick={onClick}
           type="button"
           closed={text === '신청 불가'}
