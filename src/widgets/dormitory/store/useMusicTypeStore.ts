@@ -8,6 +8,6 @@ interface Store {
 }
 
 export const useMusicTypeStore = create<Store>(set => ({
-  type: 'LATEST',
+  type: 'LIKES',
   setType: (type: OrderType) => set({ type }),
 }));

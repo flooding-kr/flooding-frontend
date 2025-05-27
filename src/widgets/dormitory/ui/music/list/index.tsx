@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import MusicItem from '@/entities/dormitory/ui/MusicItem';
 import { getDate } from '@/entities/home/model/getDate';
@@ -16,14 +16,14 @@ function MusicList() {
   const music = useFetchMusic({ date: currentDate, type });
 
   return (
-    <div className="w-[1360px] h-[352px] text- bg-white flex flex-col px-7 py-6 overflow-y-auto hidden-scrollbar rounded-lg tablet:w-full mobile:px-3 mobile:py-4">
+    <div className="w-[1360px] h-full text- bg-white flex flex-col px-7 py-6 overflow-y-auto hidden-scrollbar rounded-lg tablet:w-full mobile:px-3 mobile:py-4">
       {music?.length ? (
-        <div className="w-full flex flex-wrap justify-between gap-y-7 tablet:gap-4 tablet:flex-col">
+        <div className="w-full flex flex-col justify-between gap-y-7 tablet:gap-4">
           {music?.map((item: Music) => (
             <MusicItem
               key={item.music_id}
               id={item.music_id}
-              applicant={item.proposer.school_number + item.proposer.name}
+              applicant={`${item.proposer.school_number} ${item.proposer.name}`}
               likeCount={item.like_count}
               likeState={item.is_liked_by_user}
               musicImg={item.thumbnail_image_url}
