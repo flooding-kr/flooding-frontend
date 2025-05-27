@@ -36,11 +36,11 @@ function MusicHeader({ page }: Props) {
           <Music />
         </div>
         <p className="text-title3B text-black mobile:text-body2B">기상음악 신청</p>
-        {!page && (
+        {/* {page && (
           <Link href="/dormitory/music">
             <BigArrowRight color="#121212" />
           </Link>
-        )}
+        )} */}
       </div>
       <div className="flex items-center gap-6">
         <button
