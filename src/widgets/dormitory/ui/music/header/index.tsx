@@ -1,16 +1,21 @@
 'use client';
 
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 import BorderDropdown from '@/entities/dormitory/ui/BorderDropdown';
-import { Error, Music } from '@/shared/assets/icons';
+import { BigArrowRight, Error, Music } from '@/shared/assets/icons';
 import { OrderType } from '@/shared/types/music';
 import Portal from '@/shared/ui/Portal';
 import { useMusicTypeStore } from '@/widgets/dormitory/store/useMusicTypeStore';
 
 import MusicNotifyModal from '../notify';
 
-function MusicHeader() {
+interface Props {
+  page?: boolean;
+}
+
+function MusicHeader({ page }: Props) {
   const [selected, setSelected] = useState<string>('최신순');
   const [modal, setModal] = useState(false);
   const { setType } = useMusicTypeStore();
@@ -31,6 +36,11 @@ function MusicHeader() {
           <Music />
         </div>
         <p className="text-title3B text-black mobile:text-body2B">기상음악 신청</p>
+        {!page && (
+          <Link href="/dormitory/music">
+            <BigArrowRight color="#121212" />
+          </Link>
+        )}
       </div>
       <div className="flex items-center gap-6">
         <button
@@ -52,7 +62,7 @@ function MusicHeader() {
           items={['최신순', '좋아요 순']}
           onChange={setSelected}
           value={selected}
-          text="최신순"
+          text="좋아요 순"
         />
       </div>
     </header>

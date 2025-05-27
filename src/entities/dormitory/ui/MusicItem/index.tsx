@@ -53,11 +53,7 @@ export default function MusicItem({
   };
 
   return (
-    <Link
-      href={musicUrl}
-      target="_blank"
-      className="flex justify-between max-w-[606px] tablet:max-w-full w-full"
-    >
+    <Link href={musicUrl} target="_blank" className="flex justify-between w-full">
       <div className="flex items-center gap-6 mobile:gap-3 flex-1 min-w-0">
         <div className="relative w-20 h-20 mobile:w-[46px] mobile:h-[46px] shrink-0">
           <Image alt="썸네일" src={musicImg} fill className="rounded-lg object-fill" />
@@ -89,7 +85,7 @@ export default function MusicItem({
           }}
           type="button"
         >
-          <div className="w-10 h-10 mobile:w-4 mobile:h-4">
+          <div className="w-7 h-7 mobile:w-4 mobile:h-4">
             <Like state={like.liked} />
           </div>
           <p
@@ -112,7 +108,7 @@ export default function MusicItem({
             }}
             type="button"
           >
-            <div className="w-10 h-10 mobile:w-4 mobile:h-4">
+            <div className="w-7 h-7 mobile:w-4 mobile:h-4">
               <Trash color="#CE2020" />
             </div>
             <p className="text-body2R mobile:text-caption2M text-error">삭제</p>

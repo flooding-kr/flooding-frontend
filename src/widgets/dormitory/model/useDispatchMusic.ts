@@ -1,12 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
 import { toast } from 'react-toastify';
 
-import { getDate } from '@/entities/home/model/getDate';
-
-import { useFetchMusic } from './useFetchMusic';
 import { postMusic } from '../api/postMusic';
-import { useMusicTypeStore } from '../store/useMusicTypeStore';
 
 interface Props {
   music: string;
