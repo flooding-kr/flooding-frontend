@@ -25,6 +25,7 @@ export default function SignupForm() {
     handleSubmit,
     control,
     formState: { errors },
+    setValue,
     watch,
   } = useForm<FormType>();
 
@@ -104,7 +105,7 @@ export default function SignupForm() {
         />
 
         <SignupGenderToggle control={control} />
-        <SignupCheckbox control={control} />
+        <SignupCheckbox control={control} setValue={setValue} />
       </div>
 
       <div className="mt-20">
