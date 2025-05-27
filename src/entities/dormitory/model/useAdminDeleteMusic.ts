@@ -3,10 +3,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 
-import { getDate } from '@/entities/home/model/getDate';
-import { useFetchMusic } from '@/widgets/dormitory/model/useFetchMusic';
-import { useMusicTypeStore } from '@/widgets/dormitory/store/useMusicTypeStore';
-
 import { deleteAdminMusic } from '../api/deleteAdminMusic';
 
 interface Props {
