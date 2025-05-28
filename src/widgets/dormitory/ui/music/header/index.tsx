@@ -16,9 +16,10 @@ interface Props {
 }
 
 function MusicHeader({ page }: Props) {
-  const [selected, setSelected] = useState<string>('최신순');
+  const [selected, setSelected] = useState<string>('좋아요 순');
   const [modal, setModal] = useState(false);
   const { setType } = useMusicTypeStore();
+
   useEffect(() => {
     let type;
     if (selected === '최신순') {
@@ -36,11 +37,11 @@ function MusicHeader({ page }: Props) {
           <Music />
         </div>
         <p className="text-title3B text-black mobile:text-body2B">기상음악 신청</p>
-        {/* {page && (
-          <Link href="/dormitory/music">
+        {!page && (
+          <Link href="/dormitory/music" className="mobile:hidden">
             <BigArrowRight color="#121212" />
           </Link>
-        )} */}
+        )}
       </div>
       <div className="flex items-center gap-6">
         <button
@@ -62,7 +63,7 @@ function MusicHeader({ page }: Props) {
           items={['최신순', '좋아요 순']}
           onChange={setSelected}
           value={selected}
-          text="좋아요 순"
+          text={selected}
         />
       </div>
     </header>
