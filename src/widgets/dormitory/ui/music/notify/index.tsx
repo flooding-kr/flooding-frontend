@@ -12,7 +12,7 @@ function MusicNotifyModal({ onClose }: Props) {
           <div className="w-9 h-9 mobile:w-6 mobile:h-6">
             <Error color="#5E7EF3" />
           </div>
-          <p className="text-main-600 text-body2B mobile:text-body3B">안마의자 신청 공지사항</p>
+          <p className="text-main-600 text-body2B mobile:text-body3B">음악 신청 공지사항</p>
         </div>
         <button className="w-9 h-9 mobile:w-6 mobile:h-6" type="button" onClick={onClose}>
           <X />
@@ -23,7 +23,7 @@ function MusicNotifyModal({ onClose }: Props) {
           1. 기상 음악 순서는 신청 순서와는 별개로 사감선생님께서 정하십니다.
         </p>
         <p className="text-body2R text-gray-700 mobile:text-body3R">
-          2. 영어, 한국어, 일본어 이외의 언어가 포함되거나 과도한 욕설이 담긴 <br />
+          2. 영어, 한국어 이외의 언어가 포함되거나 과도한 욕설이 담긴 <br />
           음악은 삭제될 수 있습니다.
         </p>
         <p className="text-body2R text-gray-700 mobile:text-body3R">

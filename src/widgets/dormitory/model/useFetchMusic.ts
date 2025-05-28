@@ -2,8 +2,6 @@
 
 import { useQuery } from '@tanstack/react-query';
 
-import { Music } from '@/shared/types/music';
-
 import { getMusic } from '../api/getMusic';
 
 interface DataType {
