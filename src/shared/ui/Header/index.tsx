@@ -1,18 +1,17 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 import {
-  Hamburger,
   HeaderAttendance,
   HeaderClub,
   HeaderDormitory,
   HeaderHomebase,
   HeaderManager,
   HeaderNotification,
-  HeaderTotal,
 } from '@/shared/assets/icons';
 import userProfileImage from '@/shared/assets/jpg/userProfileImage.jpg';
 import { HeaderLogo } from '@/shared/assets/svg';
@@ -36,7 +35,6 @@ export default function Header() {
   ];
 
   const menuItems = [
-    { icon: HeaderTotal, label: '전체', path: '' },
     { icon: HeaderDormitory, label: '기숙사', path: 'dormitory' },
     { icon: HeaderHomebase, label: '홈베이스', path: 'homebase' },
     { icon: HeaderClub, label: '동아리', path: 'club' },
@@ -55,11 +53,13 @@ export default function Header() {
   }, []);
 
   return (
-    <div className="sticky top-0 flex justify-center w-full bg-main-600 z-50 mobile:z-[999]">
+    <div className="sticky top-0 flex justify-center w-full bg-main-600 z-50 mobile:z-[999] tablet:px-4 mobile:p-0">
       {/* Pc */}
-      <div className="flex flex-col w-full max-w-[1360px] my-6 gap-9 text-body1B text-gray-300 mobile:hidden">
+      <div className="flex flex-col w-full max-w-[1360px] my-6 gap-7 text-body2B text-gray-300 tablet:text-body2B mobile:hidden">
         <div className="flex justify-between items-center">
-          <HeaderLogo />
+          <Link href="/">
+            <HeaderLogo />
+          </Link>
           <div className="flex items-center gap-10">
             <div className="flex gap-6">
               {headerActions.map(({ icon: Icon, label, path }) => (
@@ -85,8 +85,8 @@ export default function Header() {
                 </button>
               ))}
             </div>
-            <div className="flex items-center gap-5">
-              <Image alt="profile" src={userProfileImage} className="w-8 h-8 rounded-full" />
+            <div className="flex items-center gap-3">
+              <Image alt="profile" src={userProfileImage} className="w-7 h-7 rounded-full" />
               <button
                 type="button"
                 onClick={() => router.push('/mypage')}

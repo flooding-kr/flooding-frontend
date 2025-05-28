@@ -3,8 +3,8 @@ import React from 'react';
 export default function HeaderLogo() {
   return (
     <svg
-      width="114"
-      height="44"
+      width="128"
+      height="49"
       viewBox="0 0 142 54"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
