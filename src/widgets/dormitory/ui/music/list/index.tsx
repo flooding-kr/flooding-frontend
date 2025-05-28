@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 import MusicItem from '@/entities/dormitory/ui/MusicItem';
