@@ -1,13 +1,11 @@
-import { useEffect } from 'react';
-
 import StudentItem from '@/entities/dormitory/ui/StudentItem';
 import { Error } from '@/shared/assets/icons';
 import userProfileImage from '@/shared/assets/jpg/userProfileImage.jpg';
-import { MassageType } from '@/shared/types/dormitory';
+import { DormitoryRankType } from '@/shared/types/dormitory';
 
 interface Props {
   type: 'selfStudy' | 'massage';
-  data: MassageType[];
+  data: DormitoryRankType[];
 }
 
 function ReservationList({ type, data }: Props) {
@@ -34,7 +32,7 @@ function ReservationList({ type, data }: Props) {
         >
           {hasData ? (
             <div className={containerClass}>
-              {data.map((item, idx) => (
+              {data?.map((item, idx) => (
                 <div key={item.student_number} className={itemClass}>
                   <StudentItem
                     type={type}

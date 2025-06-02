@@ -1,6 +1,10 @@
 import { Image } from './image';
 
-export interface MassageType {
+export interface ReservationType {
+  reservations: DormitoryRankType[];
+}
+
+export interface DormitoryRankType {
   id: string;
   student_number?: string;
   name: string;
