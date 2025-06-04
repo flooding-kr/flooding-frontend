@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
@@ -18,8 +19,8 @@ export const useSignin = () => {
       toast.success('로그인이 완료되었습니다.');
       router.push('/');
     },
-    onError: () => {
-      toast.error('로그인에 실패했습니다.');
+    onError: (err: AxiosError<{ error: string }>) => {
+      toast.error(err.response?.data.error);
     },
   });
 };
