@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 
 import { useModalPageStore } from '@/entities/signup/store/useStore';
@@ -27,8 +28,8 @@ export const useSignup = () => {
       toast.success('회원가입이 완료되었습니다.');
       setModalPage(1);
     },
-    onError: () => {
-      toast.error('회원가입에 실패했습니다.');
+    onError: (err: AxiosError<{ error: string }>) => {
+      toast.error(err.response?.data.error);
     },
   });
 };
