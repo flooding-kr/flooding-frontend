@@ -7,10 +7,10 @@ import { DormitoryData } from '@/shared/types/home';
 import { getMassage } from '../api/getMassage';
 
 export const useFetchMassage = () => {
-  const massage = useQuery<DormitoryData>({
+  const { data: massage } = useQuery<DormitoryData>({
     queryKey: ['massage'],
     queryFn: () => getMassage(),
   });
 
-  return massage.data;
+  return massage;
 };

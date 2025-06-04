@@ -5,8 +5,8 @@ import Tool from '@/shared/assets/icons/Tool';
 function Build() {
   return (
     <div
-      style={{ height: 'calc(100dvh - 180px)' }}
-      className="w-dvw flex justify-center items-center"
+      style={{ width: 'calc(100dvw-(100dvw-100%))', height: 'calc(100dvh - 180px)' }}
+      className="flex justify-center items-center"
     >
       <div className="flex flex-col items-center justify-center gap-[72px]">
         <Tool />

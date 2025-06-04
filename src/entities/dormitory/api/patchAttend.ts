@@ -5,7 +5,7 @@ interface Props {
 }
 
 async function patchAttend({ id }: Props) {
-  const response = await axios.patch(`/api/admin/self-study/attend`, { params: { id } });
+  const response = await axios.patch(`/api/admin/self-study/attend`, {}, { params: { id } });
   return response;
 }
 

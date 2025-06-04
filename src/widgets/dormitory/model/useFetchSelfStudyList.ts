@@ -1,19 +1,16 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
-import { MassageType } from '@/shared/types/dormitory';
+import { ReservationType } from '@/shared/types/dormitory';
 
 import { getSelfStudyList } from '../api/getSelfStudyList';
 
 export const useFetchSelfStudyList = () => {
-  const [selfStudyList, setSelfStudyList] = useState<MassageType[]>([]);
+  const { data: selfStudyList } = useQuery<ReservationType>({
+    queryKey: ['selfStudyRank'],
+    queryFn: () => getSelfStudyList(),
+  });
 
-  const fetchSelfStudyList = useCallback(async () => {
-    const { reservations } = await getSelfStudyList();
-
-    setSelfStudyList(reservations);
-  }, []);
-
-  return { selfStudyList, fetchSelfStudyList };
+  return { selfStudyList };
 };
