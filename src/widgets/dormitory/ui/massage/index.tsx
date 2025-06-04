@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { useFetchMassage } from '@/widgets/home/model/useFetchMassage';
 
@@ -9,17 +9,13 @@ import { useFetchMassageList } from '../../model/useFetchMassageList';
 
 function Massage() {
   const massage = useFetchMassage();
-  const { massageList, fetchMassageList } = useFetchMassageList();
-
-  useEffect(() => {
-    fetchMassageList();
-  }, []);
+  const { massageList } = useFetchMassageList();
 
   return (
     <div className="flex flex-1 flex-col self-stretch gap-8 w-full mobile:gap-6">
       <div className="flex flex-1 flex-col self-stretch gap-6 w-full mobile:gap-4">
         <MassageHeader />
-        <ReservationList type="massage" data={massageList} />
+        <ReservationList type="massage" data={massageList?.reservations ?? []} />
       </div>
       <MassageFooter
         activationTime="20:20"

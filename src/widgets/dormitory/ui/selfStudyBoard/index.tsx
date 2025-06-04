@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { useFetchSelfStudy } from '@/widgets/home/model/useFetchSelfStudy';
 
@@ -9,17 +9,13 @@ import ReservationList from '../reservationList';
 
 function SelfStudy() {
   const selfStudy = useFetchSelfStudy();
-  const { selfStudyList, fetchSelfStudyList } = useFetchSelfStudyList();
-
-  useEffect(() => {
-    fetchSelfStudyList();
-  }, []);
+  const { selfStudyList } = useFetchSelfStudyList();
 
   return (
     <div className="flex flex-1 flex-col self-stretch gap-8 w-full mobile:gap-6">
       <div className="flex flex-1 flex-col self-stretch gap-6 w-full mobile:gap-4">
         <SelfStudyHeader />
-        <ReservationList type="selfStudy" data={selfStudyList} />
+        <ReservationList type="selfStudy" data={selfStudyList?.reservations ?? []} />
       </div>
       <SelfStudyFooter
         activationTime="20:00"

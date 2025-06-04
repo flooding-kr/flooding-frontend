@@ -33,10 +33,10 @@ const checkApply = ({
     setText('신청하기');
   } else if (!isTimeActive) {
     setText(`${hour}시 ${minute}분 시작`);
-  } else if (isCountFull || available === 'IMPOSSIBLE') {
-    setText('신청 불가');
   } else if (available === 'APPLIED') {
     setText('신청 취소');
+  } else if (isCountFull || available === 'IMPOSSIBLE') {
+    setText('신청 불가');
   }
 };
 
