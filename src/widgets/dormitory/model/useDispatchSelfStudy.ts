@@ -9,7 +9,7 @@ function useDispatchSelfStudy() {
     mutationFn: () => postSelfStudy(),
     onSuccess: () => {
       toast.success('자습 신청에 성공하였습니다.');
-      queryClient.invalidateQueries({ queryKey: ['selfStudy'] });
+      queryClient.invalidateQueries({ queryKey: ['selfStudy', 'selfStudyRank'] });
     },
     onError: () => {
       toast.error('자습 신청에 실패하였습니다.');

@@ -6,6 +6,7 @@ import { Book, CheckBoxTrue } from '@/shared/assets/icons';
 import useUser from '@/shared/hooks/useUser';
 import { ApplyType } from '@/shared/types/home';
 import { Button } from '@/shared/ui';
+import CancelModal from '@/shared/ui/CancelModal';
 import useDeleteSelfStudy from '@/widgets/dormitory/model/useDeleteSelfStudy';
 import useDispatchSelfStudy from '@/widgets/dormitory/model/useDispatchSelfStudy';
 
@@ -23,9 +24,15 @@ function SelfStudyFooter({ activationTime, available, count, maxCount }: Props) 
   const { check, setCheck } = useCheckStore();
   const [isActive, setIsActive] = useState(false);
   const [text, setText] = useState('');
+  const [modal, setModal] = useState(false);
   const dormitoryAdmin =
     user?.roles?.includes('ROLE_DORMITORY_COUNCIL') ||
     user?.roles?.includes('ROLE_DORMITORY_TEACHER');
+
+  const onConfirm = () => {
+    deleteSelfStudy();
+    setModal(false);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -63,10 +70,19 @@ function SelfStudyFooter({ activationTime, available, count, maxCount }: Props) 
             text={text}
             closed={text === '신청 불가'}
             disabled={!isActive || deletePending || postPending}
-            onClick={text === '신청 취소' ? () => deleteSelfStudy() : () => postSelfStudy()}
+            onClick={text === '신청 취소' ? () => setModal(true) : () => postSelfStudy()}
           />
         </div>
       </div>
+      {modal && (
+        <CancelModal
+          checkText="신청 취소"
+          description={'정말로 자습을 취소하시겠습니까?\n 자습 취소 후에는 재신청이 불가능합니다.'}
+          onClick={onConfirm}
+          onClose={() => setModal(false)}
+          title="자습 신청 취소"
+        />
+      )}
     </footer>
   );
 }
