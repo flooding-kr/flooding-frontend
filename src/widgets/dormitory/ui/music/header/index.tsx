@@ -38,7 +38,7 @@ function MusicHeader({ page }: Props) {
         </div>
         <p className="text-title3B text-black mobile:text-body2B">기상음악 신청</p>
         {!page && (
-          <Link href="/dormitory/music" className="mobile:hidden">
+          <Link href="/dormitory/music" className="w-6 h-6 mobile:hidden">
             <BigArrowRight color="#121212" />
           </Link>
         )}

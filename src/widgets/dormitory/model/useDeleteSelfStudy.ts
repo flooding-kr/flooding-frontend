@@ -1,8 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 
-import { useFetchSelfStudy } from '@/widgets/home/model/useFetchSelfStudy';
-
 import { deleteSelfStudy } from '../api/deleteSelfStudy';
 
 function useDeleteSelfStudy() {

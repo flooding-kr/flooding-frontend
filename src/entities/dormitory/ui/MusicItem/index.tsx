@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Like, Trash } from '@/shared/assets/icons';
 import useUser from '@/shared/hooks/useUser';
+import CancelModal from '@/shared/ui/CancelModal';
 
 import { useAdminDeleteMusic } from '../../model/useAdminDeleteMusic';
 import { useChangeLike } from '../../model/useChangeLike';
@@ -33,6 +34,7 @@ export default function MusicItem({
   myMusic,
 }: Props) {
   const [like, setLike] = useState({ count: likeCount, liked: likeState });
+  const [modal, setModal] = useState(false);
   const { mutate: fetchLike } = useChangeLike();
   const { mutate: deleteMusic } = useDeleteMusic();
   const { mutate: deleteAdminMusic } = useAdminDeleteMusic({ id });
@@ -104,7 +106,7 @@ export default function MusicItem({
             onClick={e => {
               e.preventDefault();
               e.stopPropagation();
-              handleDeleteType();
+              setModal(true);
             }}
             type="button"
           >
@@ -115,6 +117,15 @@ export default function MusicItem({
           </button>
         )}
       </div>
+      {modal && (
+        <CancelModal
+          onClose={() => setModal(false)}
+          title="신청 음악 삭제"
+          description={'신청하신 음악을 삭제하시겠습니까?\n삭제 후에는 복구가 불가능합니다.'}
+          checkText="삭제"
+          onClick={handleDeleteType}
+        />
+      )}
     </Link>
   );
 }

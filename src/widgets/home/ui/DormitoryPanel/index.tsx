@@ -1,11 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { ApplyBoard } from '@/entities/home';
 import { useNotifyStore } from '@/entities/home/store/useNotifyStore';
 import { BigArrowRight, DormitoryIcon } from '@/shared/assets/icons';
+import CancelModal from '@/shared/ui/CancelModal';
 import Portal from '@/shared/ui/Portal';
 import useDeleteMassage from '@/widgets/dormitory/model/useDeleteMassage';
 import useDeleteSelfStudy from '@/widgets/dormitory/model/useDeleteSelfStudy';
@@ -18,7 +19,8 @@ import MassageNotifyModal from '../massageNotifyModal';
 import SelfStudyNotifyModal from '../selfStudyNotifyModal';
 
 function DormitoryPanel() {
-  const [isMobile, setIsMobile] = useState(false);
+  const [cancelMassage, setCancelMassage] = useState(false);
+  const [cancelSelfStudy, setCancelSelfStudy] = useState(false);
   const { type, modal, setModal } = useNotifyStore();
   const { mutate: postMassage } = useDispatchMassage();
   const { mutate: deleteMassage } = useDeleteMassage();
@@ -26,14 +28,6 @@ function DormitoryPanel() {
   const { mutate: deleteSelfStudy } = useDeleteSelfStudy();
   const selfStudy = useFetchSelfStudy();
   const massage = useFetchMassage();
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 640);
-
-    window.addEventListener('resize', handleResize);
-
-    return () => window.removeEventListener('resize', handleResize);
-  });
 
   return (
     <div className="w-full max-w-[1360px] flex flex-col gap-10 mobile:gap-4">
@@ -46,17 +40,19 @@ function DormitoryPanel() {
         </div>
         <Link href="/dormitory" className="flex items-center gap-5 mobile:gap-2">
           <p className="text-body1B text-gray-600 mobile:text-body3R">더보기</p>
-          <BigArrowRight isMobile={isMobile} />
+          <div className="w-6 h-6 mobile:w-4 mobile:h-4">
+            <BigArrowRight />
+          </div>
         </Link>
       </header>
-      <div className="flex flex-1 gap-6 tablet:flex-col mobile:gap-4">
+      <div className="flex flex-1 gap-6 laptop:flex-col mobile:gap-4">
         <ApplyBoard
           title="자습 신청"
           count={selfStudy?.current_count ?? 0}
           maxCount={selfStudy?.limit ?? 0}
           activationTime="20:00"
           onClick={
-            selfStudy?.status === 'APPLIED' ? () => deleteSelfStudy() : () => postSelfStudy()
+            selfStudy?.status === 'APPLIED' ? () => setCancelSelfStudy(true) : () => postSelfStudy()
           }
           available={selfStudy?.status || 'IMPOSSIBLE'}
         />
@@ -65,7 +61,9 @@ function DormitoryPanel() {
           count={massage?.current_count ?? 0}
           maxCount={massage?.limit ?? 0}
           activationTime="20:20"
-          onClick={massage?.status === 'APPLIED' ? () => deleteMassage() : () => postMassage()}
+          onClick={
+            massage?.status === 'APPLIED' ? () => setCancelMassage(true) : () => postMassage()
+          }
           available={massage?.status || 'IMPOSSIBLE'}
         />
       </div>
@@ -73,6 +71,32 @@ function DormitoryPanel() {
         <Portal onClose={() => setModal(false)}>
           {type === '자습 신청' ? <SelfStudyNotifyModal /> : <MassageNotifyModal />}
         </Portal>
+      )}
+      {cancelMassage && (
+        <CancelModal
+          checkText="신청 취소"
+          description={
+            '정말로 안마의자를 취소하시겠습니까?\n 안마의자 취소 후에는 재신청이 불가능합니다.'
+          }
+          onClick={() => {
+            setCancelMassage(false);
+            deleteMassage();
+          }}
+          onClose={() => setCancelMassage(false)}
+          title="안마의자 신청 취소"
+        />
+      )}
+      {cancelSelfStudy && (
+        <CancelModal
+          checkText="신청 취소"
+          description={'정말로 자습을 취소하시겠습니까?\n 자습 취소 후에는 재신청이 불가능합니다.'}
+          onClick={() => {
+            setCancelSelfStudy(false);
+            deleteSelfStudy();
+          }}
+          onClose={() => setCancelSelfStudy(false)}
+          title="자습 신청 취소"
+        />
       )}
     </div>
   );

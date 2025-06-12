@@ -10,6 +10,8 @@ export const useFetchMassage = () => {
   const { data: massage } = useQuery<DormitoryData>({
     queryKey: ['massage'],
     queryFn: () => getMassage(),
+    staleTime: 0,
+    gcTime: 0,
   });
 
   return massage;

@@ -1,8 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 
-import { useFetchMassage } from '@/widgets/home/model/useFetchMassage';
-
 import { deleteMassage } from '../api/deleteMassage';
 
 function useDeleteMassage() {
