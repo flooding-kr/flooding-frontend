@@ -9,7 +9,7 @@ function useDeleteSelfStudy() {
   return useMutation({
     mutationFn: () => deleteSelfStudy(),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['selfStudy', 'selfStudyRank'] });
+      queryClient.invalidateQueries({ queryKey: ['selfStudy'] });
       toast.success('자습신청 삭제에 성공하였습니다.');
     },
     onError: () => {

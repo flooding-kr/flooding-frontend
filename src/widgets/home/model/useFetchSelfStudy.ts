@@ -10,6 +10,8 @@ export const useFetchSelfStudy = () => {
   const selfStudy = useQuery<DormitoryData>({
     queryKey: ['selfStudy'],
     queryFn: () => getSelfStudy(),
+    staleTime: 0,
+    gcTime: 0,
   });
 
   return selfStudy.data;
