@@ -26,8 +26,8 @@ function AllClubListHeader() {
   }, [clubType]);
 
   return (
-    <header className="w-full flex justify-between">
-      <p className="text-title3B text-black">동아리 목록</p>
+    <header className="w-full flex justify-between laptop:flex-col laptop:gap-4 laptop:justify-normal">
+      <p className="text-title3B text-black laptop:text-body2B">동아리 목록</p>
       <FilterContainer
         options={['자율동아리', '전공동아리', '취업동아리']}
         onChange={value => setClubType(value)}

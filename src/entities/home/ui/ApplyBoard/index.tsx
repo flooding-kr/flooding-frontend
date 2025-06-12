@@ -46,7 +46,7 @@ export default function ApplyBoard({
   }, [activationTime, available, count, maxCount]);
 
   return (
-    <section className="flex-1 bg-white rounded-lg px-12 py-8 w-full max-w-[668px] max-h-[305px] tablet:max-w-full mobile:px-5 mobile:py-4">
+    <section className="flex-1 bg-white rounded-lg px-12 py-8 w-full max-w-[668px] max-h-[305px] laptop:max-w-full mobile:px-5 mobile:py-4">
       <div className="flex flex-col gap-9 mobile:gap-5">
         <div className="flex justify-between">
           <p className="text-body1B text-center text-gray-600 mobile:text-body3B">{title}</p>

@@ -22,7 +22,7 @@ function ReservationList({ type, data }: Props) {
 
   return (
     <div
-      className={`w-[1360px] bg-white px-7 pb-6 rounded-lg tablet:w-full mobile:px-2 mobile:py-3
+      className={`w-[1360px] bg-white px-7 pb-6 rounded-lg laptop:w-full mobile:px-2 mobile:py-3
         ${type === 'selfStudy' ? 'h-[498px] mobile:h-[264px]' : 'h-[182px] mobile:h-[152px]'}`}
     >
       <div className="relative h-full overflow-visible">

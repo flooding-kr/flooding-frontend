@@ -26,8 +26,8 @@ export default function FilterContainer<T extends string | number>({
 
   return (
     <div className="flex items-center">
-      <p className="mr-2 text-body2R text-main-600 tablet:m-0">{title}</p>
-      <div className="flex gap-4 tablet:gap-2">
+      <p className="mr-2 text-body2R text-main-600 laptop:m-0">{title}</p>
+      <div className="flex gap-4 laptop:gap-2">
         {options.map(option => (
           <Tag
             key={option.toString()}
