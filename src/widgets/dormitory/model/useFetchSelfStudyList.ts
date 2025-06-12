@@ -8,7 +8,7 @@ import { getSelfStudyList } from '../api/getSelfStudyList';
 
 export const useFetchSelfStudyList = () => {
   const { data: selfStudyList } = useQuery<ReservationType>({
-    queryKey: ['selfStudyRank', 'selfStudy'],
+    queryKey: ['selfStudyRank'],
     queryFn: () => getSelfStudyList(),
     staleTime: 0,
     gcTime: 0,

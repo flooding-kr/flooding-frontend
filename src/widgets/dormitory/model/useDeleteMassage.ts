@@ -10,6 +10,7 @@ function useDeleteMassage() {
     mutationFn: () => deleteMassage(),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['massage'] });
+      queryClient.invalidateQueries({ queryKey: ['massageRank'] });
       toast.success('안마의자 삭제에 성공하였습니다.');
     },
     onError: () => {

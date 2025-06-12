@@ -10,6 +10,7 @@ function useDispatchMassage() {
     mutationFn: () => postMassage(),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['massage'] });
+      queryClient.invalidateQueries({ queryKey: ['massageRank'] });
       toast.success('안마의자 신청에 성공하였습니다.');
     },
     onError: () => {
