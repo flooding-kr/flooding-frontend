@@ -1,7 +1,4 @@
-import axios from 'axios';
 import { NextRequest, NextResponse } from 'next/server';
-
-import isValidToken from './shared/libs/is-vaild-token';
 
 export async function middleware(request: NextRequest) {
   const accessToken = request.cookies.get('accessToken')?.value;
@@ -11,57 +8,43 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/signin', request.url));
   }
 
-  const { isAccessTokenValid, isRefreshTokenValid } = isValidToken({
-    accesstoken: accessToken,
-    refreshtoken: refreshToken,
-  });
-
-  if (!isRefreshTokenValid) {
-    return NextResponse.redirect(new URL('/signin', request.url));
-  }
-
-  if (!isAccessTokenValid) {
+  if (!accessToken) {
     try {
-      const response = await axios.patch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/auth/re-issue`,
-        {},
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'Refresh-Token': `Bearer ${refreshToken}`,
-          },
-          withCredentials: true,
-        }
-      );
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/re-issue`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Refresh-Token': `Bearer ${refreshToken}`,
+        },
+        credentials: 'include',
+      });
 
-      if (response.status !== 200) {
+      if (!res.ok) {
         return NextResponse.redirect(new URL('/signin', request.url));
       }
 
-      const newAccessToken = response.data.access_token;
-      const newRefreshToken = response.data.refresh_token;
-      const accessTokenExpires = new Date(`${response.data.access_token_expired_at}Z`);
-      const refreshTokenExpires = new Date(`${response.data.refresh_token_expired_at}Z`);
+      const data = await res.json();
 
-      const res = NextResponse.next();
+      const response = NextResponse.next();
 
-      res.cookies.set('accessToken', newAccessToken, {
+      response.cookies.set('accessToken', data.access_token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        expires: accessTokenExpires,
+        expires: new Date(`${data.access_token_expired_at}Z`),
         sameSite: 'strict',
       });
 
-      res.cookies.set('refreshToken', newRefreshToken, {
+      response.cookies.set('refreshToken', data.refresh_token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        expires: refreshTokenExpires,
+        expires: new Date(`${data.refresh_token_expired_at}Z`),
         sameSite: 'strict',
       });
 
-      return res;
+      return response;
     } catch (err) {
       console.error('토큰 재발급 실패:', err);
+      return NextResponse.redirect(new URL('/signin', request.url));
     }
   }
 

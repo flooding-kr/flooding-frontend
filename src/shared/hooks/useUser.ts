@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { toast } from 'react-toastify';
 
 import { useUserStore } from '../stores/useUserStore';
 
