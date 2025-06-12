@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
 
 import { ApplyBoard } from '@/entities/home';
 import { useNotifyStore } from '@/entities/home/store/useNotifyStore';
@@ -18,7 +17,6 @@ import MassageNotifyModal from '../massageNotifyModal';
 import SelfStudyNotifyModal from '../selfStudyNotifyModal';
 
 function DormitoryPanel() {
-  const [isMobile, setIsMobile] = useState(false);
   const { type, modal, setModal } = useNotifyStore();
   const { mutate: postMassage } = useDispatchMassage();
   const { mutate: deleteMassage } = useDeleteMassage();
@@ -26,14 +24,6 @@ function DormitoryPanel() {
   const { mutate: deleteSelfStudy } = useDeleteSelfStudy();
   const selfStudy = useFetchSelfStudy();
   const massage = useFetchMassage();
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 640);
-
-    window.addEventListener('resize', handleResize);
-
-    return () => window.removeEventListener('resize', handleResize);
-  });
 
   return (
     <div className="w-full max-w-[1360px] flex flex-col gap-10 mobile:gap-4">
@@ -46,10 +36,12 @@ function DormitoryPanel() {
         </div>
         <Link href="/dormitory" className="flex items-center gap-5 mobile:gap-2">
           <p className="text-body1B text-gray-600 mobile:text-body3R">더보기</p>
-          <BigArrowRight isMobile={isMobile} />
+          <div className="w-6 h-6 mobile:w-4 mobile:h-4">
+            <BigArrowRight />
+          </div>
         </Link>
       </header>
-      <div className="flex flex-1 gap-6 tablet:flex-col mobile:gap-4">
+      <div className="flex flex-1 gap-6 laptop:flex-col mobile:gap-4">
         <ApplyBoard
           title="자습 신청"
           count={selfStudy?.current_count ?? 0}
