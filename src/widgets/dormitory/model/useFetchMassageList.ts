@@ -10,6 +10,8 @@ export const useFetchMassageList = () => {
   const { data: massageList } = useQuery<ReservationType>({
     queryKey: ['massageRank'],
     queryFn: () => getMassageList(),
+    staleTime: 0,
+    gcTime: 0,
   });
 
   return { massageList };

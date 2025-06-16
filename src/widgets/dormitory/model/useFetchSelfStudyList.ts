@@ -10,6 +10,8 @@ export const useFetchSelfStudyList = () => {
   const { data: selfStudyList } = useQuery<ReservationType>({
     queryKey: ['selfStudyRank'],
     queryFn: () => getSelfStudyList(),
+    staleTime: 0,
+    gcTime: 0,
   });
 
   return { selfStudyList };
