@@ -31,7 +31,7 @@ function RecruitmentCard({ recruiting, applicant, type, clubId }: Props) {
   };
 
   return (
-    <aside className="sticky top-[298px] w-[232px] h-fit bg-white rounded-lg px-4 py-6 self-start">
+    <aside className="sticky top-[298px] w-[232px] h-fit bg-white rounded-lg px-4 py-6 self-start laptop:hidden">
       <div className="flex flex-col items-center gap-10 w-[200px]">
         <div className="border-[1px] border-main-600 border-solid rounded-lg flex justify-center items-center gap-3 px-3 py-2">
           <HeaderClub mobile isSelected />

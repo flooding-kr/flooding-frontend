@@ -23,7 +23,7 @@ export default function ProfileContainer({ src, stuName, stuNum, mypage }: Props
       <section
         className={`flex w-full px-12 py-9 rounded-lg bg-white place-items-center ${
           !mypage
-            ? 'tablet:hidden flex-col justify-between max-w-[296px] '
+            ? 'laptop:hidden flex-col justify-between max-w-[296px] '
             : 'gap-14 mobile:gap-10 relative '
         }`}
       >

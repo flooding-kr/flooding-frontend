@@ -8,7 +8,7 @@ export default function OverviewPanel() {
 
   return (
     <div className=" max-w-[1360px] w-full flex flex-1 gap-4 justify-center mobile:flex-col mobile:items-center">
-      <div className="w-full flex gap-4 tablet:flex-col">
+      <div className="w-full flex gap-4 laptop:flex-col">
         <ScheduleBoard />
         <MealBoard />
       </div>

@@ -62,7 +62,8 @@ const config: Config = {
       },
     },
     screens: {
-      tablet: { max: '1360px' },
+      laptop: { max: '1360px' },
+      tablet: { max: '1050px' },
       mobile: { max: '640px' },
     },
   },

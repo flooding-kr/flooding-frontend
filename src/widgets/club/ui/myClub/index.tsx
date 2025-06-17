@@ -16,17 +16,19 @@ function MyClub() {
   }, []);
 
   return (
-    <section className="flex flex-col gap-6">
+    <section className="flex flex-col gap-6 mobile:gap-4">
       <MyClubHeader />
       {!Array.isArray(myClub) || myClub.length === 0 ? (
-        <div className="w-full flex flex-col items-center gap-6 py-[92px]">
-          <div className="w-[60px] h-[60px]">
+        <div className="w-full flex flex-col items-center gap-6 py-[92px] mobile:py-12">
+          <div className="w-[60px] h-[60px] mobile:w-[36px] mobile:h-[36px]">
             <Error color="#BDBDBD" />
           </div>
-          <span className="text-title1M text-gray-400">아직 동아리가 없습니다...</span>
+          <span className="text-title1M text-gray-400 laptop:text-body1R">
+            아직 동아리가 없습니다...
+          </span>
         </div>
       ) : (
-        <ClubList clubs={myClub} />
+        <ClubList clubs={myClub} type="my" />
       )}
     </section>
   );
