@@ -13,8 +13,12 @@ export async function POST(request: Request) {
   try {
     const response = await apiClient.post('/auth/sign-in', body);
 
-    const accessTokenExpires = new Date(`${response.data.access_token_expired_at}Z`);
-    const refreshTokenExpires = new Date(`${response.data.refresh_token_expired_at}Z`);
+    const accessTokenExpires = new Date(
+      new Date(`${response.data.access_token_expired_at}`).toUTCString()
+    );
+    const refreshTokenExpires = new Date(
+      new Date(`${response.data.refresh_token_expired_at}`).toUTCString()
+    );
 
     const res = NextResponse.json(response.data);
 
