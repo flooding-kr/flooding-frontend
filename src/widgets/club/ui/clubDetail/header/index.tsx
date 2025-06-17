@@ -8,9 +8,11 @@ import DetailModal from './detailModal';
 interface Props {
   name: string;
   id: string;
+  isMember: boolean;
+  isLeader: boolean;
 }
 
-function ClubDetailHeader({ name, id }: Props) {
+function ClubDetailHeader({ name, id, isMember, isLeader }: Props) {
   const [modal, setModal] = useState<boolean>(false);
 
   return (
@@ -21,12 +23,15 @@ function ClubDetailHeader({ name, id }: Props) {
         </Link>
         <p className="text-title2M text-black">{name}</p>
       </div>
-      <div className="relative">
-        {modal && <DetailModal id={id} />}
-        <button type="button" onClick={() => setModal(!modal)}>
-          <KebabMenu />
-        </button>
-      </div>
+      {isMember ||
+        (isLeader && (
+          <div className="relative flex items-center">
+            {modal && <DetailModal id={id} isLeader={isLeader} />}
+            <button type="button" onClick={() => setModal(!modal)}>
+              <KebabMenu />
+            </button>
+          </div>
+        ))}
     </header>
   );
 }

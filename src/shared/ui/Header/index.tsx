@@ -53,9 +53,9 @@ export default function Header() {
   }, []);
 
   return (
-    <div className="sticky top-0 flex justify-center w-full bg-main-600 z-50 mobile:z-[999] tablet:px-4 mobile:p-0">
+    <div className="sticky top-0 flex justify-center w-full bg-main-600 z-50 mobile:z-[999] laptop:px-4 mobile:p-0">
       {/* Pc */}
-      <div className="flex flex-col w-full max-w-[1360px] my-6 gap-7 text-body2B text-gray-300 tablet:text-body2B mobile:hidden">
+      <div className="flex flex-col w-full max-w-[1360px] my-6 gap-7 text-body2B text-gray-300 laptop:text-body2B mobile:hidden">
         <div className="flex justify-between items-center">
           <Link href="/">
             <HeaderLogo />

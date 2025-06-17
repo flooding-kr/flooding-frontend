@@ -37,3 +37,5 @@ export { default as Check } from './Check';
 export { default as Massage } from './Massage';
 export { default as Music } from './Music';
 export { default as Admin } from './Admin';
+export { default as Tool } from './Tool';
+export { default as Write } from './Write';

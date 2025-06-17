@@ -46,12 +46,12 @@ export default function MealBoard() {
   };
 
   return (
-    <section className="bg-white rounded-lg px-8 py-6 w-full h-[418px] flex flex-col mobile:min-h-[303px] mobile:h-fit mobile:p-3 mobile:w-full tablet:min-w-[300px] tablet:max-w-full">
+    <section className="bg-white rounded-lg px-8 py-6 w-full h-[418px] flex flex-col mobile:min-h-[303px] mobile:h-fit mobile:p-3 mobile:w-full laptop:min-w-[300px] laptop:max-w-full">
       <div className="flex flex-col gap-2 flex-1 mobile:gap-4">
         <div className="flex flex-col gap-6 flex-1 mobile:gap-4">
           <div className="flex flex-col gap-6 mobile:gap-[13px]">
             <header className="w-full flex justify-between">
-              <p className="text-body1B text-black tablet:text-body2B mobile:text-body3B">급식</p>
+              <p className="text-body1B text-black laptop:text-body2B mobile:text-body3B">급식</p>
               <div className="w-[200px] flex items-center justify-between mobile:justify-normal mobile:w-[170px] mobile:gap-3">
                 <button
                   type="button"
@@ -60,7 +60,7 @@ export default function MealBoard() {
                 >
                   <ArrowLeft color="#121212" />
                 </button>
-                <div className="text-body2R text-black tablet:text-body3R mobile:text-caption1R">
+                <div className="text-body2R text-black laptop:text-body3R mobile:text-caption1R">
                   {date.year}.{String(date.month).padStart(2, '0')}.
                   {String(date.day).padStart(2, '0')} ({weekArr[date.weekday]})
                 </div>
@@ -78,14 +78,14 @@ export default function MealBoard() {
                 <button
                   key={item}
                   type="button"
-                  className={`px-12 py-4 w-[33%] mobile:flex mobile:justify-center mobile:items-center tablet:px-[24px] tablet:py-3 mobile:py-3 mobile:max-w-[28%] rounded-lg transition-colors duration-300 ease-in-out ${
+                  className={`px-12 py-4 w-[33%] mobile:flex mobile:justify-center mobile:items-center laptop:px-[24px] laptop:py-3 mobile:py-3 mobile:max-w-[28%] rounded-lg transition-colors duration-300 ease-in-out ${
                     dailyMeal === idx && 'bg-main-600'
                   }`}
                   disabled={dailyMeal === idx}
                   onClick={() => handleMealChange(idx)}
                 >
                   <p
-                    className={`text-body2B tablet:text-body3B mobile:text-caption1B ${dailyMeal === idx ? 'text-white' : 'text-gray-700'}`}
+                    className={`text-body2B laptop:text-body3B mobile:text-caption1B ${dailyMeal === idx ? 'text-white' : 'text-gray-700'}`}
                   >
                     {item}
                   </p>
@@ -93,7 +93,7 @@ export default function MealBoard() {
               ))}
             </div>
           </div>
-          <div className="flex-1 w-full h-full flex justify-center items-center bg-gray-100 rounded-lg tablet:justify-between">
+          <div className="flex-1 w-full h-full flex justify-center items-center bg-gray-100 rounded-lg laptop:justify-between">
             {meal?.menu && !(meal.menu.length === 0) ? (
               <div className="flex flex-wrap gap-3 w-full h-full justify-start px-[30px] py-6 mobile:p-4">
                 {meal.menu.map(dish => (

@@ -16,9 +16,9 @@ function MusicList() {
   const music = useFetchMusic({ date: currentDate, type });
 
   return (
-    <div className="w-[1360px] h-full text- bg-white flex flex-col px-7 py-6 overflow-y-auto hidden-scrollbar rounded-lg tablet:w-full mobile:px-3 mobile:py-4">
+    <div className="w-[1360px] h-full text- bg-white flex flex-col px-7 py-6 overflow-y-auto hidden-scrollbar rounded-lg laptop:w-full mobile:px-3 mobile:py-4">
       {music?.length ? (
-        <div className="w-full flex flex-col justify-between gap-y-7 tablet:gap-4">
+        <div className="w-full flex flex-col justify-between gap-y-7 laptop:gap-4">
           {music?.map((item: Music) => (
             <MusicItem
               key={item.music_id}

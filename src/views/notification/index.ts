@@ -1,1 +1,1 @@
-export { default as Notification } from './ui/notification';
+export { default as Notification } from './ui';
