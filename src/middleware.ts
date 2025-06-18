@@ -33,22 +33,22 @@ export async function middleware(request: NextRequest) {
 
       response.cookies.set('accessToken', res.data.access_token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        expires: new Date(new Date(`${res.data.access_token_expired_at}`).toUTCString()),
+        secure: !!process.env.NODE_ENV,
+        expires: new Date(`${res.data.access_token_expired_at}+09:00`),
         sameSite: 'strict',
       });
 
       response.cookies.set('refreshToken', res.data.refresh_token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        expires: new Date(new Date(`${res.data.refresh_token_expired_at}`).toUTCString()),
+        secure: !!process.env.NODE_ENV,
+        expires: new Date(`${res.data.refresh_token_expired_at}+09:00`),
         sameSite: 'strict',
       });
 
       response.cookies.set('user', encodedUser, {
         httpOnly: false,
-        secure: process.env.NODE_ENV === 'production',
-        expires: new Date(new Date(`${res.data.access_token_expired_at}`).toUTCString()),
+        secure: !!process.env.NODE_ENV,
+        expires: new Date(`${res.data.access_token_expired_at}+09:00`),
         sameSite: 'strict',
       });
       return response;
