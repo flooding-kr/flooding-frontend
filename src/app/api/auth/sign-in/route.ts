@@ -14,10 +14,10 @@ export async function POST(request: Request) {
     const response = await apiClient.post('/auth/sign-in', body);
 
     const accessTokenExpires = new Date(
-      new Date(`${response.data.access_token_expired_at}`).toUTCString()
+      new Date(`${response.data.access_token_expired_at}+09:00`).toISOString()
     );
     const refreshTokenExpires = new Date(
-      new Date(`${response.data.refresh_token_expired_at}`).toUTCString()
+      new Date(`${response.data.refresh_token_expired_at}+09:00`).toISOString()
     );
 
     const res = NextResponse.json(response.data);
