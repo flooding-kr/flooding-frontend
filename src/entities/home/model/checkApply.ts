@@ -6,7 +6,8 @@ interface Props {
   activationTime: string;
   available: ApplyType;
   setText: (type: string) => void;
-  setIsActive: (active: boolean) => void;
+  setIsTimeActive: (active: boolean) => void;
+  setIsCountFull: (active: boolean) => void;
 }
 
 const checkApply = ({
@@ -14,7 +15,8 @@ const checkApply = ({
   count,
   maxCount,
   available,
-  setIsActive,
+  setIsTimeActive,
+  setIsCountFull,
   setText,
 }: Props) => {
   const currentTime = new Intl.DateTimeFormat('kr', {
@@ -27,7 +29,8 @@ const checkApply = ({
   const isTimeActive = currentTime >= activationTime && currentTime < '21:00';
   const isCountFull = count === maxCount;
 
-  setIsActive(isTimeActive && !isCountFull);
+  setIsTimeActive(isTimeActive);
+  setIsCountFull(!isCountFull);
 
   if (available === 'POSSIBLE') {
     setText('신청하기');
