@@ -62,7 +62,7 @@ function MassageFooter({ count, maxCount, activationTime, available }: Props) {
           description={
             '정말로 안마의자를 취소하시겠습니까?\n 안마의자 취소 후에는 재신청이 불가능합니다.'
           }
-          onClick={() => onConfirm()}
+          onClick={onConfirm}
           onClose={() => setModal(false)}
           title="안마의자 신청 취소"
         />
