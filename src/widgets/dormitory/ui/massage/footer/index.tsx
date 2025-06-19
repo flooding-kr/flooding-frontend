@@ -60,7 +60,9 @@ function MassageFooter({ count, maxCount, activationTime, available }: Props) {
             type="button"
             text={text}
             closed={text === '신청 불가'}
-            disabled={!isTimeActive || isCountFull || deletePending || postPending}
+            disabled={
+              !isTimeActive || (text !== '신청 취소' && isCountFull) || deletePending || postPending
+            }
             onClick={text === '신청 취소' ? () => setModal(true) : () => postMassage()}
           />
         </div>

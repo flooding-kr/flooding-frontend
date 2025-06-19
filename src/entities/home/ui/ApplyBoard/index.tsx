@@ -80,7 +80,7 @@ export default function ApplyBoard({
         </div>
         <Button
           text={text}
-          disabled={!isTimeActive || isCountFull || isPending}
+          disabled={!isTimeActive || (text !== '신청 취소' && isCountFull) || isPending}
           onClick={onClick}
           type="button"
           closed={text === '신청 불가'}
