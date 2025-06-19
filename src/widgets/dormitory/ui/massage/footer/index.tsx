@@ -16,7 +16,8 @@ interface Props {
 }
 
 function MassageFooter({ count, maxCount, activationTime, available }: Props) {
-  const [isActive, setIsActive] = useState(false);
+  const [isTimeActive, setIsTimeActive] = useState(false);
+  const [isCountFull, setIsCountFull] = useState(false);
   const [text, setText] = useState('');
   const [modal, setModal] = useState(false);
   const { mutate: postMassage, isPending: postPending } = useDispatchMassage();
@@ -29,7 +30,15 @@ function MassageFooter({ count, maxCount, activationTime, available }: Props) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      checkApply({ activationTime, available, count, maxCount, setIsActive, setText });
+      checkApply({
+        activationTime,
+        available,
+        count,
+        maxCount,
+        setIsTimeActive,
+        setIsCountFull,
+        setText,
+      });
     }, 1000);
 
     return () => clearInterval(interval);
@@ -51,7 +60,9 @@ function MassageFooter({ count, maxCount, activationTime, available }: Props) {
             type="button"
             text={text}
             closed={text === '신청 불가'}
-            disabled={!isActive || deletePending || postPending}
+            disabled={
+              !isTimeActive || (text !== '신청 취소' && isCountFull) || deletePending || postPending
+            }
             onClick={text === '신청 취소' ? () => setModal(true) : () => postMassage()}
           />
         </div>
