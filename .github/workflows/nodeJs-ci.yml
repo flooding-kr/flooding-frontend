@@ -7,8 +7,8 @@ on:
   push:
     branches: ['develop']
   pull_request:
-    branches: ['*']
-
+    branches: ['develop']
+    
 jobs:
   build:
     runs-on: ubuntu-latest
