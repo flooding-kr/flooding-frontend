@@ -28,7 +28,8 @@ export default function ApplyBoard({
   onClick,
   isPending,
 }: Props) {
-  const [isActive, setIsActive] = useState(false);
+  const [isTimeActive, setIsTimeActive] = useState(false);
+  const [isCountFull, setIsCountFull] = useState(false);
   const { setModal, setType } = useNotifyStore();
   const [text, setText] = useState('');
 
@@ -39,7 +40,15 @@ export default function ApplyBoard({
 
   useEffect(() => {
     const interval = setInterval(() => {
-      checkApply({ activationTime, available, count, maxCount, setIsActive, setText });
+      checkApply({
+        activationTime,
+        available,
+        count,
+        maxCount,
+        setIsTimeActive,
+        setIsCountFull,
+        setText,
+      });
     }, 1000);
 
     return () => clearInterval(interval);
@@ -71,7 +80,7 @@ export default function ApplyBoard({
         </div>
         <Button
           text={text}
-          disabled={!isActive || isPending}
+          disabled={!isTimeActive || (text !== '신청 취소' && isCountFull) || isPending}
           onClick={onClick}
           type="button"
           closed={text === '신청 불가'}

@@ -22,7 +22,8 @@ function SelfStudyFooter({ activationTime, available, count, maxCount }: Props) 
   const { mutate: postSelfStudy, isPending: postPending } = useDispatchSelfStudy();
   const { mutate: deleteSelfStudy, isPending: deletePending } = useDeleteSelfStudy();
   const { check, setCheck } = useCheckStore();
-  const [isActive, setIsActive] = useState(false);
+  const [isTimeActive, setIsTimeActive] = useState(false);
+  const [isCountFull, setIsCountFull] = useState(false);
   const [text, setText] = useState('');
   const [modal, setModal] = useState(false);
   const dormitoryAdmin =
@@ -36,7 +37,15 @@ function SelfStudyFooter({ activationTime, available, count, maxCount }: Props) 
 
   useEffect(() => {
     const interval = setInterval(() => {
-      checkApply({ activationTime, available, count, maxCount, setIsActive, setText });
+      checkApply({
+        activationTime,
+        available,
+        count,
+        maxCount,
+        setIsTimeActive,
+        setIsCountFull,
+        setText,
+      });
     }, 1000);
 
     return () => clearInterval(interval);
@@ -69,7 +78,9 @@ function SelfStudyFooter({ activationTime, available, count, maxCount }: Props) 
             type="button"
             text={text}
             closed={text === '신청 불가'}
-            disabled={!isActive || deletePending || postPending}
+            disabled={
+              !isTimeActive || (text !== '신청 취소' && isCountFull) || deletePending || postPending
+            }
             onClick={text === '신청 취소' ? () => setModal(true) : () => postSelfStudy()}
           />
         </div>
