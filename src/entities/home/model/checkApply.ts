@@ -30,7 +30,7 @@ const checkApply = ({
   const isCountFull = count === maxCount;
 
   setIsTimeActive(isTimeActive);
-  setIsCountFull(!isCountFull);
+  setIsCountFull(isCountFull);
 
   if (available === 'POSSIBLE') {
     setText('신청하기');
