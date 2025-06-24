@@ -49,7 +49,17 @@ function SelfStudyFooter({ activationTime, available, count, maxCount }: Props) 
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [activationTime, available, count, maxCount]);
+  }, [
+    activationTime,
+    available,
+    count,
+    maxCount,
+    isCountFull,
+    isTimeActive,
+    text,
+    deletePending,
+    postPending,
+  ]);
   return (
     <footer className={`flex flex-1 ${dormitoryAdmin ? 'justify-between' : 'justify-end'} w-full`}>
       {dormitoryAdmin && (
@@ -79,7 +89,12 @@ function SelfStudyFooter({ activationTime, available, count, maxCount }: Props) 
             text={text}
             closed={text === '신청 불가'}
             disabled={
-              !isTimeActive || (text !== '신청 취소' && isCountFull) || deletePending || postPending
+              maxCount === 0 ||
+              !isTimeActive ||
+              (text !== '신청 취소' && isCountFull) ||
+              deletePending ||
+              postPending ||
+              text === '신청 불가'
             }
             onClick={text === '신청 취소' ? () => setModal(true) : () => postSelfStudy()}
           />

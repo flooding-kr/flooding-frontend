@@ -52,7 +52,7 @@ export default function ApplyBoard({
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [activationTime, available, count, maxCount]);
+  }, [activationTime, available, count, maxCount, isCountFull, isTimeActive, text, isPending]);
 
   return (
     <section className="flex-1 bg-white rounded-lg px-12 py-8 w-full max-w-[668px] max-h-[305px] laptop:max-w-full mobile:px-5 mobile:py-4">
@@ -80,7 +80,13 @@ export default function ApplyBoard({
         </div>
         <Button
           text={text}
-          disabled={!isTimeActive || (text !== '신청 취소' && isCountFull) || isPending}
+          disabled={
+            maxCount === 0 ||
+            !isTimeActive ||
+            (text !== '신청 취소' && isCountFull) ||
+            isPending ||
+            text === '신청 불가'
+          }
           onClick={onClick}
           type="button"
           closed={text === '신청 불가'}
