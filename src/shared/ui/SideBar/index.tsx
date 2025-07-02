@@ -13,7 +13,7 @@ function SideBar() {
 
   return (
     <aside
-      style={{ height: 'calc(100dvh - 98px)' }}
+      style={{ height: 'calc(100dvh - 93px)' }}
       className="bg-white w-[180px] p-6 flex flex-col gap-9 z-[999]"
     >
       <Link href="/mypage" className="relative flex items-center gap-4">
