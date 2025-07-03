@@ -14,7 +14,7 @@ import { useMusicTypeStore } from '@/widgets/dormitory/store/useMusicTypeStore';
 import MusicNotifyModal from '../notify';
 
 function MusicHeader() {
-  const [selected, setSelected] = useState<string>('좋아요 순');
+  const [selected, setSelected] = useState<string>('최신순');
   const [calendar, setCalendar] = useState(false);
   const [modal, setModal] = useState(false);
   const { setType } = useMusicTypeStore();
