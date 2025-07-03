@@ -11,7 +11,7 @@ function MusicPage() {
         <div className="flex flex-1 flex-col self-stretch gap-8 w-full mobile:gap-6">
           <div className="flex flex-1 flex-col gap-6 w-full mobile:gap-4">
             <div className="flex items-center gap-6 mobile:gap-0">
-              <MusicHeader page />
+              <MusicHeader />
             </div>
             <div className="h-[calc(100dvh-450px)] mobile:h-[400px]">
               <MusicList />
