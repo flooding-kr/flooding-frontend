@@ -21,6 +21,7 @@
     "framer-motion": "^12.6.3",
     "next": "^14.2.25",
     "react": "^18",
+    "react-calendar": "^6.0.0",
     "react-dom": "^18",
     "react-easy-crop": "^5.4.1",
     "react-hook-form": "^7.54.2",
