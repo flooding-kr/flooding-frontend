@@ -4,6 +4,7 @@ import MusicItem from '@/entities/dormitory/ui/MusicItem';
 import { getDate } from '@/entities/home/model/getDate';
 import { Error } from '@/shared/assets/icons';
 import useUser from '@/shared/hooks/useUser';
+import useCalendarStore from '@/shared/stores/useCalendarStore';
 import { Music } from '@/shared/types/music';
 import { useFetchMusic } from '@/widgets/dormitory/model/useFetchMusic';
 import { useMusicTypeStore } from '@/widgets/dormitory/store/useMusicTypeStore';
@@ -12,8 +13,9 @@ function MusicList() {
   const { year, month, day } = getDate();
   const user = useUser();
   const { type } = useMusicTypeStore();
+  const { date } = useCalendarStore();
   const currentDate = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-  const music = useFetchMusic({ date: currentDate, type });
+  const music = useFetchMusic({ date: date || currentDate, type });
 
   return (
     <div className="w-[1360px] h-full text- bg-white flex flex-col px-7 py-6 overflow-y-auto hidden-scrollbar rounded-lg laptop:w-full mobile:px-3 mobile:py-4">

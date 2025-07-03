@@ -39,3 +39,5 @@ export { default as Music } from './Music';
 export { default as Admin } from './Admin';
 export { default as Tool } from './Tool';
 export { default as Write } from './Write';
+export { default as Expansion } from './Expansion';
+export { default as Clock } from './Clock';
