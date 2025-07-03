@@ -1,24 +1,24 @@
 'use client';
 
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 import BorderDropdown from '@/entities/dormitory/ui/BorderDropdown';
-import { BigArrowRight, Error, Music } from '@/shared/assets/icons';
+import { Clock, Error, Expansion, Music } from '@/shared/assets/icons';
 import { OrderType } from '@/shared/types/music';
+import { Tag } from '@/shared/ui';
+import Calendar from '@/shared/ui/Calendar';
 import Portal from '@/shared/ui/Portal';
 import { useMusicTypeStore } from '@/widgets/dormitory/store/useMusicTypeStore';
 
 import MusicNotifyModal from '../notify';
 
-interface Props {
-  page?: boolean;
-}
-
-function MusicHeader({ page }: Props) {
+function MusicHeader() {
   const [selected, setSelected] = useState<string>('좋아요 순');
+  const [calendar, setCalendar] = useState(false);
   const [modal, setModal] = useState(false);
   const { setType } = useMusicTypeStore();
+  const router = useRouter();
 
   useEffect(() => {
     let type;
@@ -37,11 +37,6 @@ function MusicHeader({ page }: Props) {
           <Music />
         </div>
         <p className="text-title3B text-black mobile:text-body2B">기상음악 신청</p>
-        {!page && (
-          <Link href="/dormitory/music" className="w-6 h-6 mobile:hidden">
-            <BigArrowRight color="#121212" />
-          </Link>
-        )}
       </div>
       <div className="flex items-center gap-6">
         <button
@@ -59,12 +54,23 @@ function MusicHeader({ page }: Props) {
             <MusicNotifyModal onClose={() => setModal(false)} />
           </Portal>
         )}
+        <div className="relative mobile:hidden">
+          <Tag text="날짜" icon={<Clock />} onClick={() => setCalendar(!calendar)} />
+          {calendar && <Calendar />}
+        </div>
         <BorderDropdown
           items={['최신순', '좋아요 순']}
           onChange={setSelected}
           value={selected}
           text={selected}
         />
+        <div className="mobile:hidden">
+          <Tag
+            text="전체 보기"
+            icon={<Expansion />}
+            onClick={() => router.push('/dormitory/music')}
+          />
+        </div>
       </div>
     </header>
   );
