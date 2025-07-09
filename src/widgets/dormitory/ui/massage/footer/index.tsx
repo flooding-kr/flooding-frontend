@@ -18,7 +18,7 @@ interface Props {
 function MassageFooter({ count, maxCount, activationTime, available }: Props) {
   const [isTimeActive, setIsTimeActive] = useState(false);
   const [isCountFull, setIsCountFull] = useState(false);
-  const [text, setText] = useState('');
+  const [text, setText] = useState('로딩중..');
   const [modal, setModal] = useState(false);
   const { mutate: postMassage, isPending: postPending } = useDispatchMassage();
   const { mutate: deleteMassage, isPending: deletePending } = useDeleteMassage();
@@ -46,7 +46,7 @@ function MassageFooter({ count, maxCount, activationTime, available }: Props) {
 
   return (
     <footer className="flex flex-1 justify-end w-full">
-      <div className="flex items-center gap-10 mobile:gap-6 mobile:w-full">
+      <div className="flex items-center gap-10 tablet:flex-col mobile:gap-6 mobile:w-full">
         <div className="flex items-center gap-4 mobile:gap-3">
           <div className="w-9 h-9 mobile:w-6 mobile:h-6">
             <Massage />
