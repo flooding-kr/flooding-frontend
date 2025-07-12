@@ -54,8 +54,8 @@ function BorderDropdown<T extends string | number>(
       <button
         type="button"
         onClick={toggleDropdown}
-        className={`flex justify-between items-center gap-3 text-body3R rounded-md p-3 w-[123px] border-[1px] border-solid border-main-600 
-        mobile:text-caption1R mobile:px-2 mobile:py-1 mobile:gap-1 mobile:w-fit ${isOpen ? 'bg-main-600 text-white' : 'bg-white text-main-600'}`}
+        className={`flex justify-between items-center gap-3 text-body3R rounded-lg p-3 w-[123px] border-[1px] border-solid border-main-600 
+        mobile:text-caption1R mobile:px-2 mobile:py-1 mobile:gap-1 mobile:w-fit ${isOpen ? 'bg-main-600 text-white' : 'bg-transparent text-main-600'}`}
       >
         {selectedItem}
         {isOpen ? (
