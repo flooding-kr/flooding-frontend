@@ -31,7 +31,7 @@ export default function ApplyBoard({
   const [isTimeActive, setIsTimeActive] = useState(false);
   const [isCountFull, setIsCountFull] = useState(false);
   const { setModal, setType } = useNotifyStore();
-  const [text, setText] = useState('');
+  const [text, setText] = useState('로딩중...');
 
   const notifyClick = () => {
     setType(title);

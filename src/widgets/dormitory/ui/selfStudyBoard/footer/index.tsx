@@ -24,7 +24,7 @@ function SelfStudyFooter({ activationTime, available, count, maxCount }: Props) 
   const { check, setCheck } = useCheckStore();
   const [isTimeActive, setIsTimeActive] = useState(false);
   const [isCountFull, setIsCountFull] = useState(false);
-  const [text, setText] = useState('');
+  const [text, setText] = useState('로딩중..');
   const [modal, setModal] = useState(false);
   const dormitoryAdmin =
     user?.roles?.includes('ROLE_DORMITORY_COUNCIL') ||
