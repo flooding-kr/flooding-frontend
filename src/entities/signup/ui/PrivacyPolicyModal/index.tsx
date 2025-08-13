@@ -71,7 +71,9 @@ function PrivacyPolicyModal({ onClose, onConfirm }: Props) {
             - 이메일
             <br />
             - 이름
-            <br />- 학번
+            <br />
+            - 학번
+            <br />- 성별
           </p>
           <p className="text-caption2M text-black">
             2. 개인정보 수집 방법
