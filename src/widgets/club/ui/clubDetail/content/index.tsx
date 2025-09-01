@@ -96,7 +96,9 @@ function ClubDetailContent({
           )}
         </section>
       </section>
-      {modal && <MapModal building={building} floor={floor} onClose={() => setModal(false)} />}
+      {modal && (
+        <MapModal building={building} floor={floor} room={room} onClose={() => setModal(false)} />
+      )}
     </>
   );
 }
