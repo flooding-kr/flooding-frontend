@@ -9,13 +9,19 @@ interface Props {
   onClose: () => void;
 }
 
+const buildingMap = {
+  AUDITORIUM: '금봉관',
+  MAIN_BUILDING: '본관',
+  DORMITORY: '동행관',
+};
+
 function MapModal({ building, floor, onClose }: Props) {
   return (
     <Portal onClose={onClose}>
       <div className="bg-white rounded-lg p-6 max-w-[1300px] w-full max-h-[450px] h-full flex flex-col gap-4">
         <header className="flex justify-between items-center">
           <p className="text-body1B text-black">
-            {building} {floor}층 지도
+            {buildingMap[building]} {floor}층 지도
           </p>
           <button
             type="button"

@@ -57,8 +57,8 @@ export default function MusicItem({
   return (
     <Link href={musicUrl} target="_blank" className="flex justify-between w-full">
       <div className="flex items-center gap-6 mobile:gap-3 flex-1 min-w-0">
-        <div className="relative w-20 h-20 mobile:w-[46px] mobile:h-[46px] shrink-0">
-          <Image alt="썸네일" src={musicImg} fill className="rounded-lg object-fill" />
+        <div className="relative w-28 h-20 mobile:w-[46px] mobile:h-[46px] shrink-0">
+          <Image alt="썸네일" src={musicImg} fill className="rounded-lg" />
         </div>
 
         <div className="flex flex-col gap-4 mobile:gap-2 w-full min-w-0 overflow-hidden">

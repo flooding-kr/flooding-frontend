@@ -12,26 +12,31 @@ import useClubDetail from '../../model/useClubDetail';
 function ClubDetailWrapper() {
   const { detailData, fetchClubDetail } = useClubDetail();
   const user = useUser();
+
   useEffect(() => {
     fetchClubDetail();
-  }, []);
+  }, [fetchClubDetail]);
 
   if (!detailData) {
     return <div>로딩중...</div>;
   }
+
+  const isMember = !!detailData.club_members?.find(item => item.id === user?.id);
+  const isLeader = detailData.leader.id === user?.id;
 
   return (
     <div className="relative max-w-[1360px] w-full pt-14 pb-24 flex flex-col gap-10">
       <ClubDetailHeader
         name={detailData.name}
         id={detailData.id}
-        isMember={!!detailData.club_members?.find(item => item.id === user?.id)}
-        isLeader={detailData.leader.id === user?.id}
+        isMember={isMember}
+        isLeader={isLeader}
       />
       <div className="flex gap-10">
         <ClubDetailContent
           building={detailData.classroom.building_type}
           floor={detailData.classroom?.floor}
+          room={detailData.classroom?.name}
           thumbnail={detailData.thumbnail_image.presigned_url}
           description={detailData.description}
           activity={detailData.activity_images.map(item => item.presigned_url)}

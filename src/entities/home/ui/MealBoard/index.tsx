@@ -78,7 +78,7 @@ export default function MealBoard() {
                 <button
                   key={item}
                   type="button"
-                  className={`px-12 py-4 w-[33%] mobile:flex mobile:justify-center mobile:items-center laptop:px-[24px] laptop:py-3 mobile:py-3 mobile:max-w-[28%] rounded-lg transition-colors duration-300 ease-in-out ${
+                  className={`px-12 py-4 w-[33%] mobile:flex mobile:justify-center mobile:items-center laptop:px-[24px] laptop:py-3 mobile:py-3 rounded-lg transition-colors duration-300 ease-in-out ${
                     dailyMeal === idx && 'bg-main-600'
                   }`}
                   disabled={dailyMeal === idx}

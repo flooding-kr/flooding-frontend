@@ -13,7 +13,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
     <>
       <ToastContainer position="top-right" autoClose={2000} />
       {!isAuthPage && <Header />}
-      <main className={isAuthPage ? '' : 'mobile:pt-[98px] mobile:pb-[63px]'}>{children}</main>
+      <main className={isAuthPage ? '' : 'mobile:pt-[93px] mobile:pb-[63px]'}>{children}</main>
       {!isAuthPage && <MobileFooter />}
     </>
   );
