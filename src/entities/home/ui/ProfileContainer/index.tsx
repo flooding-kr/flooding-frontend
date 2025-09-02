@@ -29,15 +29,15 @@ export default function ProfileContainer({ src, stuName, stuNum, mypage }: Props
       >
         <div
           className="relative flex justify-center"
-          // role="button"
-          // tabIndex={0}
-          // onClick={() => setProfile(true)}
-          // onKeyDown={() => setProfile(true)}
+          role="button"
+          tabIndex={0}
+          onClick={() => setProfile(true)}
+          onKeyDown={() => setProfile(true)}
         >
-          {/* <div className="absolute flex justify-center items-center w-[12.5rem] h-[12.5rem] rounded-full opacity-0 duration-200 hover:opacity-100">
+          <div className="absolute flex justify-center items-center w-[12.5rem] h-[12.5rem] rounded-full opacity-0 duration-200 hover:opacity-100">
             <div className="w-[12.5rem] h-[12.5rem] rounded-full bg-black opacity-40" />
             <p className="absolute flex text-white text-body1B z-50 opacity-100">프로필 수정</p>
-          </div> */}
+          </div>
           <Image
             alt="프로필 사진"
             src={src || userProfileImage}

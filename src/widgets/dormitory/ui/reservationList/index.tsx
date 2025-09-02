@@ -13,8 +13,8 @@ function ReservationList({ type, data }: Props) {
   const hasData = data?.length > 0;
 
   const containerClass = isSelfStudy
-    ? 'grid gap-x-7 gap-y-6 mt-6 mobile:m-0 mobile:gap-x-[10px] mobile:gap-y-3 grid-cols-[repeat(auto-fill,minmax(120px,1fr))] mobile:grid-cols-[repeat(auto-fill,minmax(74px,1fr))]'
-    : 'flex gap-x-4 mt-6 mobile:mt-0';
+    ? 'grid gap-x-7 gap-y-6 mobile:m-0 mobile:gap-x-[10px] mobile:gap-y-3 grid-cols-[repeat(auto-fill,minmax(120px,1fr))] mobile:grid-cols-[repeat(auto-fill,minmax(74px,1fr))]'
+    : 'flex gap-x-4 mobile:mt-0';
 
   const itemClass = isSelfStudy
     ? 'relative overflow-visible'
@@ -29,6 +29,10 @@ function ReservationList({ type, data }: Props) {
         <div
           className={`h-full pr-2 custom-scrollbar hide-scrollbar-mobile mobile:p-0
             ${type === 'selfStudy' ? 'overflow-y-auto' : 'overflow-x-auto'}`}
+          style={{
+            maxHeight: 'calc(100% - 24px)',
+            marginTop: '24px',
+          }}
         >
           {hasData ? (
             <div className={containerClass}>

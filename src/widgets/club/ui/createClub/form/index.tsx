@@ -18,7 +18,7 @@ const buildingMap: Record<string, string> = {
 
 function CreateClubForm() {
   const { handleSubmit, register } = useForm();
-  const { profileImage, images } = useImageStore();
+  const { profileImage, images, setImages, setProfileImage } = useImageStore();
   const { mutate: postClubForm } = useClubForm();
 
   const [type, setType] = useState('전공동아리');
@@ -58,6 +58,11 @@ function CreateClubForm() {
 
   const classroomNames = Array.isArray(classroom) ? classroom.map(cls => cls.name) : [];
 
+  useEffect(() => {
+    setImages([]);
+    setProfileImage(null);
+  }, []);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-10">
       <section className="flex flex-col gap-4">
@@ -70,7 +75,7 @@ function CreateClubForm() {
           <ImageUploader isProfile />
         )}
       </section>
-      <section className="flex justify-between gap-4">
+      <section className="flex justify-between gap-4 mobile:flex-col">
         <div className="w-full flex flex-col gap-4">
           <p className="text-body2B text-black">
             동아리 이름<span className="text-main-600">*</span>

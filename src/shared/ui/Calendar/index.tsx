@@ -1,12 +1,11 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import ReactCalendar from 'react-calendar';
 
 import useCalendarStore from '@/shared/stores/useCalendarStore';
 import 'react-calendar/dist/Calendar.css';
 
 function Calendar() {
-  const [currentDate, setCurrentDate] = useState<Date>(new Date());
-  const { setDate } = useCalendarStore();
+  const { currentDate, setDate, setCurrentDate } = useCalendarStore();
   const calendarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -21,7 +20,7 @@ function Calendar() {
   }, [currentDate]);
 
   return (
-    <div className="calendar-wrapper absolute top-14 right-10" ref={calendarRef}>
+    <div className="calendar-wrapper absolute top-14 right-10 z-50" ref={calendarRef}>
       <ReactCalendar
         value={currentDate}
         onChange={value => {

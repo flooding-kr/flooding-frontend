@@ -40,12 +40,37 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
   try {
-    const body = req.json();
+    const body = await req.json();
 
     const cookieStore = cookies();
     const accessToken = cookieStore.get('accessToken')?.value;
 
-    const response = await apiClient.post(`/attend/club`, body, {
+    const response = await apiClient.post(`/attendance/club`, body, {
+      headers: {
+        Authorization: accessToken ? `Bearer ${accessToken}` : '',
+      },
+    });
+
+    return NextResponse.json(response.data);
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      return NextResponse.json(
+        { error: error.response?.data || 'post failed' },
+        { status: error.response?.status || 500 }
+      );
+    }
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}
+
+export async function DELETE(req: Request) {
+  try {
+    const body = await req.json();
+
+    const cookieStore = cookies();
+    const accessToken = cookieStore.get('accessToken')?.value;
+
+    const response = await apiClient.delete(`/attendance/club`, {
       headers: {
         Authorization: accessToken ? `Bearer ${accessToken}` : '',
       },

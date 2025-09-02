@@ -1,25 +1,31 @@
 import Image from 'next/image';
-import React from 'react';
 
 import { Map } from '@/shared/assets/icons';
 import { BuildingType } from '@/shared/types/club';
 
 import { handleMap } from '../../model';
 
+const buildingMap = {
+  AUDITORIUM: '금봉관',
+  MAIN_BUILDING: '본관',
+  DORMITORY: '동행관',
+};
+
 interface Props {
   floor: number;
   building: BuildingType;
+  room: string;
   onClick?: () => void;
 }
 
-function SchoolMap({ building, floor, onClick }: Props) {
+function SchoolMap({ building, floor, room, onClick }: Props) {
   return (
     <div className="relative w-full h-full flex justify-center items-end p-5">
       <Image
         alt={building + floor}
         src={handleMap({ building, floor })}
         fill
-        className={`rounded-lg ${onClick ? 'object-cover' : ''} bg-white`}
+        className={`rounded-lg ${onClick ? 'object-contain' : ''} bg-white`}
       />
       {onClick && (
         <>
@@ -31,9 +37,7 @@ function SchoolMap({ building, floor, onClick }: Props) {
             <Map />
           </button>
           <div className="bg-[#12121266] rounded-lg px-5 py-4 z-30">
-            <p className="text-body2R text-white">
-              {building} {floor}층에 위치함
-            </p>
+            <p className="text-body2R text-white">{room}</p>
           </div>
         </>
       )}
