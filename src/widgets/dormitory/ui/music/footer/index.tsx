@@ -25,11 +25,16 @@ function MusicFooter() {
   };
 
   return (
-    <footer className="w-full flex items-center gap-6 mobile:flex-col mobile:gap-4">
-      <Input placeholder="URL을 입력해주세요" value={url} onChange={handleChange} />
-      <div className="w-[390px] mobile:w-full">
-        <Button text="등록하기" type="button" onClick={handleSubmit} disabled={isPending} />
-      </div>
+    <footer>
+      <form
+        action={handleSubmit}
+        className="w-full flex items-center gap-6 mobile:flex-col mobile:gap-4"
+      >
+        <Input placeholder="URL을 입력해주세요" value={url} onChange={handleChange} />
+        <div className="w-[390px] mobile:w-full">
+          <Button text="등록하기" type="button" onClick={handleSubmit} disabled={isPending} />
+        </div>
+      </form>
     </footer>
   );
 }

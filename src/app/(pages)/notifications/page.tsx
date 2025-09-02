@@ -5,7 +5,7 @@ import { Notification } from '@/views/notification';
 
 function page() {
   return <Build />;
-  // <Notification />
+  // return <Notification />;
 }
 
 export default page;

@@ -5,12 +5,13 @@ import React from 'react';
 import { Filter } from '@/shared/assets/icons';
 
 interface Props {
-  select: boolean;
+  select?: boolean;
   onClick: () => void;
 }
 
 export default function FilterButton({ onClick, select }: Props) {
-  let buttonStyle = 'py-3 px-3 rounded-lg text-body2R flex gap-3 mobile:text-body2R ';
+  let buttonStyle =
+    'p-3 rounded-lg text-body2R flex items-center gap-3 mobile:text-body3R mobile:px-2 mobile:py-1 ';
 
   if (select) {
     buttonStyle += 'border border-solid border-main-600 bg-main-600 bg-gray-400 text-white';
@@ -19,7 +20,9 @@ export default function FilterButton({ onClick, select }: Props) {
   }
   return (
     <button type="button" className={buttonStyle} onClick={onClick}>
-      <Filter select={select} />
+      <div className="w-6 h-6 mobile:w-4 mobile:h-4">
+        <Filter select={select} />
+      </div>
       필터
     </button>
   );

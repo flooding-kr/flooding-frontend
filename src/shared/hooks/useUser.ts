@@ -36,10 +36,8 @@ export default function useUser() {
         );
         setUser({ ...parsedUser, stuNum });
       } catch (error) {
-        router.push('/signin');
+        console.error(error);
       }
-    } else {
-      router.push('/signin');
     }
   }, [setUser, user, router]);
 
