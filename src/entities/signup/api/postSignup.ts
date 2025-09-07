@@ -11,6 +11,7 @@ interface SignUpData {
   year?: number;
   classroom?: number;
   number?: number;
+  department?: string;
 }
 
 export const postSignup = async (data: SignUpData) => {
@@ -34,6 +35,7 @@ export const postSignup = async (data: SignUpData) => {
           password: rest.password,
           name: rest.name,
           gender: rest.gender,
+          department: rest.department,
         };
 
   return axios.post(endpoint, payload);
