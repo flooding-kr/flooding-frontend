@@ -8,7 +8,7 @@ import { getClassroom } from '../api/getClassroom';
 
 interface Props {
   building: string;
-  floor: number | null;
+  floor: string | number | null;
 }
 
 export const useClassroom = ({ building, floor }: Props) => {
