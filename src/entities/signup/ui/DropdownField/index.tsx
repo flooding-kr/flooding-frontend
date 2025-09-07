@@ -10,7 +10,7 @@ type DropdownFieldProps<T extends FieldValues> = {
   label: string;
   items: number[] | { label: string; value: string }[];
   unit: string;
-  showUnit: boolean;
+  showUnit?: boolean;
 };
 
 function DropdownField<T extends FieldValues>({
