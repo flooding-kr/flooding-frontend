@@ -14,6 +14,7 @@ import {
   SignupStudentFields,
   SignupGenderToggle,
   SignupCheckbox,
+  SignupTeacherFields,
 } from '../SignupFormElements';
 
 export default function SignupForm() {
@@ -44,7 +45,7 @@ export default function SignupForm() {
       );
     }
     if (formValues.role === 'TEACHER') {
-      return isBasicValid && formValues.checkbox === true;
+      return isBasicValid && !!formValues.department && formValues.checkbox === true;
     }
 
     return false;
@@ -52,6 +53,7 @@ export default function SignupForm() {
 
   const selectedRole = useWatch({ control, name: 'role' });
   const isStudent = selectedRole === 'STUDENT';
+  const isTeacher = selectedRole === 'TEACHER';
 
   const passwordValidation = {
     required: '비밀번호를 입력해주세요.',
@@ -97,6 +99,7 @@ export default function SignupForm() {
         />
         <SignupRoleToggle control={control} />
         {isStudent && <SignupStudentFields control={control} />}
+        {isTeacher && <SignupTeacherFields control={control} />}
         <Input
           {...register('password', passwordValidation)}
           type="password"

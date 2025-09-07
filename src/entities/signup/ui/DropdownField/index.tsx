@@ -8,8 +8,9 @@ type DropdownFieldProps<T extends FieldValues> = {
   control: Control<T>;
   rules?: RegisterOptions<T>;
   label: string;
-  items: number[];
+  items: number[] | { label: string; value: string }[];
   unit: string;
+  showUnit: boolean;
 };
 
 function DropdownField<T extends FieldValues>({
@@ -19,7 +20,13 @@ function DropdownField<T extends FieldValues>({
   label,
   items,
   unit,
+  showUnit,
 }: DropdownFieldProps<T>) {
+  const formattedItems =
+    Array.isArray(items) && typeof items[0] === 'object'
+      ? items
+      : (items as number[]).map(value => ({ label: String(value), value }));
+
   return (
     <Controller
       name={name}
@@ -28,10 +35,12 @@ function DropdownField<T extends FieldValues>({
       render={({ field }) => (
         <Dropdown
           {...field}
-          items={items}
+          items={formattedItems}
           text={label}
+          label={label}
           unit={unit}
-          onChange={(value: number) => field.onChange(value)}
+          onChange={(value: number | string) => field.onChange(value)}
+          showUnit={showUnit}
         />
       )}
     />
