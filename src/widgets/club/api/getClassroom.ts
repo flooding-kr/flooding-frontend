@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 interface Props {
-  floor: number;
+  floor: number | string;
   building: string;
 }
 

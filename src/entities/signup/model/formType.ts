@@ -9,4 +9,5 @@ export type FormType = {
   year?: number;
   classroom?: number;
   number?: number;
+  department?: string;
 };
