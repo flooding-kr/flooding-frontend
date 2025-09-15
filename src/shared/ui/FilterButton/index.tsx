@@ -10,7 +10,8 @@ interface Props {
 }
 
 export default function FilterButton({ onClick, select }: Props) {
-  let buttonStyle = 'py-3 px-3 rounded-lg text-body2R flex gap-3 mobile:text-body2R ';
+  let buttonStyle =
+    'whitespace-nowrap py-3 px-3 rounded-xl text-body2R flex gap-3 mobile:text-body2R ';
 
   if (select) {
     buttonStyle += 'border border-solid border-main-600 bg-main-600 bg-gray-400 text-white';
@@ -19,7 +20,9 @@ export default function FilterButton({ onClick, select }: Props) {
   }
   return (
     <button type="button" className={buttonStyle} onClick={onClick}>
-      <Filter select={select} />
+      <div className="w-6 h-6">
+        <Filter select={select} />
+      </div>
       필터
     </button>
   );

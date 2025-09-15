@@ -76,7 +76,9 @@ export default function StudentItem({ id, stuNum, stuName, stuImg, rank, type, a
           )}
         </>
       )}
-      <div className="w-[120px] h-[134px] flex justify-center items-center border-[1px] border-gray-200 border-solid rounded-lg mobile:w-fit mobile:h-fit mobile:px-[15px] mobile:py-3">
+      <div
+        className={`px-8 py-[10px] flex justify-center items-center ${isAdmin && isAttend ? 'border-main-600 border-[2px]' : 'border border-gray-200'} border-solid rounded-2xl mobile:w-fit mobile:h-fit mobile:px-[15px] mobile:py-3`}
+      >
         <div className="flex flex-col items-center gap-3">
           <div className="relative w-12 h-12 rounded-full mobile:w-9 mobile:h-9">
             {isAdmin && isAttend && (
@@ -88,7 +90,8 @@ export default function StudentItem({ id, stuNum, stuName, stuImg, rank, type, a
               alt="profile"
               src={stuImg || userProfileImage}
               fill
-              className="w-12 h-12 rounded-full border border-solid border-gray-100 flex justify-center items-center z-0 mobile:w-9 mobile:h-9"
+              sizes="(max-width: 768px) 36px, 48px"
+              className="rounded-full border border-solid border-gray-100 flex justify-center items-center z-0 mobile:w-9 mobile:h-9"
             />
           </div>
           <div className="flex flex-col items-center gap-1 mobile:w-11">
