@@ -17,6 +17,7 @@ interface SignUpData {
   year?: number;
   classroom?: number;
   number?: number;
+  department?: string;
 }
 
 export const useSignup = () => {

@@ -13,7 +13,7 @@ export const useClubList = () => {
 
   const fetchClubList = useCallback(async () => {
     const data = await getClubList({ type });
-    setClubList(data);
+    setClubList(data.clubs);
   }, [type]);
 
   return { clublist, fetchClubList };

@@ -10,7 +10,7 @@ export const useMyClub = () => {
   const [myClub, setMyClub] = useState<ClubListType[]>([]);
 
   const fetchMyClub = useCallback(async () => {
-    const { data } = await getMyClub();
+    const data = await getMyClub();
     setMyClub(data.clubs);
   }, []);
 

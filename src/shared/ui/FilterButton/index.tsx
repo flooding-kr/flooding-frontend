@@ -11,7 +11,7 @@ interface Props {
 
 export default function FilterButton({ onClick, select }: Props) {
   let buttonStyle =
-    'whitespace-nowrap p-3 rounded-xl text-body2R flex items-center gap-3 mobile:text-body3R mobile:px-2 mobile:py-1 ';
+    'p-3 rounded-lg text-body2R flex items-center gap-3 mobile:text-body3R mobile:px-2 mobile:py-1 ';
 
   if (select) {
     buttonStyle += 'border border-solid border-main-600 bg-main-600 text-white';

@@ -1,7 +1,8 @@
 'use client';
 
+import { useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ApplyBoard } from '@/entities/home';
 import { useNotifyStore } from '@/entities/home/store/useNotifyStore';
@@ -28,6 +29,27 @@ function DormitoryPanel() {
   const { mutate: deleteSelfStudy } = useDeleteSelfStudy();
   const selfStudy = useFetchSelfStudy();
   const massage = useFetchMassage();
+
+  const queryClient = useQueryClient();
+  const currentTime = new Intl.DateTimeFormat('kr', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).format();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (currentTime < '21:00') {
+        if (currentTime >= '20:00') {
+          queryClient.invalidateQueries({ queryKey: ['selfStudy'] });
+        } else if (currentTime >= '20:20') {
+          queryClient.invalidateQueries({ queryKey: ['massage'] });
+        }
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="w-full max-w-[1360px] flex flex-col gap-10 mobile:gap-4">

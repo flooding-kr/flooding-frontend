@@ -8,5 +8,5 @@ interface Props {
 
 export const getClubList = async ({ type }: Props) => {
   const { data } = await axios.get(`/api/club/clublist?type=${type}`);
-  return data.clubs;
+  return data;
 };

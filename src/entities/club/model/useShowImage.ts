@@ -19,7 +19,7 @@ export const useShowImage = () => {
     });
     try {
       const response = await postImage(formData);
-      const uploadedUrls: Image[] = response.data.image_urls;
+      const uploadedUrls: Image[] = response.data.images;
 
       const updatedImages = [...images, ...uploadedUrls].slice(0, 10);
       setImages(updatedImages);
@@ -39,7 +39,7 @@ export const useShowImage = () => {
 
     try {
       const { data } = await postImage(formData);
-      const uploadedUrl: Image = data.image_urls[0];
+      const uploadedUrl: Image = data.images[0];
       setProfileImage(uploadedUrl);
     } catch (error) {
       console.log(formData);
