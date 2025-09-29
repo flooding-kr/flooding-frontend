@@ -61,7 +61,7 @@ export default function StayRoomSelectorModal({
               </div>
             </div>
             <div className="max-w-[1080px] w-full h-[320px] border border-solid border-gray-100 rounded-xl relative overflow-hidden">
-              <SchoolMap building="MAIN_BUILDING" floor={floor} room={room} />
+              <SchoolMap building="MAIN_BUILDING" floor={floor} room={room ?? ''} />
             </div>
           </div>
         </div>
