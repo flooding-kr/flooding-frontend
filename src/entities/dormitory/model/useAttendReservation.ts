@@ -11,7 +11,10 @@ function useAttendReservation({ id }: Props) {
 
   const attendReservation = useMutation({
     mutationFn: () => patchAttend({ id }),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['selfStudy', 'selfStudyRank'] }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['selfStudy'] });
+      queryClient.invalidateQueries({ queryKey: ['selfStudyRank'] });
+    },
   });
 
   return attendReservation;

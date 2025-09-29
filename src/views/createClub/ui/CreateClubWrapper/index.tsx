@@ -4,7 +4,7 @@ import { CreateClubForm, CreateClubHeader } from '@/widgets/club/ui/createClub';
 
 function CreateClubWrapper() {
   return (
-    <div className="max-w-[1360px] w-full flex flex-col gap-12">
+    <div className="max-w-[1360px] w-full flex flex-col gap-12 mobile:px-4">
       <CreateClubHeader />
       <CreateClubForm />
     </div>

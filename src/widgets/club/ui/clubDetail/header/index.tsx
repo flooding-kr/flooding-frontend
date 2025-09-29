@@ -18,7 +18,7 @@ function ClubDetailHeader({ name, id, isMember, isLeader }: Props) {
   return (
     <header className="relative w-full flex justify-between">
       <div className="flex gap-10">
-        <Link href="/club">
+        <Link href="/club" className="w-10 h-10 mobile:w-6 mobile:h-6">
           <BigArrowLeft />
         </Link>
         <p className="text-title2M text-black">{name}</p>

@@ -59,7 +59,7 @@ function MusicHeader() {
           {calendar && <Calendar />}
         </div>
         <BorderDropdown
-          items={['최신순', '좋아요 순']}
+          items={['최신순', '좋아요 순', '오래된 순']}
           onChange={setSelected}
           value={selected}
           text={selected}

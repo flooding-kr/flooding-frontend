@@ -1,6 +1,6 @@
 'use client';
 
-import { DetailedHTMLProps, InputHTMLAttributes, forwardRef, useState } from 'react';
+import { DetailedHTMLProps, InputHTMLAttributes, forwardRef, useEffect, useState } from 'react';
 
 import { Eye, EyeClose } from '@/shared/assets/icons';
 
@@ -46,6 +46,8 @@ const Input = forwardRef<HTMLInputElement, Props>(
         setCharCount(e.target.value.length);
       }
     };
+
+    useEffect(() => setCharCount(value?.toString().length ?? 0), [value]);
 
     return (
       <div className="relative w-full">

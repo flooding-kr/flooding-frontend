@@ -28,7 +28,6 @@ export async function GET(request: Request) {
 
     const status = axiosError.response?.status || 500;
     const message = axiosError.response?.data?.reason || 'get schedule failed';
-    console.log(time);
     return NextResponse.json({ error: message }, { status });
   }
 }

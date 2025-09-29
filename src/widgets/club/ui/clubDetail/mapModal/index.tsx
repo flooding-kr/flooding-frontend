@@ -6,16 +6,23 @@ import Portal from '@/shared/ui/Portal';
 interface Props {
   building: BuildingType;
   floor: number;
+  room: string;
   onClose: () => void;
 }
 
-function MapModal({ building, floor, onClose }: Props) {
+const buildingMap = {
+  AUDITORIUM: '금봉관',
+  MAIN_BUILDING: '본관',
+  DORMITORY: '동행관',
+};
+
+function MapModal({ building, floor, room, onClose }: Props) {
   return (
     <Portal onClose={onClose}>
       <div className="bg-white rounded-lg p-6 max-w-[1300px] w-full max-h-[450px] h-full flex flex-col gap-4">
         <header className="flex justify-between items-center">
           <p className="text-body1B text-black">
-            {building} {floor}층 지도
+            {buildingMap[building]} {floor}층 지도
           </p>
           <button
             type="button"
@@ -26,7 +33,7 @@ function MapModal({ building, floor, onClose }: Props) {
           </button>
         </header>
         <div className="w-full h-full rounded-lg border-solid border-[1px] border-gray-200">
-          <SchoolMap building={building} floor={floor} />
+          <SchoolMap building={building} floor={floor} room={room} />
         </div>
       </div>
     </Portal>

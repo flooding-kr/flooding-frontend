@@ -59,18 +59,18 @@ export default function StudentItem({ id, stuNum, stuName, stuImg, rank, type, a
       {type === 'selfStudy' && (
         <>
           {rank === 1 && (
-            <div className="absolute -right-5 -top-5 w-10 h-10 flex justify-center items-center bg-gold-gradient rounded-full z-10 mobile:hidden">
+            <div className="absolute -right-5 top-[3px] w-10 h-10 flex justify-center items-center bg-gold-gradient rounded-full z-10 mobile:hidden">
               <p className="text-white text-body2B">1</p>
             </div>
           )}
 
           {rank === 2 && (
-            <div className="absolute -right-5 -top-5 w-10 h-10 flex justify-center items-center bg-silver-gradient rounded-full mobile:hidden">
+            <div className="absolute -right-5 top-[3px] w-10 h-10 flex justify-center items-center bg-silver-gradient rounded-full mobile:hidden">
               <p className="text-white text-body2B">2</p>
             </div>
           )}
           {rank === 3 && (
-            <div className="absolute -right-5 -top-5 w-10 h-10 flex justify-center items-center bg-bronze-gradient rounded-full mobile:hidden">
+            <div className="absolute -right-5 top-[3px] w-10 h-10 flex justify-center items-center bg-bronze-gradient rounded-full mobile:hidden">
               <p className="text-white text-body2B">3</p>
             </div>
           )}
