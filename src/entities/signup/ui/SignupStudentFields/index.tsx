@@ -18,7 +18,7 @@ export default function SignupStudentFields({ control }: SignupStudentFieldsProp
         control={control}
         rules={{ required: '기수를 선택해주세요.' }}
         label="기수 선택"
-        items={[7, 8, 9]}
+        items={[7, 8, 9, 10]}
         unit="기"
       />
       <DropdownField

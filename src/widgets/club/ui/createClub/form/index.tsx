@@ -21,10 +21,10 @@ function CreateClubForm() {
   const { profileImage, images, setImages, setProfileImage } = useImageStore();
   const { mutate: postClubForm } = useClubForm();
 
-  const [type, setType] = useState('전공동아리');
-  const [view, setView] = useState('');
+  const [type, setType] = useState<string | number>('전공동아리');
+  const [view, setView] = useState<string | number>('');
   const [building, setBuilding] = useState('');
-  const [floor, setFloor] = useState<number | null>(null);
+  const [floor, setFloor] = useState<number | string | null>(null);
   const [room, setRoom] = useState<number | null>(null);
   const [floorDropdownKey, setFloorDropdownKey] = useState(0);
   const [roomDropdownKey, setRoomDropdownKey] = useState(0);
