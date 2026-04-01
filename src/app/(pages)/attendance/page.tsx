@@ -1,12 +1,10 @@
-import React from 'react';
-
-// import AttendPositioner from '@/views/attendance/ui/positioner';
+import Attendance from '@/views/attendance/ui';
 import Build from '@/views/build/ui';
 
 const page = () => (
   <div>
-    {/* <AttendPositioner /> */}
     <Build />
+    {/* <Attendance /> */}
   </div>
 );
 

@@ -57,6 +57,16 @@
     "import/no-extraneous-dependencies": [
       "error",
       { "devDependencies": ["**/*.stories.*", "**/*.test.*"] }
+    ],
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "labelComponents": [],
+        "labelAttributes": [],
+        "controlComponents": ["SearchInput", "Input"],
+        "assert": "either",
+        "depth": 25
+      }
     ]
   },
   "settings": {

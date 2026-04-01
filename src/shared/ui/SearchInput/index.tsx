@@ -11,6 +11,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 function SearchInput({
+  id,
   placeholder,
   onChange,
   onDebounce,
@@ -33,20 +34,21 @@ function SearchInput({
   };
 
   return (
-    <div>
-      <div className="relative w-full rounded-lg px-6 py-4 bg-gray-100 mobile:py-3 mobile:px-2">
-        <div className="w-full flex justify-between">
-          <input
-            type="text"
-            className="w-full text-body2R text-black bg-transparent placeholder-gray-500 mobile:text-body3R"
-            placeholder={placeholder}
-            onChange={handleChange}
-            value={value}
-            {...props}
-          />
-          <div className="w-9 h-9 mobile:w-6 mobile:h-6">
-            <Search />
-          </div>
+    <div
+      className={`relative w-full rounded-lg px-6 py-4 bg-gray-100 mobile:py-3 mobile:px-2 ${props.className ? ` ${props.className}` : ''}`}
+    >
+      <div className="w-full flex justify-between">
+        <input
+          type="text"
+          id={id}
+          className="w-full text-body2R text-black bg-transparent placeholder-gray-500 mobile:text-body3R"
+          placeholder={placeholder}
+          onChange={handleChange}
+          value={value}
+          {...props}
+        />
+        <div className="w-9 h-9 mobile:w-6 mobile:h-6">
+          <Search />
         </div>
       </div>
     </div>
